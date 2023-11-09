@@ -1,3 +1,10 @@
 {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
-}
+    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
+    "build": {
+      "env": {
+        "VITE_API_BASE": "localhost"
+      },
+      "command": "npm run build"
+    }
+  }
+  
