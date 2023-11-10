@@ -33,8 +33,7 @@ function CommentsClient() {
     );
     setCommentsForProfessional(filteredComments);
   }, [comments, professionalId]);
-  console.log(comments, "comentarios");
-  console.log(professionalId, "prof")
+  
 
   return (
     <div>
