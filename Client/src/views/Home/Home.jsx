@@ -108,7 +108,7 @@ const Home = () => {
     );
   };
 
-  //* Función para limpiar los filtros da error, por ahora comentada
+  //* Función para limpiar los filtros da error, por ahora comentada (fixeds)
   const clearFilters = (e) => {
     e.preventDefault();
     setPriceRange([1000, 10000]);
