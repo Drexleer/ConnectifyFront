@@ -42,15 +42,16 @@ const DetailAd = () => {
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detail);
   const location = useLocation();
-  const favorites = useSelector((state) => state.favorites.favoriteProfessionals);
+  const favorites = useSelector(
+    (state) => state.favorites.favoriteProfessionals
+  );
   const users = useSelector((state) => state.usersLogin.user);
   const userGoogle = useSelector((state) => state.googleLogin.user);
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
 
   const newFav = favorites.some(
-    (favorite) =>
-      favorite.professional._id === detail.detail.creator[0]._id
+    (favorite) => favorite.professional._id === detail.detail.creator[0]._id
   );
 
   useEffect(() => {
@@ -102,7 +103,7 @@ const DetailAd = () => {
                   <ButtonBack />
                 </Link>
               </div>
-              {users.types !== "admin" && users.types !== "professional" && (
+              {users.types !== 'admin' && users.types !== 'professional' && (
                 <Grid item xs={8} align="left">
                   <Box
                     display="flex"
@@ -111,9 +112,9 @@ const DetailAd = () => {
                   >
                     <Button
                       sx={{
-                        backgroundColor: !newFav ? "#D9D9D9" : "#3B7BA4",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        backgroundColor: !newFav ? '#D9D9D9' : '#3B7BA4',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
                       variant="contained"
                       onClick={handleSaveOrRemoveProfile}
@@ -193,7 +194,7 @@ const DetailAd = () => {
         ) : (
           <div>No hay creadores disponibles.</div>
         )}
-        <Comments id={detail.detail.creator[0]._id} />
+        <Comments id={detail.detail.creator?.[0]?._id || ''} />
       </div>
     </div>
   );
