@@ -98,4 +98,6 @@ const CommentBox = ({ onClose, professionalId }) => {
   );
 };
 
+
 export default CommentBox;
+

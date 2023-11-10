@@ -205,8 +205,9 @@ const DetailAd = () => {
                       </div>
                     </Grid>
                   </Grid>
-                  <MercadoPago />
-                 
+
+                  <MercadoPago />                 
+
                 </CardContent>
               </Card>
             </Grid>

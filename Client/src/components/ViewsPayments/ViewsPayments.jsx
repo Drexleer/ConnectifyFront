@@ -18,20 +18,15 @@ function ViewsPayments() {
   const { user, isAuthenticated } = useAuth0();
   const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);
   const { pathname, search } = useLocation(); // ( pathname: url - search: Querys )
-
-  console.log("PATH...", pathname);
-  console.log("SEARCH...", search);
   const path = pathname.split("/")[2];
-
   const detail = useSelector((state) => state.detail);
   const users = useSelector((state) => state.usersLogin.user);
   const comments = useSelector((state) => state.comment.comments);
   const [paymentData, setPaymentData] = useState(null);
   const [userName, setUserName] = useState("");
-  
-  const [openCommentBoxId, setOpenCommentBoxId] = useState(null);
+    const [openCommentBoxId, setOpenCommentBoxId] = useState(null);
 
-console.log(comments);
+
   const handleCommentBoxToggle = (professionalId) => {
     setOpenCommentBoxId((prevId) => (prevId === professionalId ? null : professionalId));
   };
@@ -41,19 +36,15 @@ console.log(comments);
   };
 
   const hasCommented = (professionalId) => {
-    console.log("Checking comments for professionalId:", professionalId);
-    console.log("User ID:", users._id);
-    // console.log("UserID:", comments.Client._id);
-    const userComment = comments.find(
+   
+       const userComment = comments.find(
       (comment) =>
       comment.Professional._id === professionalId &&
       comment.Client.userName === users.userName &&
       !comment.isDeleted
     );
   
-    console.log("User comment:", userComment);
-    console.log("Sample Comment Structure:", comments[0]); 
-    return !!userComment;
+       return !!userComment;
   };
  
   
@@ -95,8 +86,6 @@ console.log(comments);
         paymentType: payment_type, //dataMP[6].split("=")[1],
       };
 
-      console.log("ZZZZZ : ", valuesMP);
-
       const fetchData = async () => {
         try {
           //Veo si ya existe el ID de pago para evitar copias
@@ -116,11 +105,13 @@ console.log(comments);
                 userName: userName,
                 isCompleted: valuesMP.status,
               }
+
             );
             searchData();
           }
         } catch (error) {
           console.log("Error ViewPayments,", error);
+
         }
       };
 
