@@ -93,6 +93,7 @@ const DetailAd = () => {
     }
   };
 
+  
   return (
     <div>
       <Navbar />

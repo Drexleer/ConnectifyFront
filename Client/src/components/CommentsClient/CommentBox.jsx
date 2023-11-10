@@ -9,6 +9,7 @@ import { Card, CardContent, Typography, Box } from "@mui/material";
 import Rating from "react-rating-stars-component";
 import style from "./Comments.module.css";
 
+
 const CommentBox = ({ onClose, professionalId }) => {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
