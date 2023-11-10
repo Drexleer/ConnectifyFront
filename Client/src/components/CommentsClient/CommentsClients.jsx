@@ -14,8 +14,9 @@ function CommentsClient() {
  const [commentsForProfessional, setCommentsForProfessional] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [userDataOk, setUserDataOk] = useState("");
-  const professionalId = detail.detail.creator[0]._id;
 
+  const professionalId = detail.detail.creator[0]._id;
+  console.log(detail);
 
 
   useEffect(() => {
@@ -32,7 +33,8 @@ function CommentsClient() {
     );
     setCommentsForProfessional(filteredComments);
   }, [comments, professionalId]);
-  
+  console.log(comments, "comentarios");
+  console.log(professionalId, "prof")
 
   return (
     <div>
@@ -93,4 +95,5 @@ function CommentsClient() {
     </div>
   );
 }
+
 export default CommentsClient;
