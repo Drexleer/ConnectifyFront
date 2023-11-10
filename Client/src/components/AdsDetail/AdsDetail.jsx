@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+
+import { useState } from 'react';
+
 import {
   Button,
   Card,
@@ -11,6 +13,7 @@ import {
   List,
   ListItem,
   Typography,
+
 } from "@mui/material";
 import MercadoPago from "../Payments/MercadoPago";
 import "./DetailAd.css";
@@ -35,6 +38,7 @@ import {
 import Comments from "../CommentsClient/CommentsClients";
 import ButtonBack from "../Utils/ButtonBack/ButtonBack";
 import Loading from "../Utils/Loading/Loading";
+
 
 
 const DetailAd = () => {
@@ -101,12 +105,14 @@ const DetailAd = () => {
         ) : detail.detail.creator && detail.detail.creator.length > 0 ? (
           <Grid container spacing={2}>
             <Grid item xs={8} align="left">
-              <div style={{ paddingBottom: "1em" }}>
-                <Link to={"/home"}>
+
+              <div style={{ paddingBottom: '1em' }}>
+                <Link to={'/home'}>
                   <ButtonBack />
                 </Link>
               </div>
-              {users.types !== "admin" && users.types !== "professional" && (
+              {users.types !== 'admin' && users.types !== 'professional' && (
+
                 <Grid item xs={8} align="left">
                   <Box
                     display="flex"
@@ -115,9 +121,9 @@ const DetailAd = () => {
                   >
                     <Button
                       sx={{
-                        backgroundColor: !newFav ? "#D9D9D9" : "#3B7BA4",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        backgroundColor: !newFav ? '#D9D9D9' : '#3B7BA4',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                       }}
                       variant="contained"
                       onClick={handleSaveOrRemoveProfile}
@@ -132,28 +138,36 @@ const DetailAd = () => {
                 <Typography
                   fontWeight="900"
                   variant="h3"
+
                   sx={{ margin: "10px" }}
+
                 >
                   {detail.detail.profession}
                 </Typography>
                 <Typography
                   fontWeight="900"
                   variant="h5"
+
                   sx={{ margin: "10px" }}
+
                 >
                   Ubicación: {detail.detail.location}
                 </Typography>
                 <Typography
                   fontWeight="900"
                   variant="h4"
-                  sx={{ margin: "10px" }}
+
+                  sx={{ margin: '10px' }}
+
                 >
                   Descripción:
                 </Typography>
                 <Typography
                   fontWeight="700"
                   variant="body1"
-                  sx={{ margin: "10px" }}
+
+                  sx={{ margin: '10px' }}
+
                 >
                   {detail.detail.description}
                 </Typography>
@@ -170,7 +184,9 @@ const DetailAd = () => {
                 />
                 <CardContent>
                   <Typography fontWeight="900" variant="h5" component="div">
-                    {detail.detail.creator[0].name}{" "}
+
+                    {detail.detail.creator[0].name}{' '}
+
                     {detail.detail.creator[0].lastName}
                   </Typography>
                   <Grid container spacing={2}>
@@ -189,7 +205,6 @@ const DetailAd = () => {
                       </div>
                     </Grid>
                   </Grid>
-
                   <MercadoPago />
                  
                 </CardContent>

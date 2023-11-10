@@ -16,7 +16,7 @@ function CommentsClient() {
   const [userDataOk, setUserDataOk] = useState("");
 
   const professionalId = detail.detail.creator[0]._id;
-  console.log(detail);
+
 
 
   useEffect(() => {
@@ -33,8 +33,7 @@ function CommentsClient() {
     );
     setCommentsForProfessional(filteredComments);
   }, [comments, professionalId]);
-  console.log(comments, "comentarios");
-  console.log(professionalId, "prof")
+  
 
   return (
     <div>
