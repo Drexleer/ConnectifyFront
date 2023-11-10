@@ -31,11 +31,6 @@ function PaymentsCard(data) {
     
   }, [profData, bDate, bState, isAuthenticated, dispatch]);
 
-console.log(comments, "com")
-console.log(users, "us")
-  
-
-
 
 
   return (
