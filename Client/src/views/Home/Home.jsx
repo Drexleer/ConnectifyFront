@@ -8,8 +8,6 @@
 // import Fab from '@mui/material/Fab';
 import { IoMdRefresh } from 'react-icons/io';
 import { MdPersonSearch } from 'react-icons/md';
-import React from 'react';
-
 import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Login from '../../components/Login/Login';
@@ -29,7 +27,6 @@ import ButtonTop from '../../components/Utils/ButtonTop/ButtonTop';
 import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
-import { Label } from 'recharts';
 
 import Cover from '../../components/Cover/Cover';
 
@@ -114,11 +111,14 @@ const Home = () => {
   //* Función para limpiar los filtros da error, por ahora comentada
   const clearFilters = (e) => {
     e.preventDefault();
-    setProfession('');
-    setLocationProf('');
-    setSortPrice('');
     setPriceRange([1000, 10000]);
-    setWorkLocation('');
+    document
+      .querySelectorAll(
+        '#workLocation, #sortPrice, #LocationSearch, #ProfesionSearch'
+      )
+      .forEach((select) => {
+        select.value = 'DEFAULT';
+      });
     dispatch(fetchAds());
   };
 
@@ -153,144 +153,168 @@ const Home = () => {
 
   return (
     <div>
-      <Cover/>
+      <Cover />
       <Navbar setContainerLogin={setContainerLogin} />
       <div className={styles.container111}>
-      {containerLogin ? (
-        <Login
-          setContainerLogin={setContainerLogin}
-          setPopUpLogin={setPopUpLogin}
-        />
-      ) : null}
-      {popUpLogin && (
-        <div
-          style={{
-            position: 'absolute',
-            width: '25rem',
-            height: '10rem',
-            top: '38%',
-            left: '36%',
-            border: '2px solid black',
-            borderRadius: '20px',
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            backgroundColor: 'rgba(255,255,255,0.9)',
-            zIndex: '1000',
-          }}
-        >
-          <IconButton
-            disableElevation
-            style={{
-              position: 'absolute',
-              top: '5px',
-              right: '5px',
-              color: '#000000',
-              fontWeight: 'bold',
-            }}
-            onClick={handlerCloseLoginPopUp}
-          >
-            <CancelRoundedIcon />
-          </IconButton>
+        {containerLogin ? (
+          <Login
+            setContainerLogin={setContainerLogin}
+            setPopUpLogin={setPopUpLogin}
+          />
+        ) : null}
+        {popUpLogin && (
           <div
             style={{
+              position: 'absolute',
+              width: '25rem',
+              height: '10rem',
+              top: '38%',
+              left: '36%',
+              border: '2px solid black',
+              borderRadius: '20px',
               display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
+              justifyContent: 'space-around',
               alignItems: 'center',
+              backgroundColor: 'rgba(255,255,255,0.9)',
+              zIndex: '1000',
             }}
           >
-            <h3>Email y/o Password incorrectos</h3>
+            <IconButton
+              disableElevation
+              style={{
+                position: 'absolute',
+                top: '5px',
+                right: '5px',
+                color: '#000000',
+                fontWeight: 'bold',
+              }}
+              onClick={handlerCloseLoginPopUp}
+            >
+              <CancelRoundedIcon />
+            </IconButton>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <h3>Email y/o Password incorrectos</h3>
+            </div>
           </div>
-        </div>
-      )}
-      <div className={styles.filterStyle}>
+        )}
+        <div className={styles.filterStyle}>
+          <div className={styles.contProfesionales}>
+            <div className={styles.contenedorSelect}>
+              <div className={styles.contentselect}>
+                <select
+                  className={styles.selectCss}
+                  id="ProfesionSearch"
+                  onChange={handleProfession}
+                >
+                  <option value="DEFAULT" disabled selected>
+                    Elige una profesión
+                  </option>
+                  {uniqueProfessions.map((profession, id) => (
+                    <option key={id} value={profession}>
+                      {profession}
+                    </option>
+                  ))}
+                </select>
 
-            <div className={styles.contProfesionales}>
-              <div className={styles.contenedorSelect}>
-                <div className={styles.contentselect}>  
-                  
-                    <select className={styles.selectCss} id="ProfesionSearch"
-                      onChange={handleProfession}
-                      >
-                      <option value=" " disabled selected >Elige una profesión</option>
-                      {uniqueProfessions.map((profession, id) => (
-                        <option key={id} value={profession}>{profession}</option>
-                      ))}
-                    </select>
-                  
-                    <select className={`${styles.selectCss} ${styles.selCity}`} id="LocationSearch"
-                      onChange={handleLocation}
-                      >
-                      <option value=" " disabled selected >Elige una ciudad</option>
-                      {uniqueLocations.map((locations, id) => (
-                        <option key={id} value={locations}>{locations}</option>
-                      ))}
-                    </select>
-                  
-                </div>
+                <select
+                  className={`${styles.selectCss} ${styles.selCity}`}
+                  id="LocationSearch"
+                  onChange={handleLocation}
+                >
+                  <option value="DEFAULT" disabled selected>
+                    Elige una ciudad
+                  </option>
+                  {uniqueLocations.map((locations, id) => (
+                    <option key={id} value={locations}>
+                      {locations}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
-            
-        
-            <div className={styles.contPrecios}>
-                <div className={styles.contMinMax}>
-                    <span className={styles.minMax}>min: ${priceRange[0]}</span> 
-                    <span className={styles.minMax}>Max: ${priceRange[1]}</span>
-                </div>
-                <Slider 
-                    trackStyle={{ backgroundColor: "orange", height: 4}}
-                    railStyle={{ backgroundColor: "white", height: 4 }}
-                    handleStyle={{
-                      
-                      borderColor: "#1a659a",
-                      height: 10,
-                      width: 10,
-                      marginLeft: 0,
-                      marginTop: -3,
-                      backgroundColor: "#ffffff"
-                    }}
-                    range
-                    min={1000}
-                    max={10000}
-                    step={100}
-                    value={priceRange}
-                    onChange={handlePriceRangeChange}
-                />
+          </div>
+
+          <div className={styles.contPrecios}>
+            <div className={styles.contMinMax}>
+              <span className={styles.minMax}>min: ${priceRange[0]}</span>
+              <span className={styles.minMax}>Max: ${priceRange[1]}</span>
             </div>
+            <Slider
+              trackStyle={{ backgroundColor: 'orange', height: 4 }}
+              railStyle={{ backgroundColor: 'white', height: 4 }}
+              handleStyle={{
+                borderColor: '#1a659a',
+                height: 10,
+                width: 10,
+                marginLeft: 0,
+                marginTop: -3,
+                backgroundColor: '#ffffff',
+              }}
+              range
+              min={1000}
+              max={10000}
+              step={100}
+              value={priceRange}
+              onChange={handlePriceRangeChange}
+            />
+          </div>
 
-
-            <div className={styles.contOrdenar}>
-              {/* <label>
+          <div className={styles.contOrdenar}>
+            {/* <label>
                 Orden
               </label> */}
-              <select className={`${styles.selectCss} ${styles.selectOrder}`} id="sortPrice" onChange={handlesortPrice}>
-              <option value=" " disabled selected >Ordenar:</option><option value="asc">Ascendente</option>
-                  <option value="desc">Descendente</option>
-              </select>
-              {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
+            <select
+              className={`${styles.selectCss} ${styles.selectOrder}`}
+              id="sortPrice"
+              onChange={handlesortPrice}
+            >
+              <option value="DEFAULT" disabled selected>
+                Ordenar:
+              </option>
+              <option value="asc">Ascendente</option>
+              <option value="desc">Descendente</option>
+            </select>
+            {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
                 <InputLabel>Orden por Precio</InputLabel>
                 <Select id="sortPrice" onChange={handlesortPrice} value={sortPrice}>
                   <MenuItem value="asc">Ascendente</MenuItem>
                   <MenuItem value="desc">Descendente</MenuItem>
                 </Select>
               </FormControl> */}
-            </div>
-            {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
+          </div>
+          {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
               <InputLabel>Trabajo</InputLabel> */}
-            <div className={styles.contRemoto}>  
-              <select className={`${styles.selectCss} ${styles.selectRemoto}`} id="workLocation" onChange={handleRemoteWork}>
-                <option value="" disabled selected>Tipo</option>
-                <option value="Remoto">Remoto</option>
-                <option value="Presencial">Presencial</option>
-              </select>
+          <div className={styles.contRemoto}>
+            <select
+              className={`${styles.selectCss} ${styles.selectRemoto}`}
+              id="workLocation"
+              onChange={handleRemoteWork}
+            >
+              <option value="DEFAULT" disabled selected>
+                Tipo
+              </option>
+              <option value="Remoto">Remoto</option>
+              <option value="Presencial">Presencial</option>
+            </select>
             {/* </FormControl> */}
-            </div>
-        <div className={styles.contButtons}>   
+          </div>
+          <div className={styles.contButtons}>
             <div className={styles.contButton}>
-
               <button className={styles.applyFilter} onClick={applyFilters}>
-                <MdPersonSearch style={{ fontSize: '2em', marginLeft:'-0.7rem', marginTop:'-0.4rem'}} />
+                <MdPersonSearch
+                  style={{
+                    fontSize: '2em',
+                    marginLeft: '-0.7rem',
+                    marginTop: '-0.4rem',
+                  }}
+                />
               </button>
 
               {/* <Fab
@@ -304,9 +328,17 @@ const Home = () => {
               </Fab> */}
             </div>
             <div className={styles.contClear}>
-              <button className={`${styles.applyFilter} ${styles.clear}`} onClick={clearFilters}>
-                <IoMdRefresh style={{ fontSize: '2em', marginLeft:'-0.85rem', marginTop:'-0.3rem' }} />
-              
+              <button
+                className={`${styles.applyFilter} ${styles.clear}`}
+                onClick={clearFilters}
+              >
+                <IoMdRefresh
+                  style={{
+                    fontSize: '2em',
+                    marginLeft: '-0.85rem',
+                    marginTop: '-0.3rem',
+                  }}
+                />
               </button>
               {/* <Fab
                 color="primary"
@@ -319,78 +351,76 @@ const Home = () => {
                 <IoMdRefresh style={{ fontSize: '2em' }} />
               </Fab> */}
             </div>
-
+          </div>
         </div>
-            
-      </div>
-      <div className={styles.container}>
-        {isLoading ? (
-          <div>
-            <Loading />
-          </div>
-        ) : adsFiltered.length !== 0 ? (
-          <div className={styles.card}>
-            {currentAds.map((ad) => (
-              <Professional
-                key={ad._id}
-                id={ad._id}
-                name={ad.creator[0].name}
-                lastName={ad.creator[0].lastName}
-                location={ad.location}
-                description={ad.description}
-                price={ad.price}
-                profession={ad.profession}
-                image={ad.creator[0].image}
-                setContainerLogin={setContainerLogin}
+        <div className={styles.container}>
+          {isLoading ? (
+            <div>
+              <Loading />
+            </div>
+          ) : adsFiltered.length !== 0 ? (
+            <div className={styles.card}>
+              {currentAds.map((ad) => (
+                <Professional
+                  key={ad._id}
+                  id={ad._id}
+                  name={ad.creator[0].name}
+                  lastName={ad.creator[0].lastName}
+                  location={ad.location}
+                  description={ad.description}
+                  price={ad.price}
+                  profession={ad.profession}
+                  image={ad.creator[0].image}
+                  setContainerLogin={setContainerLogin}
+                />
+              ))}
+            </div>
+          ) : (
+            <div>
+              <img
+                src="https://i.pinimg.com/originals/44/30/c9/4430c9ff73da58c23c823f0ea6b6f64c.gif"
+                alt="Obrero"
+                style={{ width: '400px' }}
               />
-            ))}
-          </div>
-        ) : (
-          <div>
-            <img
-              src="https://i.pinimg.com/originals/33/1c/3d/331c3d4d2200ab540675c1d56d96bba8.gif"
-              alt="Obrero"
-              style={{ width: '400px' }}
-            />
-            <h2
-              style={{
-                paddingLeft: '1.5em',
-                paddingBottom: '5em',
-              }}
-            >
-              No se encontraron Anuncios
-            </h2>
-          </div>
-        )}
-      </div>
-      <div className={styles.buttonContainer}>
-        <ButtonTop />
-      </div>
-      {isAuthenticated ? (
-        <button
-          className="open-chat-button"
-          onClick={toggleChat}
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 9999, // Asegura que el botón del chat aparezca por encima de otros contenidos
-          }}
-        >
-          Abrir Chat
-        </button>
-      ) : null}
-      {chatOpen && <Chat nickname={nickname} />}
-      {currentAds.length !== 0 && adsFiltered.length !== 0 ? (
-        <Pagination
-          currentPage={currentPage}
-          adsPerPage={adsPerPage}
-          totalAds={adsFiltered.length}
-          onPageChange={paginate}
-          currentAds={currentAds}
-        />
-      ) : null}
-      <Footer />
+              <h2
+                style={{
+                  paddingLeft: '1.5em',
+                  paddingBottom: '5em',
+                }}
+              >
+                No se encontraron Anuncios
+              </h2>
+            </div>
+          )}
+        </div>
+        <div className={styles.buttonContainer}>
+          <ButtonTop />
+        </div>
+        {isAuthenticated ? (
+          <button
+            className="open-chat-button"
+            onClick={toggleChat}
+            style={{
+              position: 'fixed',
+              bottom: '20px',
+              right: '20px',
+              zIndex: 9999, // Asegura que el botón del chat aparezca por encima de otros contenidos
+            }}
+          >
+            Abrir Chat
+          </button>
+        ) : null}
+        {chatOpen && <Chat nickname={nickname} />}
+        {currentAds.length !== 0 && adsFiltered.length !== 0 ? (
+          <Pagination
+            currentPage={currentPage}
+            adsPerPage={adsPerPage}
+            totalAds={adsFiltered.length}
+            onPageChange={paginate}
+            currentAds={currentAds}
+          />
+        ) : null}
+        <Footer />
       </div>
     </div>
   );
