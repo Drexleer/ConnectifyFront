@@ -94,8 +94,7 @@ function ViewsPayments() {
                     console.log("Error ViewPayments,", error);
                 }
             };
-        
-            fetchData(); 
+                    fetchData(); 
         
         } 
         else {
