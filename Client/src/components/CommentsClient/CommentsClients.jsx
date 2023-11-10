@@ -16,6 +16,7 @@ function CommentsClient() {
   const [userDataOk, setUserDataOk] = useState("");
 
   const professionalId = detail.detail.creator[0]._id;
+  
   console.log(detail);
 
 
