@@ -11,10 +11,13 @@ function CommentsClient() {
   const users = useSelector((state) => state.usersLogin.user);
   const comments = useSelector((state) => state.comment.comments);
   const detail = useSelector((state) => state.detail);
-  const professionalId = detail.detail.creator[0]._id;
-  const [commentsForProfessional, setCommentsForProfessional] = useState([]);
+ const [commentsForProfessional, setCommentsForProfessional] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [userDataOk, setUserDataOk] = useState("");
+
+  const professionalId = detail.detail.creator[0]._id;
+
+
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -30,7 +33,8 @@ function CommentsClient() {
     );
     setCommentsForProfessional(filteredComments);
   }, [comments, professionalId]);
-  console.log(comments, "comentarios");
+  
+
   return (
     <div>
       {commentsForProfessional.length > 0 ? (
