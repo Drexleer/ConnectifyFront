@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 import UserInfoCard from './UserInfoCardClient';
 import ButtonBack from '../../components/Utils/ButtonBack/ButtonBack';
-import NavBarDemo2 from '../../components/NavBarDemo2/NavBarDemo2';
+import Navbar from '../../components/Navbar/Navbar';
 import ReviewItem from '../../components/ReusableComponents/ReviewShow';
 
 const DashboardClient = () => {
@@ -46,7 +46,7 @@ const DashboardClient = () => {
 
   return (
     <div>
-      <NavBarDemo2/>
+      <Navbar/>
       <div style={{ margin: '0em 3em' }}>
     <ButtonBack /> 
     <Grid container spacing={3}>
