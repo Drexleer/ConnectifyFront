@@ -35,11 +35,9 @@ import {
   fetchAddFavorites,
   fetchRemoveFavorites,
 } from "../../redux/Slices/favoritesSlice";
-import Comments from "../CommentsClient/CommentsClients";
+import Comments from "../CommentsClient/CommentsClients"
 import ButtonBack from "../Utils/ButtonBack/ButtonBack";
 import Loading from "../Utils/Loading/Loading";
-
-
 
 const DetailAd = () => {
   const { user } = useAuth0();
@@ -47,7 +45,6 @@ const DetailAd = () => {
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detail);
   const location = useLocation();
-
   const favorites = useSelector(
     (state) => state.favorites.favoriteProfessionals
   );
@@ -96,6 +93,7 @@ const DetailAd = () => {
     }
   };
 
+  
   return (
     <div>
       <Navbar />

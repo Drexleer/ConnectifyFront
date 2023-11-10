@@ -8,12 +8,10 @@ import PaymentsCard from "../PaymentsCard/PaymentsCard";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-
 import Navbar from "../Navbar/Navbar";
 import CommentBox from "../CommentsClient/CommentBox";
 
 function ViewsPayments() {
-
 
   const { user, isAuthenticated } = useAuth0();
   const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);

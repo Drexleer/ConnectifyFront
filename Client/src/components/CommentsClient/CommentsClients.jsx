@@ -14,7 +14,6 @@ function CommentsClient() {
  const [commentsForProfessional, setCommentsForProfessional] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [userDataOk, setUserDataOk] = useState("");
-
   const professionalId = detail.detail.creator[0]._id;
 
 
