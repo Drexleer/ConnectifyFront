@@ -36,7 +36,6 @@ import Comments from "../CommentsClient/CommentsClients";
 import ButtonBack from "../Utils/ButtonBack/ButtonBack";
 import Loading from "../Utils/Loading/Loading";
 
-
 const DetailAd = () => {
   const { user } = useAuth0();
   const { id } = useParams();

@@ -13,11 +13,7 @@ import Navbar from "../Navbar/Navbar";
 function ViewsPayments() {
   
     const {user, isAuthenticated} = useAuth0();
-    
     const { pathname, search } = useLocation(); // ( pathname: url - search: Querys )
-
-    console.log("PATH...", pathname)
-    console.log("SEARCH...", search)
     const path = pathname.split("/")[2];
     
     const detail = useSelector((state) => state.detail);

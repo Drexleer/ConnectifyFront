@@ -97,5 +97,4 @@ const CommentBox = ({onClose}) => {
   );
 };
 
-
 export default CommentBox;
