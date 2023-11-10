@@ -96,13 +96,7 @@ function ResponsiveAppBar({ setContainerLogin }) {
               {isAuthenticated || users.userName ? (
                 <div>
                   {location.pathname !== "/home" && (
-                    <Button className={style.buttonHome}
-                      
-                      onClick={() => navigate("/home")}
-                      
-                    >
-                      Home
-                    </Button>
+                    <button className={style.buttonHome} onClick={() => navigate("/home")}>Home</button>
                   )}
                   {users.types !== "admin" &&
                     users.types !== "professional" && (
