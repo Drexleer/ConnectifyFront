@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import style from "./PaymentsCard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import CommentBox from "../CommentsClient/CommentBox";
 import fetchUserLoginWithGoogle from "../../redux/Slices/loginGoogleSlice";
 
 function PaymentsCard(data) {
@@ -32,15 +31,6 @@ function PaymentsCard(data) {
     
   }, [profData, bDate, bState, isAuthenticated, dispatch]);
 
-console.log(comments, "com")
-console.log(users, "us")
-  
-
-
-  const handleCloseCommentBox = () => {
-    setShowCommentBox(false);
-   };
-
 
 
   return (
@@ -68,11 +58,6 @@ console.log(users, "us")
         {buyState && <h5>{buyState}</h5>}
       </div>
 
-        <button onClick={() => setShowCommentBox(true)}>Dejar reseña</button>
-     
-      {showCommentBox && (
-        <CommentBox onClose={handleCloseCommentBox} />
-      )}
     </div>
   );
 }
