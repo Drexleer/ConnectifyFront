@@ -43,19 +43,16 @@ const DetailAd = () => {
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detail);
   const location = useLocation();
-
-  const favorites = useSelector(
-    (state) => state.favorites.favoriteProfessionals
-  );
+  const favorites = useSelector((state) => state.favorites.favoriteProfessionals);
   const users = useSelector((state) => state.usersLogin.user);
   const userGoogle = useSelector((state) => state.googleLogin.user);
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
 
-  const newFav = favorites.some(
-    (favorite) =>
-      favorite?.professional?._id === detail?.detail?.creator[0]?._id
-  );
+  // const newFav = favorites.some(
+  //   (favorite) =>
+  //     favorite.professional._id === detail.detail.creator[0]._id
+  // );
 
   useEffect(() => {
     dispatch(fetchDetail(id)).then(() => {
@@ -71,26 +68,26 @@ const DetailAd = () => {
     setUserData(user);
   }, [user]);
 
-  const handleSaveOrRemoveProfile = () => {
-    let formFav;
-    if (users._id) {
-      formFav = {
-        clientId: users._id,
-        professionalId: detail.detail.creator[0]._id,
-      };
-    } else {
-      formFav = {
-        clientId: userGoogle._id,
-        professionalId: detail.detail.creator[0]._id,
-      };
-    }
+  // const handleSaveOrRemoveProfile = () => {
+  //   let formFav;
+  //   if (users._id) {
+  //     formFav = {
+  //       clientId: users._id,
+  //       professionalId: detail.detail.creator[0]._id,
+  //     };
+  //   } else {
+  //     formFav = {
+  //       clientId: userGoogle._id,
+  //       professionalId: detail.detail.creator[0]._id,
+  //     };
+  //   }
 
-    if (!newFav) {
-      dispatch(fetchAddFavorites(formFav));
-    } else {
-      dispatch(fetchRemoveFavorites(formFav));
-    }
-  };
+  //   if (!newFav) {
+  //     dispatch(fetchAddFavorites(formFav));
+  //   } else {
+  //     dispatch(fetchRemoveFavorites(formFav));
+  //   }
+  // };
 
   return (
     <div>
