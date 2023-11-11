@@ -13,7 +13,7 @@ import style from './MercadoPago.module.css'
 
 
 
-function mercadoPago() {
+function mercadoPago(pay) {
     // USER es el Usuario registrado
     const {user, isAuthenticated} = useAuth0();
     const users = useSelector(state => state.usersLogin.user)
@@ -102,18 +102,23 @@ const [paymentId, setPaymentId] = useState("")
         }
     };
 
-    
+    useEffect(()=>{
+      // console.log("PAYYYY: ", pay);
+      if (pay.pay && !walletVisible) handleButton();
+    },[pay])
 
   return (
     <>
-        {
-          !walletVisible && !preferenceId && <button className={style.buttonContratar} onClick={handleButton}>Contratar</button>
-        }
+    
+    
+        {/* {
+          !preferenceId && <button className={style.buttonContratar} onClick={handleButton}>Contratar</button>
+        } */}
         {
           <h4>{cargandoSiNo}</h4>
         }
         {   
-          walletVisible && preferenceId && <Wallet initialization={{ preferenceId }}/>
+          (walletVisible && preferenceId && pay.pay) && <Wallet initialization={{ preferenceId }}/>
         }
 
 
