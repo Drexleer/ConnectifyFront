@@ -10,6 +10,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../Navbar/Navbar";
 import CommentBox from "../CommentsClient/CommentBox";
+import ReviewButton from "../CommentsClient/ReviewButton";
 
 function ViewsPayments() {
 
@@ -22,28 +23,26 @@ function ViewsPayments() {
   const comments = useSelector((state) => state.comment.comments);
   const [paymentData, setPaymentData] = useState(null);
   const [userName, setUserName] = useState("");
-    const [openCommentBoxId, setOpenCommentBoxId] = useState(null);
 
+  const [openCommentBoxId, setOpenCommentBoxId] = useState(null);
+
+  // Nueva lógica para mapear los comentarios y verificar si el usuario ha dejado un comentario para cada profesional
+  const professionalCommentsMap = comments.reduce((acc, comment) => {
+    if (comment.Professional._id) {
+      acc[comment.Professional._id] = true;
+    }
+    return acc;
+  }, {});
+
+  console.log(professionalCommentsMap, "coment?");
 
   const handleCommentBoxToggle = (professionalId) => {
-    setOpenCommentBoxId((prevId) => (prevId === professionalId ? null : professionalId));
-  };
+      setOpenCommentBoxId((prevId) => (prevId === professionalId ? null : professionalId));
+    };
 
   const handleClose = () => {
-    setOpenCommentBoxId(null);
-  };
-
-  const hasCommented = (professionalId) => {
-   
-       const userComment = comments.find(
-      (comment) =>
-      comment.Professional._id === professionalId &&
-      comment.Client.userName === users.userName &&
-      !comment.isDeleted
-    );
-  
-       return !!userComment;
-  };
+      setOpenCommentBoxId(null);
+    }
  
   
 
@@ -145,22 +144,18 @@ function ViewsPayments() {
               : "Cargando..."}
           </h4>
           {paymentData &&
-  paymentData.map((data) => (
-    <div key={data.paymentID}>
-      <PaymentsCard data={data} />
-      {!hasCommented(data.professionalId) ? (
-        <>
-          <button onClick={() => handleCommentBoxToggle(data.professionalId)}>
-            Dejar reseña
-          </button>
-          {openCommentBoxId === data.professionalId && (
-            <CommentBox onClose={handleClose} professionalId={data.professionalId} />
-          )}
-        </>
-      ) : (
-        <p>Ya has dejado un comentario para este profesional.</p>
-      )}
-    </div>
+          paymentData.map((data) => (
+            <div key={data.paymentID}>
+              <PaymentsCard data={data} />
+              <ReviewButton
+                  comments={comments}
+                  handleCommentBoxToggle={handleCommentBoxToggle}
+                  openCommentBoxId={openCommentBoxId}
+                  professionalId={data.professionalId}
+                  hasCommented={professionalCommentsMap[data.professionalId] || false}
+                  handleClose={handleClose}
+                />
+            </div>
   ))}
         </div>
       </div>
