@@ -100,16 +100,16 @@ function ResponsiveAppBar({ setContainerLogin }) {
 
 
   useEffect(() => {
-    if (user && user.nickname) {
-      setNickName(user.nickname);
+    if (usersGoogle) {
+      setNickName(usersGoogle.userName);
     }else{
-      setNickName(users.userName)
+      setNickName(usersLocal.userName)
     }
-  }, [user]);
+  }, [usersGoogle, usersLocal]);
 
-console.log(users);
-console.log(usersGoogle);
-console.log(usersLocal);
+
+ console.log(nickName);
+
 
 
   return (
