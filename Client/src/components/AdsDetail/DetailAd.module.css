@@ -163,6 +163,7 @@
   }
 }
 
+
 .buttonContratar:active {
   box-shadow: 0 0 0 0 transparent;
   -webkit-transition: box-shadow 0.2s ease-in;

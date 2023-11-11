@@ -110,6 +110,7 @@ const [paymentId, setPaymentId] = useState("")
   return (
     <>
     
+    
         {/* {
           !preferenceId && <button className={style.buttonContratar} onClick={handleButton}>Contratar</button>
         } */}
