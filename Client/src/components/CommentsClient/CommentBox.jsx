@@ -35,11 +35,14 @@ const CommentBox = ({ onClose, professionalId }) => {
         rating: rating,
       };
       dispatch(postComment(commentData));
+      console.log("comentario", commentData);
       setNewComment("");
       setRating(0);
+      setIsCommentBoxOpen(false);
     }
   };
 
+console.log("client", users.userName);
   return (
     <div>
       <Box

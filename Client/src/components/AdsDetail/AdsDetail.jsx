@@ -46,6 +46,7 @@ const DetailAd = () => {
   const location = useLocation();
   const favorites = useSelector((state) => state.favorites.favoriteProfessionals);
 
+
   const users = useSelector((state) => state.usersLogin.user);
   const userGoogle = useSelector((state) => state.googleLogin.user);
 
@@ -58,6 +59,7 @@ const DetailAd = () => {
   const newFav = favorites.some(
     (favorite) =>
       favorite.professional._id === detail.detail.creator[0]._id
+
 
   );
 
@@ -254,6 +256,7 @@ const handleOverlay = ()=>{
           <Comments id={detail.detail.creator?.[0]?._id || ''} />
 
         </div>    
+
       </div>
     </div>
   );
