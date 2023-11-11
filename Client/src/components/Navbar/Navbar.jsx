@@ -108,10 +108,6 @@ function ResponsiveAppBar({ setContainerLogin }) {
   }, [usersGoogle, usersLocal]);
 
 
- console.log(nickName);
-
-
-
   return (
     <AppBar position="static" style={{ marginBottom: "1.5rem" }}>
       <Container maxWidth="xl">
