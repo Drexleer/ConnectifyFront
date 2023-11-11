@@ -95,7 +95,9 @@
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
+
 .buttonContratar {
+  margin-top: 1rem;
   position: relative;
   padding: 10px 20px;
   border-radius: 7px;

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Button,
   Card,
@@ -11,6 +11,7 @@ import {
   List,
   ListItem,
   Typography,
+
 } from "@mui/material";
 import MercadoPago from "../Payments/MercadoPago";
 // import "./DetailAd.css";
@@ -32,10 +33,10 @@ import {
   fetchAddFavorites,
   fetchRemoveFavorites,
 } from "../../redux/Slices/favoritesSlice";
-// import Comments from "../CommentsClient/CommentsClients";
+import Comments from "../CommentsClient/CommentsClients";
 import ButtonBack from "../Utils/ButtonBack/ButtonBack";
 import Loading from "../Utils/Loading/Loading";
-
+import Cover from '../Cover/Cover';
 
 const DetailAd = () => {
   const { user } = useAuth0();
@@ -44,6 +45,7 @@ const DetailAd = () => {
   const detail = useSelector((state) => state.detail);
   const location = useLocation();
   const favorites = useSelector((state) => state.favorites.favoriteProfessionals);
+
   const users = useSelector((state) => state.usersLogin.user);
   const userGoogle = useSelector((state) => state.googleLogin.user);
 
@@ -51,10 +53,12 @@ const DetailAd = () => {
   const [userData, setUserData] = useState(null);
   const [visible, setVisible] = useState(false);
   const [pay, setPay] = useState(false);
+  const [buttonVisible, setButtonVisible] = useState(true);
 
   const newFav = favorites.some(
     (favorite) =>
       favorite.professional._id === detail.detail.creator[0]._id
+
   );
 
   useEffect(() => {
@@ -95,17 +99,21 @@ const DetailAd = () => {
 const handleContract = ()=>{
   setVisible(true);
   setPay(true);
+  setButtonVisible(false);
 }
 
 const handleOverlay = ()=>{
   setVisible(false);
   setPay(false);
+  setButtonVisible(true);
 }
 
 
   return (
     <div>
+      <Cover />
       <Navbar />
+
       <div className={style.principal}>
         <div className={style.shadow}>
         
@@ -147,6 +155,7 @@ const handleOverlay = ()=>{
                       </Box>
                     </Grid>
                   )}
+
 
                   <Grid item xs={12} md={10} sx={{ margin: "16px" }}>
                     <Typography
@@ -216,10 +225,13 @@ const handleOverlay = ()=>{
                       </Grid>
 
 
-
-                    <button className={style.buttonContratar} onClick={handleContract}>
-                      Contratar
-                    </button>
+                    {
+                      buttonVisible && (
+                          <button className={style.buttonContratar} onClick={handleContract}>
+                            Contratar
+                          </button>
+                      )
+                    }
                     
                     <div className={style.mercadoP}>
                       <MercadoPago pay={pay}  />
@@ -238,7 +250,9 @@ const handleOverlay = ()=>{
             ) : (
               <div>No hay creadores disponibles.</div>
             )}
-          {/* <Comments /> */}
+          
+          <Comments id={detail.detail.creator?.[0]?._id || ''} />
+
         </div>    
       </div>
     </div>
