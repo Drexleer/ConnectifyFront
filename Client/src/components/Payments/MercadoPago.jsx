@@ -6,6 +6,7 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 
+import style from './MercadoPago.module.css'
 
 // config();
 // const PUBLIC_KEY = process.env.PUBLIC_KEY;
@@ -105,14 +106,14 @@ const [paymentId, setPaymentId] = useState("")
 
   return (
     <>
-        
-        <button className='donate-link' onClick={handleButton}>Contratar</button>
-        <p>{cargandoSiNo}</p>
-
+        {
+          !walletVisible && !preferenceId && <button className={style.buttonContratar} onClick={handleButton}>Contratar</button>
+        }
+        {
+          <h4>{cargandoSiNo}</h4>
+        }
         {   
-            
-            walletVisible && preferenceId && <Wallet initialization={{ preferenceId }}/>
-            
+          walletVisible && preferenceId && <Wallet initialization={{ preferenceId }}/>
         }
 
 
