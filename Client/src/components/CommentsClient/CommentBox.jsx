@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import {  postComment } from "../../redux/Slices/commentSlice";
@@ -14,7 +14,8 @@ const CommentBox = ({ onClose, professionalId }) => {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detail);
-  const users = useSelector((state) => state.usersLogin.user);
+  const usersLocal = useSelector((state) => state.usersLogin.user);
+  const usersGoogle = useSelector((state) => state.googleLogin.user);
   const comments = useSelector((state) => state.comment.comments);
   const [newComment, setNewComment] = useState("");
   const [userDataOk, setUserDataOk] = useState("");
@@ -25,12 +26,11 @@ const CommentBox = ({ onClose, professionalId }) => {
     setRating(newRating);
   };
 
-
   const handleComment = () => {
     if (newComment.trim() !== "") {
       const commentData = {
         comment: newComment,
-        client: users.userName,
+        client: usersGoogle ? usersGoogle.userName : usersLocal.userName,
         professionalId: detail.detail.creator[0]._id,
         rating: rating,
       };
@@ -42,7 +42,6 @@ const CommentBox = ({ onClose, professionalId }) => {
     }
   };
 
-console.log("client", users.userName);
   return (
     <div>
       <Box
