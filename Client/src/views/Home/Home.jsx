@@ -1,30 +1,40 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import IconButton from "@mui/material/IconButton";
-import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select from '@mui/material/Select';
+// import IconButton from '@mui/material/IconButton';
+// import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+// import Fab from '@mui/material/Fab';
+import { IoMdRefresh } from 'react-icons/io';
+import { MdPersonSearch } from 'react-icons/md';
 
-import { IoMdRefresh } from "react-icons/io";
-import { MdPersonSearch } from "react-icons/md";
-import { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar/Navbar";
-import Login from "../../components/Login/Login";
-import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { locationUser } from "../../redux/Slices/persistSlice";
-import Professional from "../../components/Card/Professional";
-import { fetchAds } from "../../redux/Slices/adsSlice";
-import styles from "./Home.module.css";
-import Pagination from "../../components/Pagination/Pagination";
-import { fetchFilter } from "../../redux/Slices/FiltersCombinedSlice";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
-import Footer from "../../components/Footer/Footer";
-import Chat from "../../components/Chat/Chat";
-import ButtonTop from "../../components/Utils/ButtonTop/ButtonTop";
-import Loading from "../../components/Utils/Loading/Loading";
-import { useAuth0 } from "@auth0/auth0-react";
-import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
-import Cover from "../../components/Cover/Cover";
+
+import { useState, useEffect } from 'react';
+import Navbar from '../../components/Navbar/Navbar';
+import Login from '../../components/Login/Login';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { locationUser } from '../../redux/Slices/persistSlice';
+import Professional from '../../components/Card/Professional';
+import { fetchAds } from '../../redux/Slices/adsSlice';
+import styles from './Home.module.css';
+import Pagination from '../../components/Pagination/Pagination';
+import { fetchFilter } from '../../redux/Slices/FiltersCombinedSlice';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import Footer from '../../components/Footer/Footer';
+import Chat from '../../components/Chat/Chat';
+import ButtonTop from '../../components/Utils/ButtonTop/ButtonTop';
+import Loading from '../../components/Utils/Loading/Loading';
+import { useAuth0 } from '@auth0/auth0-react';
+import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
+
+
+import Cover from '../../components/Cover/Cover';
+import { IconButton } from '@mui/material';
+
 
 const Home = () => {
   //* Declaraciones de variables
@@ -204,6 +214,7 @@ const Home = () => {
       <Cover />
       <Navbar setContainerLogin={setContainerLogin} />
       <div className={styles.container111}>
+
         {containerLogin ? (
           <Login
             setContainerLogin={setContainerLogin}
@@ -211,6 +222,7 @@ const Home = () => {
           />
         ) : null}
         {popUpLogin && (
+
           <div
             style={{
               position: "absolute",
@@ -395,16 +407,7 @@ const Home = () => {
                   }}
                 />
               </button>
-              {/* <Fab
-                color="primary"
-                className={styles.spinButton}
-                onClick={clearFilters}
-                style={{
-                  zIndex: '1',
-                }}
-              >
-                <IoMdRefresh style={{ fontSize: '2em' }} />
-              </Fab> */}
+            
             </div>
           </div>
         </div>
