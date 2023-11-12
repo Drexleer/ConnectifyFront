@@ -45,7 +45,7 @@ function CommentsClient({ id }) {
             sx={{
               width: '50%',
               backgroundColor: '#D9D9D9',
-              padding: '10px',
+              padding: '1em',
               marginLeft:'5em',
               marginRight: '750px',
               opacity:'80%',
