@@ -18,11 +18,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../redux/Slices/loginSlice";
 import style from './Navbar.module.css';
 import carpetaEstrella from '../../assets/carpetaEstrella002.svg'
+import { logoutGoogle } from "../../redux/Slices/loginGoogleSlice";
 
 
 function ResponsiveAppBar({ setContainerLogin }) {
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [nickName, setNickName] = useState(null);
+  // const [nickName, setNickName] = useState(null);
   const [users, setUsers] = useState('')
 
   const usersLocal = useSelector((state) => state.usersLogin.user);
@@ -60,15 +61,23 @@ function ResponsiveAppBar({ setContainerLogin }) {
     }
 
     if (text === "Historial Pagos" && location.pathname !== "/payments") {
-      navigate(`/payments/${nickName}`);
+      const userNameGoogle = usersGoogle && usersGoogle.userName 
+      const userNameLocal = usersLocal && usersLocal.userName;
+      if (userNameGoogle) {
+        navigate(`/payments/${userNameGoogle}`);
+      } 
+      if (userNameLocal) {
+        navigate(`/payments/${userNameLocal}`);
+      }
     }
 
     if (text === "Logout" && usersLocal) {
-      dispatch(logoutUser());
+      await dispatch(logoutUser());
       navigate('/home')
     }
 
     if (text === "Logout" && isAuthenticated) {
+      await dispatch(logoutGoogle())
       logout();
     }
   };
@@ -77,7 +86,7 @@ function ResponsiveAppBar({ setContainerLogin }) {
     setContainerLogin(true);
   };
 
-  console.log(usersLocal.types);
+
 
   useEffect(() => {
     if (usersGoogle) {
@@ -97,17 +106,6 @@ function ResponsiveAppBar({ setContainerLogin }) {
     }
     
   }, [usersLocal, usersGoogle])
-
-
-  useEffect(() => {
-    if (usersGoogle) {
-      setNickName(usersGoogle.userName);
-    }
-    if(usersLocal){
-      setNickName(usersLocal.userName)
-    }
-  }, [usersGoogle, usersLocal]);
-
 
   return (
     <AppBar position="static" style={{ marginBottom: "1.5rem" }}>
