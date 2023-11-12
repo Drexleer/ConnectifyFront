@@ -8,7 +8,7 @@
 // import Fab from '@mui/material/Fab';
 import { IoMdRefresh } from 'react-icons/io';
 import { MdPersonSearch } from 'react-icons/md';
-import React from 'react';
+
 
 import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
@@ -29,9 +29,10 @@ import ButtonTop from '../../components/Utils/ButtonTop/ButtonTop';
 import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
-import { Label } from 'recharts';
+
 
 import Cover from '../../components/Cover/Cover';
+import { IconButton } from '@mui/material';
 
 const Home = () => {
   //* Declaraciones de variables
@@ -190,7 +191,7 @@ const Home = () => {
             }}
             onClick={handlerCloseLoginPopUp}
           >
-            <CancelRoundedIcon />
+         
           </IconButton>
           <div
             style={{
@@ -308,16 +309,7 @@ const Home = () => {
                 <IoMdRefresh style={{ fontSize: '2em', marginLeft:'-0.85rem', marginTop:'-0.3rem' }} />
               
               </button>
-              {/* <Fab
-                color="primary"
-                className={styles.spinButton}
-                onClick={clearFilters}
-                style={{
-                  zIndex: '1',
-                }}
-              >
-                <IoMdRefresh style={{ fontSize: '2em' }} />
-              </Fab> */}
+            
             </div>
 
         </div>
