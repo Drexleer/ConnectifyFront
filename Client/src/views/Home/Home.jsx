@@ -10,7 +10,6 @@
 import { IoMdRefresh } from 'react-icons/io';
 import { MdPersonSearch } from 'react-icons/md';
 import Obrero from '../../assets/Obrero.gif'
-
 import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Login from '../../components/Login/Login';
@@ -30,8 +29,6 @@ import ButtonTop from '../../components/Utils/ButtonTop/ButtonTop';
 import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
-
-
 import Cover from '../../components/Cover/Cover';
 import { IconButton } from '@mui/material';
 

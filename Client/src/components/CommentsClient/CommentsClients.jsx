@@ -43,11 +43,12 @@ function CommentsClient({ id }) {
           <Card
             key={comment._id}
             sx={{
-              width: '75%',
+              width: '50%',
               backgroundColor: '#D9D9D9',
               padding: '10px',
-              margin: '10px 0',
+              marginLeft:'5em',
               marginRight: '750px',
+              opacity:'80%'
             }}
             align="left"
           >
@@ -59,7 +60,7 @@ function CommentsClient({ id }) {
                       <span key={index}>⭐</span>
                     ))}
                   </Typography>
-                  <Typography variant="body2" sx={{ fontSize: '15px' }}>
+                  <Typography variant="body2" sx={{ fontSize: '15px', fontWeight:'bold',  }}>
                     {comment.comment}
                   </Typography>
                 </div>
