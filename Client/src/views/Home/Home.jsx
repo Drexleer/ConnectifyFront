@@ -9,7 +9,7 @@
 // import Fab from '@mui/material/Fab';
 import { IoMdRefresh } from 'react-icons/io';
 import { MdPersonSearch } from 'react-icons/md';
-
+import Obrero from '../../assets/Obrero.gif'
 
 import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
@@ -250,7 +250,7 @@ const Home = () => {
               }}
               onClick={handlerCloseLoginPopUp}
             >
-              <CancelRoundedIcon />
+             
             </IconButton>
             <div
               style={{
@@ -313,7 +313,7 @@ const Home = () => {
             </div>
             <Slider
               trackStyle={{ backgroundColor: "orange", height: 4 }}
-              railStyle={{ backgroundColor: "white", height: 4 }}
+              railStyle={{ backgroundColor: "#3b7ba4", height: 4 }}
               handleStyle={{
                 borderColor: "#1a659a",
                 height: 10,
@@ -342,7 +342,7 @@ const Home = () => {
               onChange={handlesortPrice}
             >
               <option value="DEFAULT">
-                Ordenar:
+                Precio
               </option>
               <option value="asc">Ascendente</option>
               <option value="desc">Descendente</option>
@@ -365,7 +365,7 @@ const Home = () => {
               onChange={handleRemoteWork}
             >
               <option value="DEFAULT">
-                Tipo
+                Modalidad
               </option>
               <option value="Remoto">Remoto</option>
               <option value="Presencial">Presencial</option>
@@ -453,7 +453,7 @@ const Home = () => {
           ) : (
             <div>
               <img
-                src="https://i.pinimg.com/originals/44/30/c9/4430c9ff73da58c23c823f0ea6b6f64c.gif"
+                src={Obrero}
                 alt="Obrero"
                 style={{ width: "400px" }}
               />

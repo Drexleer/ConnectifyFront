@@ -96,6 +96,7 @@ Cover {
   }
 }
 
+
 /* .contSelectProf {
   background-color: red;
   width: 20%;
@@ -209,7 +210,7 @@ Cover {
   margin-left: 1rem;
   display: flex;
   flex-direction: column;
-  width: 12rem;
+  width: 13rem;
 }
 
 .contMinMax {
@@ -233,11 +234,11 @@ Cover {
 }
 .selectOrder {
   margin-left: 0.5rem;
-  width: 11rem;
+  width: 9rem;
 }
 
 .contRemoto {
-  width: 6rem;
+  width: 8rem;
   margin-left: -0.5rem;
 }
 
