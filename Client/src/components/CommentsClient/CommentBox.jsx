@@ -8,6 +8,7 @@ import {  postComment } from "../../redux/Slices/commentSlice";
 import {  Typography, Box } from "@mui/material";
 import Rating from "react-rating-stars-component";
 import style from "./Comments.module.css";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 
 const CommentBox = ({ onClose, professionalId }) => {
@@ -21,6 +22,7 @@ const CommentBox = ({ onClose, professionalId }) => {
   const [userDataOk, setUserDataOk] = useState("");
   const [rating, setRating] = useState(0);
   const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);
+  const [popUpComment, setPopUpComment] = useState(false)
 
   const handleChange = (newRating) => {
     setRating(newRating);
@@ -36,11 +38,14 @@ const CommentBox = ({ onClose, professionalId }) => {
       };
       dispatch(postComment(commentData))
         .then((data) => {
-          console.log(data.meta.requestStatus);
-          console.log("Comentario enviado con éxito:", commentData);
-          setNewComment("");
-          setRating(0);
-          setIsCommentBoxOpen(false);
+          if (data.meta.requestStatus === 'fulfilled') {
+            console.log("Comentario enviado con éxito:", commentData);
+            setNewComment("");
+            setRating(0);
+            setIsCommentBoxOpen(false);
+          }else {
+            setPopUpComment(true)
+          }
         })
         .catch((error) => {
           console.error("Error al enviar comentario:", error);
@@ -48,6 +53,10 @@ const CommentBox = ({ onClose, professionalId }) => {
         });
     }
   };
+
+  const handlerClosePopUpComments = () => {
+    setPopUpComment(false)
+  }
 
   return (
     <div>
@@ -104,6 +113,18 @@ const CommentBox = ({ onClose, professionalId }) => {
           </Box>
         </div>
       </Box>
+      {
+        popUpComment &&
+        <div className={style.containerPopUpComments}>
+          <div className={style.popUpComments}>
+          <AiFillCloseCircle
+            className={style.btnCerrarComments}
+            onClick={handlerClosePopUpComments}
+          />
+          <h3>Ya dejaste el comentarios</h3>
+          </div>
+        </div>
+      }
     </div>
   );
 };
