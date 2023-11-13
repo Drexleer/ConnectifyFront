@@ -61,7 +61,7 @@
 }
 
 
-/* .rates {
+.rates {
   position: absolute;
   width: 100%;
   height: 3em;
@@ -88,12 +88,12 @@ svg {
   margin: auto;
   z-index: 999;
 }
-.box h4 {
+/* .box h4 {
   color: #fff;
   font-size: 2em;
   margin-top: 0;
   z-index: 999999;
-}
+} */
 .iconCon .icon {
   width: 3em;
   height: 3em;
@@ -164,4 +164,4 @@ svg {
 .proPage .icon:hover {
   fill: #1c69b0;
   cursor: pointer;
-} */
+}
