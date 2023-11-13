@@ -26,7 +26,7 @@ export default modifyProfSlice.reducer;
 // Hace el fetch del para el login del usuario
 export const fetchModifyDataProf = (form, id) => {
   return async (dispatch) => {
-    let endpoint = `http://localhost:3001/professional/${id}`;
+    let endpoint = VITE_API_BASE + `/professional/${id}`;
 
     try {
       const { data } = await axios.patch(endpoint, form);
@@ -40,7 +40,7 @@ export const fetchModifyDataProf = (form, id) => {
 
 export const fetchGetProfById = (id) => {
   return async (dispatch) => {
-    const endpoint = `http://localhost:3001/professional/${id}`;
+    const endpoint = VITE_API_BASE + `/professional/${id}`;
     try {
       const { data } = await axios.get(endpoint);
       console.log(data);
