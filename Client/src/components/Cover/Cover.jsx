@@ -118,8 +118,6 @@ function Cover() {
           </g>
         </svg>
       </div>
-
-      {/* <Landing/> */}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -13,23 +13,20 @@ import HelpIcon from '@mui/icons-material/Help';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
 
-export function CardProfileProf({setPopUpModify}) {
+export function CardProfileProf() {
 
-  const profById = useSelector((state) => state.modifyProf.detailProf);
+  const users = useSelector(state => state.usersLogin.user)
+  console.log(users)
   
-  const userName = profById.name
-  const userLastName = profById.lastName
-  const userLocation = profById.location
-  const userEmail = profById.email
-  const userImage = profById.image
-  const userDescription = profById.description
-  const userNameUser = profById.userName
-  const userProfession = profById.profession
-  const userProvince = profById.province 
-
-  const handlerPopUpModify = () => {
-    setPopUpModify(true)
-  }
+  const userName = users.name
+  const userLastName = users.lastName
+  const userLocation = users.location
+  const userEmail = users.email
+  const userImage = users.image
+  const userDescription = users.description
+  const userNameUser = users.userName
+  const userProfession = users.profession
+  const userProvince = users.province 
 
   return (
     <Card sx={{ maxWidth: 300, margin: '25px', boxShadow: 20 }}>
@@ -77,7 +74,7 @@ export function CardProfileProf({setPopUpModify}) {
         <Button variant="contained" size="small" startIcon={<HelpIcon />}>Ayuda</Button>
         </Link>
         <Link>
-        <Button variant="contained" size="small" color="primary" startIcon={<EditIcon/>} onClick={handlerPopUpModify}>Modificar</Button>
+        <Button variant="contained" size="small" color="primary" startIcon= {<EditIcon/>}>Modificar</Button>
         </Link>
       </CardActions>
     </Card>

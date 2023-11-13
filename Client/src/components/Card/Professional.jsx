@@ -22,7 +22,7 @@ const Professional = ({
   const navigate = useNavigate();
 
   const handlerLogin = () => {
-    if (isAuthenticated || users.name || users.types === 'admin') {
+    if (isAuthenticated || users.name) {
       return navigate(`/detail/${id}`);
     }
     setContainerLogin(true);
