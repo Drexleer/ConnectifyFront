@@ -35,7 +35,8 @@ const CommentBox = ({ onClose, professionalId }) => {
         rating: rating,
       };
       dispatch(postComment(commentData))
-        .then(() => {
+        .then((data) => {
+          console.log(data.meta.requestStatus);
           console.log("Comentario enviado con éxito:", commentData);
           setNewComment("");
           setRating(0);

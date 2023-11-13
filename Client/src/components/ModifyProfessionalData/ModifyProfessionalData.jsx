@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import style from "./ModifyProfessionalData.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchModifyDataProf } from "../../redux/Slices/modifyProfSlice";
-import { useNavigate } from "react-router-dom";
 
 const ModifyProfessionalData = ({setPopUpModify}) => {
   const profById = useSelector((state) => state.modifyProf.detailProf);
