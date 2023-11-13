@@ -14,6 +14,8 @@ import Chat from './components/Chat/Chat';
 import Cover from './components/Cover/Cover';
 import DashboardClient from './views/DashboardClient/DashboardClient';
 import Team from './components/Footer/Team/Team';
+import RequestPassword from './components/ResetPassword/RequestPassword/RequestPassword';
+import ResetPassword from './components/ResetPassword/ResetPassword/ResetPassword';
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
           <Route path="/client/profile" element={<ClientProfile />} />
           <Route path="/client/dashboard" element={<DashboardClient />} />
           <Route path="/ourTeam" element={<Team />} />
+          <Route path="/password" element={<RequestPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </div>
     </>
