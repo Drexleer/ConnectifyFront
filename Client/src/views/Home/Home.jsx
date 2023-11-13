@@ -9,7 +9,8 @@
 // import Fab from '@mui/material/Fab';
 import { IoMdRefresh } from 'react-icons/io';
 import { MdPersonSearch } from 'react-icons/md';
-import Obrero from '../../assets/Obrero.gif'
+
+
 import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Login from '../../components/Login/Login';
@@ -29,6 +30,8 @@ import ButtonTop from '../../components/Utils/ButtonTop/ButtonTop';
 import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
+
+
 import Cover from '../../components/Cover/Cover';
 import { IconButton } from '@mui/material';
 
@@ -247,7 +250,7 @@ const Home = () => {
               }}
               onClick={handlerCloseLoginPopUp}
             >
-             
+              <CancelRoundedIcon />
             </IconButton>
             <div
               style={{
@@ -310,7 +313,7 @@ const Home = () => {
             </div>
             <Slider
               trackStyle={{ backgroundColor: "orange", height: 4 }}
-              railStyle={{ backgroundColor: "#3b7ba4", height: 4 }}
+              railStyle={{ backgroundColor: "white", height: 4 }}
               handleStyle={{
                 borderColor: "#1a659a",
                 height: 10,
@@ -339,7 +342,7 @@ const Home = () => {
               onChange={handlesortPrice}
             >
               <option value="DEFAULT">
-                Precio
+                Ordenar:
               </option>
               <option value="asc">Ascendente</option>
               <option value="desc">Descendente</option>
@@ -362,7 +365,7 @@ const Home = () => {
               onChange={handleRemoteWork}
             >
               <option value="DEFAULT">
-                Modalidad
+                Tipo
               </option>
               <option value="Remoto">Remoto</option>
               <option value="Presencial">Presencial</option>
@@ -376,7 +379,7 @@ const Home = () => {
                   style={{
                     fontSize: "2em",
                     marginLeft: "-0.7rem",
-                    marginTop: "-0.85rem",
+                    marginTop: "-0.4rem",
                   }}
                 />
               </button>
@@ -400,7 +403,7 @@ const Home = () => {
                   style={{
                     fontSize: "2em",
                     marginLeft: "-0.85rem",
-                    marginTop: "-0.85rem",
+                    marginTop: "-0.3rem",
                   }}
                 />
               </button>
@@ -450,7 +453,7 @@ const Home = () => {
           ) : (
             <div>
               <img
-                src={Obrero}
+                src="https://i.pinimg.com/originals/44/30/c9/4430c9ff73da58c23c823f0ea6b6f64c.gif"
                 alt="Obrero"
                 style={{ width: "400px" }}
               />
