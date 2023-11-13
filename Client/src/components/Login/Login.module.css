@@ -210,7 +210,7 @@
   .spanFormEmail{
       position: absolute;
       font-size: 0.8rem;
-      top: 143px;
+      top: 170px;
       color: #e22f2f;
       font-weight: bold;
   }
@@ -218,7 +218,7 @@
   .spanFormPass{
       position: absolute;
       font-size: 0.8rem;
-      top: 200px;
+      top: 225px;
       color: #e22f2f;
       font-weight: bold;
   }
@@ -235,7 +235,7 @@
   .spanFormEmailProf{
       position: absolute;
       font-size: 0.8rem;
-      top: 168px;
+      top: 210px;
       color: #e22f2f;
       font-weight: bold;
   }
@@ -243,7 +243,7 @@
   .spanFormPassProf{
       position: absolute;
       font-size: 0.8rem;
-      top: 225px;
+      top: 268px;
       color: #e22f2f;
       font-weight: bold;
   }
@@ -270,5 +270,4 @@
     align-items: center;
     flex-direction: column;
 }
-
 
