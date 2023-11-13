@@ -1,4 +1,4 @@
-import './Button.css';
+import style from './ButtonTop.module.css'
 import { useState, useEffect } from 'react';
 
 function BackToTopButton() {
@@ -25,15 +25,10 @@ function BackToTopButton() {
   }, []);
 
   return (
-    <div>
+    <div className={style.buttonContainer}>
       {showButton && (
-        <button className="my-button" onClick={scrollToTop}>
-          <div className="text">
-            <span>Back</span>
-            <span>to</span>
-            <span>top</span>
-          </div>
-          <div className="clone">
+        <button className={style.myButton} onClick={scrollToTop}>
+          <div className={style.clone}>
             <span>Back</span>
             <span>to</span>
             <span>top</span>

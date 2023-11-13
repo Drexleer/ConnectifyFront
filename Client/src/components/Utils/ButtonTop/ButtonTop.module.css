@@ -1,12 +1,12 @@
 
-.button-container {
+.buttonContainer {
   /* Estilos para el contenedor del botón, si es necesario */
   padding-left: 1em;
   width: 50px;
   height: 50px;
 }
 
-.mybutton {
+.myButton {
   width: 180px;
   height: 56px;
   overflow: hidden;
@@ -21,14 +21,14 @@
 }
 
 
-.my-button > svg {
+.myButton > svg {
   position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
 }
 
-.my-button::before {
+.myButton::before {
   content: '';
   position: absolute;
   height: 2px;
@@ -41,53 +41,53 @@
   transition: transform 0.25s ease-out;
 }
 
-.my-button:hover::before {
+.myButton:hover::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
-.my-button .clone > *,
-.my-button .text > * {
+.myButton .clone > *,
+.myButton .text > * {
   opacity: 1;
   font-size: 1.3rem;
   transition: 0.2s;
   margin-left: 4px;
 }
 
-.my-button .clone > * {
+.myButton .clone > * {
   transform: translateY(60px);
 }
 
-.my-button:hover .clone > * {
+.myButton:hover .clone > * {
   opacity: 1;
   transform: translateY(0);
   transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
 
-.my-button:hover .text > * {
+.myButton:hover .text > * {
   opacity: 1;
   transform: translateY(-60px);
   transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
 
-.my-button:hover .clone > :nth-child(1) {
+.myButton:hover .clone > :nth-child(1) {
   transition-delay: 0.15s;
 }
 
-.my-button:hover .clone > :nth-child(2) {
+.myButton:hover .clone > :nth-child(2) {
   transition-delay: 0.2s;
 }
 
-.my-button:hover .clone > :nth-child(3) {
+.myButton:hover .clone > :nth-child(3) {
   transition-delay: 0.25s;
 }
 
-.my-button:hover .clone > :nth-child(4) {
+.myButton:hover .clone > :nth-child(4) {
   transition-delay: 0.3s;
 }
 
 /* Estilo del ícono y al pasar el mouse */
-.my-button svg {
+.myButton svg {
   width: 30px;
   right: 10px;
   top: 50%;
@@ -95,6 +95,6 @@
   transition: 0.2s ease-out;
 }
 
-.my-button:hover svg {
+.myButton:hover svg {
   transform: translateY(-50%) rotate(-90deg);
 }
