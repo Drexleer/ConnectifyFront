@@ -375,8 +375,8 @@ const Home = () => {
                 <MdPersonSearch
                   style={{
                     fontSize: "2em",
-                    marginLeft: "-0.7rem",
-                    marginTop: "-0.85rem",
+                    marginLeft: "-0.75rem",
+                    marginTop: "-0.4rem",
                   }}
                 />
               </button>
@@ -400,7 +400,7 @@ const Home = () => {
                   style={{
                     fontSize: "2em",
                     marginLeft: "-0.85rem",
-                    marginTop: "-0.85rem",
+                    marginTop: "-0.35rem",
                   }}
                 />
               </button>
