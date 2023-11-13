@@ -30,15 +30,21 @@ const CommentBox = ({ onClose, professionalId }) => {
     if (newComment.trim() !== "") {
       const commentData = {
         comment: newComment,
-        client: usersGoogle ? usersGoogle.userName : usersLocal.userName,
+        client: usersGoogle?.userName || usersLocal.userName,
         professionalId: detail.detail.creator[0]._id,
         rating: rating,
       };
-      dispatch(postComment(commentData));
-      console.log("comentario", commentData);
-      setNewComment("");
-      setRating(0);
-      setIsCommentBoxOpen(false);
+      dispatch(postComment(commentData))
+        .then(() => {
+          console.log("Comentario enviado con éxito:", commentData);
+          setNewComment("");
+          setRating(0);
+          setIsCommentBoxOpen(false);
+        })
+        .catch((error) => {
+          console.error("Error al enviar comentario:", error);
+          // Manejar el error según sea necesario
+        });
     }
   };
 

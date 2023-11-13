@@ -5,10 +5,8 @@
 import CommentBox from './CommentBox';
 
 const ReviewButton = ({ professionalId, handleCommentBoxToggle, openCommentBoxId, hasCommented, handleClose }) => {
-
-  
-    if (!hasCommented) {
-        console.log(hasCommented,"coment3" );
+  if (!hasCommented[professionalId]) {
+    console.log(hasCommented[professionalId], "coment3");
       return (
         <>
         <button onClick={() => handleCommentBoxToggle(professionalId)}>
