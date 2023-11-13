@@ -27,22 +27,23 @@ function ViewsPayments() {
   const [openCommentBoxId, setOpenCommentBoxId] = useState(null);
 
   // Nueva lógica para mapear los comentarios y verificar si el usuario ha dejado un comentario para cada profesional
-  const professionalCommentsMap = comments.reduce((acc, comment) => {
+  const handleCommentBoxToggle = (professionalId) => {
+    setOpenCommentBoxId((prevId) =>
+      prevId === professionalId ? null : professionalId
+    );
+  };
+
+  const handleClose = () => {
+    setOpenCommentBoxId(null);
+  };
+
+  
+  const hasCommented = comments.reduce((acc, comment) => {
     if (comment.Professional._id) {
       acc[comment.Professional._id] = true;
     }
     return acc;
   }, {});
-
-  console.log(professionalCommentsMap, "coment?");
-
-  const handleCommentBoxToggle = (professionalId) => {
-      setOpenCommentBoxId((prevId) => (prevId === professionalId ? null : professionalId));
-    };
-
-  const handleClose = () => {
-      setOpenCommentBoxId(null);
-    }
  
   
 
@@ -152,7 +153,7 @@ function ViewsPayments() {
                   handleCommentBoxToggle={handleCommentBoxToggle}
                   openCommentBoxId={openCommentBoxId}
                   professionalId={data.professionalId}
-                  hasCommented={professionalCommentsMap[data.professionalId] || false}
+                  hasCommented={hasCommented}
                   handleClose={handleClose}
                 />
             </div>
