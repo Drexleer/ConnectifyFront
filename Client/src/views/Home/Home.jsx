@@ -1,12 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
-// import IconButton from '@mui/material/IconButton';
-// import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-// import Fab from '@mui/material/Fab';
 import { IoMdRefresh } from "react-icons/io";
 import { MdPersonSearch } from "react-icons/md";
 import Obrero from "../../assets/Obrero.gif";
