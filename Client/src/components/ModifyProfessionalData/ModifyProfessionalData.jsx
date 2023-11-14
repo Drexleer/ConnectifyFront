@@ -115,13 +115,21 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
     selectedProvParticular
   );
 
-  console.log(form);
+  const handlerClosePopUpUpdateDataProf = () => {
+    setPopUpModify(false);
+  };
 
   return (
     <div className={style.containerPopUp}>
       <div className={style.popUp}>
-        <h1>Modificacion de datos</h1>
-        <img src={form.image} alt="" />
+        <AiFillCloseCircle
+          className={style.btnCloseUpdateDataProf}
+          onClick={handlerClosePopUpUpdateDataProf}
+        />
+        <div className={style.containerTitleModifyProf}>
+          <h2>Modificacion de datos</h2>
+          <img src={form.image} alt="" />
+        </div>
         <form action="" onSubmit={handlerSubmit}>
           <input
             type="text"
