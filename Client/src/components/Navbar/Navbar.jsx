@@ -186,13 +186,15 @@ function ResponsiveAppBar({ setContainerLogin }) {
                 onClose={handleCloseUserMenu}
               >
                 {
-                  users === "admin" || users === "professional" ?
+                  users === "admin" || users === "professional" &&
                   <ul className={style.menuAvatar} onClick={handleCloseUserMenu}>
                     <li onClick={handleAvatarButton}>Mi Panel</li>
                     <li onClick={handleAvatarButton}>Salir</li>
-                  </ul> :
+                  </ul>
+                }
+                {
                   users === "client" &&
-                  <ul className={style.menuAvatar}>
+                  <ul className={style.menuAvatar} onClick={handleCloseUserMenu}>
                     <li onClick={handleAvatarButton}>Mi Panel</li>
                     <li onClick={handleAvatarButton}>Historial de Pagos</li>
                     <li onClick={handleAvatarButton}>Salir</li>
