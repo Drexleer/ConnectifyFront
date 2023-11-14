@@ -1,6 +1,5 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
-
 import { IoMdRefresh } from "react-icons/io";
 import { MdPersonSearch } from "react-icons/md";
 import Obrero from "../../assets/Obrero.gif";
@@ -25,7 +24,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
 import Cover from "../../components/Cover/Cover";
 
-
 const Home = () => {
   //* Declaraciones de variables
   const location = useLocation();
@@ -45,9 +43,12 @@ const Home = () => {
   const adsFiltered = useSelector((state) => state.ads.adsFiltered);
   const ads = useSelector((state) => state.ads.ads);
   const { isAuthenticated, user } = useAuth0();
+  // estado global para traer los datos del usuario
+  const userId = useSelector((state) => state.usersLogin.user);
   //traer usuario ya después de iniciar sesión
-  const nickname = user?.nickname || ""; // Usando operador opcional para evitar errores si no está definido
-  //const email = user?.email || ''; Usar cuando se necesite el email
+  const nickname = userId?.userName || user?.nickname || '';
+  const imageUser = userId?.image || user?.picture || '';
+  //const email = userId?.email || user.email || ''; //Usar cuando se necesite el email
 
   //* Paginado
   const [currentPage, setCurrentPage] = useState(1);
@@ -67,37 +68,47 @@ const Home = () => {
 
   useEffect(() => {
     if (adsFiltered.length < 1) {
-      localStorage.setItem("locationProf", "");
-      localStorage.setItem("profession", "");
-      localStorage.setItem("priceRange", JSON.stringify([1000, 10000]));
-      localStorage.setItem("workLocation", "");
-      localStorage.setItem("sortPrice", "");
+      localStorage.setItem('locationProf', '');
+      localStorage.setItem('profession', '');
+      localStorage.setItem('priceRange', JSON.stringify([1000, 10000]));
+      localStorage.setItem('workLocation', '');
+      localStorage.setItem('sortPrice', '');
     }
 
-    const savedLocationProf = localStorage.getItem("locationProf");
+    const savedLocationProf = localStorage.getItem('locationProf');
     if (savedLocationProf && adsFiltered.length > 0) {
       setLocationProf(savedLocationProf);
     }
 
-    const savedProfession = localStorage.getItem("profession");
+    const savedProfession = localStorage.getItem('profession');
     if (savedProfession && adsFiltered.length > 0) {
       setProfession(savedProfession);
     }
 
-    const savedPriceRange = JSON.parse(localStorage.getItem("priceRange"));
+    const savedPriceRange = JSON.parse(localStorage.getItem('priceRange'));
     if (savedPriceRange) {
       setPriceRange(savedPriceRange);
     }
 
-    const savedWorkLocation = localStorage.getItem("workLocation");
+    const savedWorkLocation = localStorage.getItem('workLocation');
     if (savedWorkLocation && adsFiltered.length > 0) {
       setWorkLocation(savedWorkLocation);
     }
 
-    const savedSortPrice = localStorage.getItem("sortPrice");
+    const savedSortPrice = localStorage.getItem('sortPrice');
     if (savedSortPrice && adsFiltered.length > 0) {
       setSortPrice(savedSortPrice);
     }
+    dispatch(
+      fetchFilter({
+        profession: '',
+        locationProf: '',
+        workLocation: '',
+        minPrice: 1000,
+        maxPrice: 10000,
+        sortPrice: '',
+      })
+    );
   }, []);
 
   useEffect(() => {
@@ -109,38 +120,38 @@ const Home = () => {
     e.preventDefault();
     setLocationProf(e.target.value);
 
-    localStorage.setItem("locationProf", e.target.value);
+    localStorage.setItem('locationProf', e.target.value);
   };
 
   const handleProfession = (e) => {
     e.preventDefault();
     setProfession(e.target.value);
 
-    localStorage.setItem("profession", e.target.value);
+    localStorage.setItem('profession', e.target.value);
   };
 
   const handlePriceRangeChange = (value) => {
     setPriceRange(value);
 
-    localStorage.setItem("priceRange", JSON.stringify(value));
+    localStorage.setItem('priceRange', JSON.stringify(value));
   };
 
   const handleRemoteWork = (e) => {
     setWorkLocation(e.target.value);
 
-    localStorage.setItem("workLocation", e.target.value);
+    localStorage.setItem('workLocation', e.target.value);
   };
 
   const handlesortPrice = (e) => {
     e.preventDefault();
     setSortPrice(e.target.value);
 
-    localStorage.setItem("sortPrice", e.target.value);
+    localStorage.setItem('sortPrice', e.target.value);
   };
 
   //* Función para aplicar los filtros
   const applyFilters = async () => {
-    dispatch(
+    await dispatch(
       fetchFilter({
         profession,
         locationProf,
@@ -155,22 +166,32 @@ const Home = () => {
   //* Función para limpiar los filtros da error, por ahora comentada
   const clearFilters = (e) => {
     e.preventDefault();
-    setProfession("");
-    setLocationProf("");
-    setSortPrice("");
+    setProfession('');
+    setLocationProf('');
+    setSortPrice('');
     setPriceRange([1000, 10000]);
-    setWorkLocation("");
-    dispatch(fetchAds());
+    setWorkLocation('');
+    // dispatch(fetchAds());
+    dispatch(
+      fetchFilter({
+        profession: '',
+        locationProf: '',
+        workLocation: '',
+        minPrice: 1000,
+        maxPrice: 10000,
+        sortPrice: '',
+      })
+    );
 
-    localStorage.setItem("locationProf", "");
-    localStorage.setItem("profession", "");
-    localStorage.setItem("priceRange", JSON.stringify([1000, 10000]));
-    localStorage.setItem("workLocation", "");
-    localStorage.setItem("sortPrice", "");
+    localStorage.setItem('locationProf', '');
+    localStorage.setItem('profession', '');
+    localStorage.setItem('priceRange', JSON.stringify([1000, 10000]));
+    localStorage.setItem('workLocation', '');
+    localStorage.setItem('sortPrice', '');
   };
 
   //* Función para abrir el chat
-  // Función para alternar la visibilidad del chat
+  // Función para alternar la visibilidad del  chat
   const toggleChat = () => {
     setChatOpen(!chatOpen);
   };
@@ -231,7 +252,7 @@ const Home = () => {
                   value={locationProf}
                   onChange={handleLocation}
                 >
-                  <option value="DEFAULT">Elige una ciudad</option>
+                  <option value="">Elige una ciudad</option>
                   {uniqueLocations.map((locations, id) => (
                     <option key={id} value={locations}>
                       {locations}
@@ -248,15 +269,15 @@ const Home = () => {
               <span className={styles.minMax}>Max: ${priceRange[1]}</span>
             </div>
             <Slider
-              trackStyle={{ backgroundColor: "orange", height: 4 }}
-              railStyle={{ backgroundColor: "#3b7ba4", height: 4 }}
+              trackStyle={{ backgroundColor: 'orange', height: 4 }}
+              railStyle={{ backgroundColor: '#3b7ba4', height: 4 }}
               handleStyle={{
-                borderColor: "#1a659a",
+                borderColor: '#1a659a',
                 height: 10,
                 width: 10,
                 marginLeft: 0,
                 marginTop: -3,
-                backgroundColor: "#ffffff",
+                backgroundColor: '#ffffff',
               }}
               range
               min={1000}
@@ -277,7 +298,7 @@ const Home = () => {
               value={sortPrice}
               onChange={handlesortPrice}
             >
-              <option value="DEFAULT">Precio</option>
+              <option value="">Precio</option>
               <option value="asc">Ascendente</option>
               <option value="desc">Descendente</option>
             </select>
@@ -298,7 +319,7 @@ const Home = () => {
               value={workLocation}
               onChange={handleRemoteWork}
             >
-              <option value="DEFAULT">Modalidad</option>
+              <option value="">Modalidad</option>
               <option value="Remoto">Remoto</option>
               <option value="Presencial">Presencial</option>
             </select>
@@ -309,9 +330,9 @@ const Home = () => {
               <button className={styles.applyFilter} onClick={applyFilters}>
                 <MdPersonSearch
                   style={{
-                    fontSize: "2em",
-                    marginLeft: "-0.7rem",
-                    marginTop: "-0.4rem",
+                    fontSize: '2em',
+                    marginLeft: '-0.7rem',
+                    marginTop: '-0.4rem',
                   }}
                 />
               </button>
@@ -333,9 +354,9 @@ const Home = () => {
               >
                 <IoMdRefresh
                   style={{
-                    fontSize: "2em",
-                    marginLeft: "-0.85rem",
-                    marginTop: "-0.3rem",
+                    fontSize: '2em',
+                    marginLeft: '-0.85rem',
+                    marginTop: '-0.3rem',
                   }}
                 />
               </button>
@@ -383,11 +404,11 @@ const Home = () => {
             </div>
           ) : (
             <div>
-              <img src={Obrero} alt="Obrero" style={{ width: "400px" }} />
+              <img src={Obrero} alt="Obrero" style={{ width: '400px' }} />
               <h2
                 style={{
-                  paddingLeft: "1.5em",
-                  paddingBottom: "5em",
+                  paddingLeft: '1.5em',
+                  paddingBottom: '5em',
                 }}
               >
                 No se encontraron Anuncios
@@ -395,7 +416,6 @@ const Home = () => {
             </div>
           )}
         </div>
-
         {isAuthenticated ? (
           <button
             className="open-chat-button"
@@ -427,6 +447,19 @@ const Home = () => {
       <div className={styles.footer}>
         {" "}
         <Footer />
+        <button
+          className="open-chat-button"
+          onClick={toggleChat}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 9999, // Asegura que el botón del chat aparezca por encima de otros contenidos
+          }}
+        >
+          Abrir Chat
+        </button>
+        {chatOpen && <Chat nickname={nickname} imageUser={imageUser} />}
       </div>
     </div>
   );
