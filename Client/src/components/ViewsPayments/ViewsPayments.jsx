@@ -11,6 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../Navbar/Navbar";
 import CommentBox from "../CommentsClient/CommentBox";
 import ReviewButton from "../CommentsClient/ReviewButton";
+import ButtonBack from '../Utils/ButtonBack/ButtonBack';
 
 function ViewsPayments() {
 
@@ -148,6 +149,10 @@ function ViewsPayments() {
   return (
     <div className={style.contentAll}>
       <Navbar />
+      <div className={style.contButtonBack}>
+          <ButtonBack />
+      </div>
+
       <div className={style.contentAll}>
         <div className={style.contTitle}>
           <h2>Historial de pagos</h2>
