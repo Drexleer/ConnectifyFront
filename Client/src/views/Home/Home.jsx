@@ -1,28 +1,28 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
-import { IoMdRefresh } from 'react-icons/io';
-import { MdPersonSearch } from 'react-icons/md';
-import Obrero from '../../assets/Obrero.gif';
-import { useState, useEffect } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import Login from '../../components/Login/Login';
-import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { locationUser } from '../../redux/Slices/persistSlice';
-import Professional from '../../components/Card/Professional';
-import { fetchAds } from '../../redux/Slices/adsSlice';
-import styles from './Home.module.css';
-import Pagination from '../../components/Pagination/Pagination';
-import { fetchFilter } from '../../redux/Slices/FiltersCombinedSlice';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
-import Footer from '../../components/Footer/Footer';
-import Chat from '../../components/Chat/Chat';
-import ButtonTop from '../../components/Utils/ButtonTop/ButtonTop';
-import Loading from '../../components/Utils/Loading/Loading';
-import { useAuth0 } from '@auth0/auth0-react';
-import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
-import Cover from '../../components/Cover/Cover';
-import { IconButton } from '@mui/material';
+import { IoMdRefresh } from "react-icons/io";
+import { MdPersonSearch } from "react-icons/md";
+import Obrero from "../../assets/Obrero.gif";
+import { useState, useEffect } from "react";
+import Navbar from "../../components/Navbar/Navbar";
+import Login from "../../components/Login/Login";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { locationUser } from "../../redux/Slices/persistSlice";
+import Professional from "../../components/Card/Professional";
+import { fetchAds } from "../../redux/Slices/adsSlice";
+import styles from "./Home.module.css";
+import Pagination from "../../components/Pagination/Pagination";
+import { fetchFilter } from "../../redux/Slices/FiltersCombinedSlice";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+import Footer from "../../components/Footer/Footer";
+import Chat from "../../components/Chat/Chat";
+import ButtonTop from "../../components/Utils/ButtonTop/ButtonTop";
+import Loading from "../../components/Utils/Loading/Loading";
+import { useAuth0 } from "@auth0/auth0-react";
+import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
+import Cover from "../../components/Cover/Cover";
 
 const Home = () => {
   //* Declaraciones de variables
@@ -32,10 +32,10 @@ const Home = () => {
   //* Estados locales
   const [containerLogin, setContainerLogin] = useState(false);
   const [priceRange, setPriceRange] = useState([1000, 10000]);
-  const [profession, setProfession] = useState('');
-  const [locationProf, setLocationProf] = useState('');
-  const [sortPrice, setSortPrice] = useState('');
-  const [workLocation, setWorkLocation] = useState('');
+  const [profession, setProfession] = useState("");
+  const [locationProf, setLocationProf] = useState("");
+  const [sortPrice, setSortPrice] = useState("");
+  const [workLocation, setWorkLocation] = useState("");
   const [chatOpen, setChatOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -216,12 +216,14 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div >
       <Cover />
       <Navbar setContainerLogin={setContainerLogin} />
       <div className={styles.container111}>
         {containerLogin ? (
-          <Login setContainerLogin={setContainerLogin} />
+          <Login
+            setContainerLogin={setContainerLogin}
+          />
         ) : null}
         <div className={styles.filterStyle}>
           <div className={styles.contProfesionales}>
@@ -233,7 +235,7 @@ const Home = () => {
                   value={profession}
                   onChange={handleProfession}
                 >
-                  {profession === '' && (
+                  {profession === "" && (
                     <option value="DEFAULT">Elige una profesión</option>
                   )}
 
@@ -414,9 +416,23 @@ const Home = () => {
             </div>
           )}
         </div>
+        {isAuthenticated ? (
+          <button
+            className="open-chat-button"
+            onClick={toggleChat}
+            style={{
+              position: "fixed",
+              bottom: "20px",
+              right: "20px",
+              zIndex: 9999, // Asegura que el botón del chat aparezca por encima de otros contenidos
+            }}
+          >
+            Abrir Chat
+          </button>
+        ) : null}
+        {chatOpen && <Chat nickname={nickname} />}
         {currentAds.length !== 0 || adsFiltered.length !== 0 ? (
-          <Pagination
-            className={styles.paginado}
+          <Pagination className={styles.paginado}
             currentPage={currentPage}
             adsPerPage={adsPerPage}
             totalAds={adsFiltered.length}
@@ -429,7 +445,7 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.footer}>
-        {' '}
+        {" "}
         <Footer />
         <button
           className="open-chat-button"
