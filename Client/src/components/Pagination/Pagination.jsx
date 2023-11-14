@@ -3,6 +3,8 @@ import { Container } from './styledPagination';
 import Fab from '@mui/material/Fab';
 import { useState, useEffect } from 'react';
 import { TextField, Button } from '@mui/material';
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 function Pagination({
   currentPage,
@@ -19,18 +21,32 @@ function Pagination({
     pageNumbers.push(i);
   }
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
-      setInputPage(currentPage + 1)
+    scrollToTop()
+    const nextPage = () => {
+      if (currentPage < totalPages) {
+        onPageChange(currentPage + 1);
+        setInputPage(currentPage + 1)
+        
+      }
     }
+    
+    setTimeout(nextPage, 1000)
   };
 
   const handlePrevPage = () => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1);
-      setInputPage(currentPage - 1)
+    scrollToTop()
+    const backPage = () => {
+      if (currentPage > 1) {
+        onPageChange(currentPage - 1);
+        setInputPage(currentPage - 1)
+      }
     }
+    setTimeout(backPage, 1000)
   };
   const handleInputChange = (event) => {
     setInputPage(event.target.value);
@@ -41,6 +57,9 @@ function Pagination({
       setShowGoToPageButton(true);
     }
   };
+
+
+
 
   const handleGoToPage = () => {
     const newPage = parseInt(inputPage, 10);
@@ -63,7 +82,7 @@ function Pagination({
         onClick={handlePrevPage}
         disabled={currentPage === 1} // Deshabilitar el botón en la página 1
       >
-        Back
+        <FaArrowLeft />
       </Fab>
       <div
         style={{
@@ -92,7 +111,7 @@ function Pagination({
           type="text"
           value={inputPage}
           onChange={handleInputChange}
-          style={{ width: '80px' }}
+          style={{ width: '80px', zIndex: '300' }}
         />
         <h4 style={{ margin: '1em 0em 0em 0em', textAlign: 'center' }}>
           {currentPage} de {totalPages}
@@ -107,7 +126,7 @@ function Pagination({
           zIndex: '1',
         }}
       >
-        Next
+        <FaArrowRight />
       </Fab>
     </Container>
   );

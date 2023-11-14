@@ -6,11 +6,6 @@
   right: 20px;
   z-index: 9999;
 }
-.user-avatar {
-  width: 30px;
-  border-radius: 10px;
-  margin: 10px;
-}
 
 .card {
   width: 400px;
@@ -90,28 +85,32 @@
   overflow-y: auto; /* Agrega un desplazamiento vertical cuando sea necesario */
 }
 
-/* Chat Messages */
-.chat-bubble {
-  max-width: 80%; /* Ajusta el ancho máximo según tus preferencias */
-  word-wrap: break-word;
-  padding: 10px;
-  border-radius: 20px; /* Un radio de borde más grande para hacerlas más alargadas */
+.chat-message {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.user-message,
-.other-message {
-  display: inline-block;
+.chat-bubble {
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.user-message {
   background-color: #4caf50;
   color: #fff;
-  padding: 10px;
-  border-radius: 20px; /* Hazlo coincidir con el radio de borde de .chat-bubble */
-  margin-bottom: 5px;
-  max-width: 80%; /* Ajusta según tus preferencias */
-  text-align: left; /* Alinea el texto a la izquierda */
+  align-self: flex-end;
+  text-align: right;
 }
 
 .other-message {
   background-color: #dcdcdc;
   color: #333;
-  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+/* Stored Messages */
+.text-muted {
+  text-align: center;
+  margin: 20px 0;
 }
