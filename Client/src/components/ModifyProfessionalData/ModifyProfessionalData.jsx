@@ -192,7 +192,7 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
             onChange={handlerChange}
             required
           >
-            <option value="" disabled>
+            <option value="" disabled >
               {form.location}
             </option>
             {citiesInSelectedProvince.map((location, index) => (
