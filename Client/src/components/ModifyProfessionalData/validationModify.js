@@ -9,11 +9,11 @@ const validationModify = (form) => {
   }
 
   if (form.profession === "") {
-    errors.profession = "la profesion esta vacio";
+    errors.profession = "El campo esta vacio";
   }
 
   if (form.description === "") {
-    errors.description = "la descripcion esta vacio";
+    errors.description = "La descripcion esta vacia";
   }
 
   if (form.description.length > 101) {
