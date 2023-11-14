@@ -44,6 +44,33 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
     setError(validationModify({ ...form, [propiedad]: valor }));
   };
 
+  const handlerChangeTextarea = (e) => {
+    const valor = e.target.value;
+    setForm({ ...form, description: valor });
+    setError(validationModify({ ...form, description: valor }));
+  };
+
+  // const handleImageUpload = (e) => {
+  //   const image = e.target.files[0];
+
+  //   const imgElement = document.createElement("img");
+  //   imgElement.src = URL.createObjectURL(image)
+
+  //   const imageUpdate = imgElement.src.slice(5)
+
+  //   if (imageUpdate) {
+  //     setForm({
+  //       ...form,
+  //       image: imageUpdate,
+  //     });
+  //     setImagePreview(imageUpdate)
+  //   }
+
+  //   ;
+
+  //   console.log(imageUpdate);
+  // };
+
   const handlerSubmit = async (e) => {
     e.preventDefault();
 
@@ -62,24 +89,6 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
     setPopUpDataProf(false);
   };
 
-  // function getProvinces(data) {
-  //   const provinces = data.localidades.map((provincia) => {
-  //     return provincia.provincia.nombre;
-  //   });
-  //   return [...new Set(provinces)];
-  // }
-
-  // const provincesList = getProvinces(miApi, form.province);
-
-  // function getLocation(data) {
-  //   const cities = data.localidades.filter((ciudad) => {
-  //     return ciudad.ciudad.nombre === form.province;
-  //   });
-  //   return [...new Set(cities)];
-  // }
-
-  // const locationList = getProvinces(miApi, form.province);
-
   function getProvinces(data) {
     const provinces = data.localidades.map((provincia) => {
       return provincia.provincia.nombre;
@@ -90,7 +99,6 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
   const provincesList = getProvinces(miApi);
 
   const selectedProvParticular = form.province;
-  //console.log('Provincia seleccionada:', selectedProvParticular);
 
   function selectCitiesByProvince(data, selectedProvince) {
     const cities = data.localidades.filter((ciudad) => {
@@ -107,9 +115,7 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
     selectedProvParticular
   );
 
-  console.log(provincesList);
-  // console.log(locationList);
-  console.log(citiesInSelectedProvince);
+  console.log(form);
 
   return (
     <div className={style.containerPopUp}>
@@ -187,12 +193,13 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
               </option>
             ))}
           </select>
-          <input
-            type="text"
+          <textarea
             placeholder="Descripcion"
-            value={form.description}
-            onChange={handlerChange}
+            defaultValue={form.description}
+            onBlur={handlerChangeTextarea}
             id="descripcion"
+            rows={4}
+            cols={50}
           />
           <button type="submit">Modificar</button>
         </form>
