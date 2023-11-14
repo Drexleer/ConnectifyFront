@@ -22,6 +22,7 @@ import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
 import Cover from '../../components/Cover/Cover';
+import { setUser } from '../../redux/Slices/UserChatSlice';
 import { IconButton } from '@mui/material';
 
 const Home = () => {
@@ -44,7 +45,8 @@ const Home = () => {
   const ads = useSelector((state) => state.ads.ads);
   const { isAuthenticated, user } = useAuth0();
   // estado global para traer los datos del usuario
-  // const userId = useSelector((state) => state.usersLogin.user);
+  const userId = useSelector((state) => state.usersLogin.user);
+  console.log('Aqui deberia estar datos de userId:', userId);
   //traer usuario ya después de iniciar sesión
   // const nickname = userId?.userName || user?.nickname || '';
   // const imageUser = userId?.image || user?.picture || '';
@@ -202,6 +204,7 @@ const Home = () => {
 
   //* useEffect para actualizar el estado de los anuncios
   useEffect(() => {
+    dispatch(setUser(userId));
     dispatch(locationUser(location.pathname));
     if (isAuthenticated) {
       dispatch(fetchUserLoginWithGoogle({ email: user.email }));

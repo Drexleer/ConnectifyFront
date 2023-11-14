@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 const VITE_API_BASE = import.meta.env.VITE_API_BASE || 'localhost';
 import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/Slices/UserChatSlice';
 import { useAuth0 } from '@auth0/auth0-react';
 import './Chat.css';
 // Conexión para escuchar y enviar eventos
@@ -13,12 +14,13 @@ function Chat() {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [userColor] = useState(getRandomColor());
+  const [nickname, setNickname] = useState('');
+  const [imageUser, setImageUser] = useState('');
   const { user } = useAuth0();
   const userId = useSelector((state) => state.usersLogin.user);
-
-  const nickname = userId?.userName || user?.nickname || '';
-  const imageUser = userId?.image || user?.picture || '';
-
+  const userGlobal = useSelector(selectUser);
+  console.log('Aqui deberia estar datos de userId:', userId);
+  console.log('Aqui deberia estar datos de user GLOBAL:', userGlobal);
   const url = VITE_API_BASE + `/chat`;
 
   useEffect(() => {
@@ -37,6 +39,17 @@ function Chat() {
       socket.off('message', receivedMessage);
     };
   }, []);
+
+  useEffect(() => {
+    // Obtener datos del usuario y actualizar estado
+    console.log('userId:', userId);
+    console.log('user:', user);
+    const nickname = userId?.userName || user?.nickname || '';
+    const imageUser = userId?.image || user?.picture || '';
+    console.log(nickname, imageUser, 'aqui deberia decir algo');
+    setNickname(nickname);
+    setImageUser(imageUser);
+  }, [userId, user]);
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +78,7 @@ function Chat() {
           from: nickname,
           image: imageUser, // Incluir la imagen en el cuerpo de la solicitud
         });
-        console.log('Mensaje guardado con éxito', imageUser);
+        console.log('Datos aqui', imageUser, nickname);
       } catch (error) {
         console.error('Error sending message:', error);
       }
