@@ -1,3 +1,4 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import { IoMdRefresh } from 'react-icons/io';
 import { MdPersonSearch } from 'react-icons/md';
@@ -25,6 +26,7 @@ import Cover from '../../components/Cover/Cover';
 import { setUser } from '../../redux/Slices/UserChatSlice';
 import { IconButton } from '@mui/material';
 
+
 const Home = () => {
   //* Declaraciones de variables
   const location = useLocation();
@@ -33,10 +35,10 @@ const Home = () => {
   //* Estados locales
   const [containerLogin, setContainerLogin] = useState(false);
   const [priceRange, setPriceRange] = useState([1000, 10000]);
-  const [profession, setProfession] = useState('');
-  const [locationProf, setLocationProf] = useState('');
-  const [sortPrice, setSortPrice] = useState('');
-  const [workLocation, setWorkLocation] = useState('');
+  const [profession, setProfession] = useState("");
+  const [locationProf, setLocationProf] = useState("");
+  const [sortPrice, setSortPrice] = useState("");
+  const [workLocation, setWorkLocation] = useState("");
   const [chatOpen, setChatOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -219,12 +221,14 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div >
       <Cover />
       <Navbar setContainerLogin={setContainerLogin} />
       <div className={styles.container111}>
         {containerLogin ? (
-          <Login setContainerLogin={setContainerLogin} />
+          <Login
+            setContainerLogin={setContainerLogin}
+          />
         ) : null}
         <div className={styles.filterStyle}>
           <div className={styles.contProfesionales}>
@@ -236,7 +240,7 @@ const Home = () => {
                   value={profession}
                   onChange={handleProfession}
                 >
-                  {profession === '' && (
+                  {profession === "" && (
                     <option value="DEFAULT">Elige una profesión</option>
                   )}
 
@@ -417,9 +421,23 @@ const Home = () => {
             </div>
           )}
         </div>
+        {isAuthenticated ? (
+          <button
+            className="open-chat-button"
+            onClick={toggleChat}
+            style={{
+              position: "fixed",
+              bottom: "20px",
+              right: "20px",
+              zIndex: 9999, // Asegura que el botón del chat aparezca por encima de otros contenidos
+            }}
+          >
+            Abrir Chat
+          </button>
+        ) : null}
+        {chatOpen && <Chat nickname={nickname} />}
         {currentAds.length !== 0 || adsFiltered.length !== 0 ? (
-          <Pagination
-            className={styles.paginado}
+          <Pagination className={styles.paginado}
             currentPage={currentPage}
             adsPerPage={adsPerPage}
             totalAds={adsFiltered.length}
@@ -432,7 +450,7 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.footer}>
-        {' '}
+        {" "}
         <Footer />
         <button
           className="open-chat-button"
