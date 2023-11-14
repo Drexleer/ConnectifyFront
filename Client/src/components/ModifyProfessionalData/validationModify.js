@@ -20,6 +20,10 @@ const validationModify = (form) => {
     errors.description = "La descripcion tiene caracteres de mas";
   }
 
+  if (form.location === "") {
+    errors.location = "Debe elegir una localidad";
+  }
+
   return errors;
 };
 

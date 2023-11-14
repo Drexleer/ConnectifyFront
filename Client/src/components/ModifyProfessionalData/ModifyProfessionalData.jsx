@@ -17,7 +17,7 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
     email: profById.email,
     image: profById.image,
     profession: profById.profession,
-    location: profById.location,
+    location: "",
     province: profById.province,
     description: profById.description,
   });
@@ -206,15 +206,13 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
             required
             className={style.selectUpdateProf}
           >
-            <option value="" disabled defaultValue={form.province}>
-              {form.location}
-            </option>
             {citiesInSelectedProvince.map((location, index) => (
-              <option key={index} value={location.nombre}>
+              <option key={index} value={location.nombre} defaultValue={location.nombre}>
                 {location.nombre}
               </option>
             ))}
           </select>
+          <span className={style.spanUpdateProfLocation}>{error.location}</span>
           </div>
           <textarea
             placeholder="Descripcion"

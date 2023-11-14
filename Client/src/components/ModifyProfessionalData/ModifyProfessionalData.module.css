@@ -189,3 +189,12 @@
   color: #e22f2f;
   font-weight: bold;
 }
+
+.spanUpdateProfLocation{
+  position: absolute;
+  font-size: 0.8rem;
+  top: 290px;
+  left: 530px;
+  color: #e22f2f;
+  font-weight: bold;
+}
