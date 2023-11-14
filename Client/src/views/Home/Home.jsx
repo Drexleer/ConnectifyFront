@@ -47,7 +47,7 @@ const Home = () => {
   const userId = useSelector((state) => state.usersLogin.user);
   //traer usuario ya después de iniciar sesión
   const nickname = userId?.userName || user?.nickname || '';
-  const imageUser = userId?.image || user?.picture || '';
+  const imageUser = user ? user.picture : userId.image;
   //const email = userId?.email || user.email || ''; //Usar cuando se necesite el email
 
   //* Paginado
