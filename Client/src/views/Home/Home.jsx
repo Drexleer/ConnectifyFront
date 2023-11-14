@@ -44,10 +44,10 @@ const Home = () => {
   const ads = useSelector((state) => state.ads.ads);
   const { isAuthenticated, user } = useAuth0();
   // estado global para traer los datos del usuario
-  const userId = useSelector((state) => state.usersLogin.user);
+  // const userId = useSelector((state) => state.usersLogin.user);
   //traer usuario ya después de iniciar sesión
-  const nickname = userId?.userName || user?.nickname || '';
-  const imageUser = user ? user.picture : userId.image;
+  // const nickname = userId?.userName || user?.nickname || '';
+  // const imageUser = userId?.image || user?.picture || '';
   //const email = userId?.email || user.email || ''; //Usar cuando se necesite el email
 
   //* Paginado
@@ -459,7 +459,7 @@ const Home = () => {
         >
           Abrir Chat
         </button>
-        {chatOpen && <Chat nickname={nickname} imageUser={imageUser} />}
+        {chatOpen && <Chat />}
       </div>
     </div>
   );
