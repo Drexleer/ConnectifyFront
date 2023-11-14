@@ -128,9 +128,10 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
         />
         <div className={style.containerTitleModifyProf}>
           <h2>Modificacion de datos</h2>
-          <img src={form.image} alt="" />
+          <img src={form.image} alt="" className={style.imageUpdateProf}/>
         </div>
-        <form action="" onSubmit={handlerSubmit}>
+        <form action="" onSubmit={handlerSubmit} className={style.containerFormUpdateProf}>
+          <div>
           <input
             type="text"
             placeholder="Nombre"
@@ -138,6 +139,7 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
             disabled
             onChange={handlerChange}
             id="name"
+            className={style.inputDisableUpdateProf}
           />
           <input
             type="text"
@@ -146,6 +148,7 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
             disabled
             onChange={handlerChange}
             id="lastName"
+            className={style.inputDisableUpdateProf}
           />
           <input
             type="text"
@@ -154,13 +157,17 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
             disabled
             onChange={handlerChange}
             id="userName"
+            className={style.inputDisableUpdateProf}
           />
+          </div>
+          <div>
           <input
             type="email"
             placeholder="Email"
             value={form.email}
             onChange={handlerChange}
             id="email"
+            className={style.inputUpdateProfemail}
           />
           <input
             type="text"
@@ -168,15 +175,19 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
             value={form.profession}
             onChange={handlerChange}
             id="profession"
+            className={style.inputUpdateProf}
           />
-          <select
+          </div>
+          <div>
+            <select
             name="province"
             id="province"
             value={form.province}
             onChange={handlerChange}
             required
+            className={style.selectUpdateProf}
           >
-            <option value="" disabled>
+            <option value="" disabled defaultValue={form.province}>
               {form.province}
             </option>
             {provincesList.map((province) => (
@@ -191,8 +202,9 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
             value={form.location}
             onChange={handlerChange}
             required
+            className={style.selectUpdateProf}
           >
-            <option value="" disabled >
+            <option value="">
               {form.location}
             </option>
             {citiesInSelectedProvince.map((location, index) => (
@@ -201,6 +213,7 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
               </option>
             ))}
           </select>
+          </div>
           <textarea
             placeholder="Descripcion"
             defaultValue={form.description}
@@ -208,8 +221,9 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
             id="descripcion"
             rows={4}
             cols={50}
+            className={style.textareaUpdateProf}
           />
-          <button type="submit">Modificar</button>
+          <button type="submit" className={style.btnUpdateProf}>Modificar</button>
         </form>
         {popUpDataProf && (
           <div className={style.containerPopUpDataProf}>
