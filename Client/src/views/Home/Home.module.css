@@ -4,8 +4,8 @@ Cover {
   z-index: 1;
 }
 .container111 {
-  z-index: 1;
-  position: relative;
+  
+  position: absolute;
   background-color: #fff;
  padding-top: 0.3em;
   margin-left: 8em;
@@ -16,7 +16,8 @@ Cover {
  }
 
  .footer{
-  margin-top: 10em;
+  margin-top: 140em;
+
   z-index: 2;
   position: relative;
  }
