@@ -94,7 +94,7 @@ function Chat({ nickname, imageUser }) {
     <div className="chat-container">
       <div
         className="card"
-        style={{ maxWidth: '600px', maxHeight: '600px', overflow: 'auto' }}
+        style={{ maxWidth: '800px', maxHeight: '800px', overflow: 'auto' }}
       >
         <h5 className="text-center mb-3">CHAT</h5>
         <div
