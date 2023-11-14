@@ -1,28 +1,31 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
-import { IoMdRefresh } from "react-icons/io";
-import { MdPersonSearch } from "react-icons/md";
-import Obrero from "../../assets/Obrero.gif";
-import { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar/Navbar";
-import Login from "../../components/Login/Login";
-import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { locationUser } from "../../redux/Slices/persistSlice";
-import Professional from "../../components/Card/Professional";
-import { fetchAds } from "../../redux/Slices/adsSlice";
-import styles from "./Home.module.css";
-import Pagination from "../../components/Pagination/Pagination";
-import { fetchFilter } from "../../redux/Slices/FiltersCombinedSlice";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
-import Footer from "../../components/Footer/Footer";
-import Chat from "../../components/Chat/Chat";
-import ButtonTop from "../../components/Utils/ButtonTop/ButtonTop";
-import Loading from "../../components/Utils/Loading/Loading";
-import { useAuth0 } from "@auth0/auth0-react";
-import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
-import Cover from "../../components/Cover/Cover";
+import { IoMdRefresh } from 'react-icons/io';
+import { MdPersonSearch } from 'react-icons/md';
+import Obrero from '../../assets/Obrero.gif';
+import { useState, useEffect } from 'react';
+import Navbar from '../../components/Navbar/Navbar';
+import Login from '../../components/Login/Login';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { locationUser } from '../../redux/Slices/persistSlice';
+import Professional from '../../components/Card/Professional';
+import { fetchAds } from '../../redux/Slices/adsSlice';
+import styles from './Home.module.css';
+import Pagination from '../../components/Pagination/Pagination';
+import { fetchFilter } from '../../redux/Slices/FiltersCombinedSlice';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import Footer from '../../components/Footer/Footer';
+import Chat from '../../components/Chat/Chat';
+import ButtonTop from '../../components/Utils/ButtonTop/ButtonTop';
+import Loading from '../../components/Utils/Loading/Loading';
+import { useAuth0 } from '@auth0/auth0-react';
+import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
+import Cover from '../../components/Cover/Cover';
+import { setUser } from '../../redux/Slices/UserChatSlice';
+import { IconButton } from '@mui/material';
+
 
 const Home = () => {
   //* Declaraciones de variables
@@ -44,7 +47,8 @@ const Home = () => {
   const ads = useSelector((state) => state.ads.ads);
   const { isAuthenticated, user } = useAuth0();
   // estado global para traer los datos del usuario
-  // const userId = useSelector((state) => state.usersLogin.user);
+  const userId = useSelector((state) => state.usersLogin.user);
+  console.log('Aqui deberia estar datos de userId:', userId);
   //traer usuario ya después de iniciar sesión
   // const nickname = userId?.userName || user?.nickname || '';
   // const imageUser = userId?.image || user?.picture || '';
@@ -202,6 +206,7 @@ const Home = () => {
 
   //* useEffect para actualizar el estado de los anuncios
   useEffect(() => {
+    dispatch(setUser(userId));
     dispatch(locationUser(location.pathname));
     if (isAuthenticated) {
       dispatch(fetchUserLoginWithGoogle({ email: user.email }));
