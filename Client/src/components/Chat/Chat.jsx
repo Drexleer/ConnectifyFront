@@ -12,6 +12,7 @@ function Chat({ nickname, imageUser }) {
   const [messages, setMessages] = useState([]);
   const [userColor] = useState(getRandomColor());
   const userEmail = nickname;
+  console.log('Mensaje guardado con éxito', imageUser);
 
   const url = VITE_API_BASE + `/chat`;
 
@@ -59,6 +60,7 @@ function Chat({ nickname, imageUser }) {
           from: userEmail,
           image: imageUser, // Incluir la imagen en el cuerpo de la solicitud
         });
+        console.log('Mensaje guardado con éxito', imageUser);
       } catch (error) {
         console.error('Error sending message:', error);
       }
