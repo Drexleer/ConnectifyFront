@@ -35,7 +35,7 @@ function Pagination({
       }
     }
     
-    setTimeout(nextPage, 1000)
+    setTimeout(nextPage, 700)
   };
 
   const handlePrevPage = () => {
@@ -46,7 +46,7 @@ function Pagination({
         setInputPage(currentPage - 1)
       }
     }
-    setTimeout(backPage, 1000)
+    setTimeout(backPage, 700)
   };
   const handleInputChange = (event) => {
     setInputPage(event.target.value);
@@ -62,12 +62,16 @@ function Pagination({
 
 
   const handleGoToPage = () => {
-    const newPage = parseInt(inputPage, 10);
+    scrollToTop()
+    const goPage = () => {
+      const newPage = parseInt(inputPage, 10);
     if (!isNaN(newPage) && newPage >= 1 && newPage <= totalPages) {
       onPageChange(newPage);
       setInputPage(newPage.toString());
       setShowGoToPageButton(false); // Oculta el botón después de usarlo
     }
+    }
+    setTimeout(goPage, 700)
   };
 
   useEffect(() => {
