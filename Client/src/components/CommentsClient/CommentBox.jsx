@@ -27,6 +27,7 @@ const CommentBox = ({ onClose, professionalId }) => {
   const handleChange = (newRating) => {
     setRating(newRating);
   };
+  
 
   const handleComment = () => {
     if (newComment.trim() !== "") {
