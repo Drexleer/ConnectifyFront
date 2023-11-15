@@ -138,6 +138,10 @@ function ResponsiveAppBar({ setContainerLogin }) {
                           {users !== "admin" && users !== "professional" && (
                             <button className={style.buttonCarpeta} onClick={() => navigate("/client/favorites")}>
                                 <MdFolderSpecial className={style.Fav} />
+                                {
+                                  favoriteCount > 0 &&
+                                <span className={style.spanFav}>{favoriteCount}</span>
+                                }
                             </button>
                           )}
                   
