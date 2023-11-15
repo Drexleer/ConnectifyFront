@@ -22,7 +22,7 @@ import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
 import Cover from '../../components/Cover/Cover';
-import { IconButton } from '@mui/material';
+
 
 const Home = () => {
   //* Declaraciones de variables
@@ -317,13 +317,7 @@ const Home = () => {
               <option value="asc">Ascendente</option>
               <option value="desc">Descendente</option>
             </select>
-            {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
-                <InputLabel>Orden por Precio</InputLabel>
-                <Select id="sortPrice" onChange={handlesortPrice} value={sortPrice}>
-                  <MenuItem value="asc">Ascendente</MenuItem>
-                  <MenuItem value="desc">Descendente</MenuItem>
-                </Select>
-              </FormControl> */}
+            
           </div>
           {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
               <InputLabel>Trabajo</InputLabel> */}
@@ -449,14 +443,9 @@ const Home = () => {
         {' '}
         <Footer />
         <button
-          className="open-chat-button"
+          className={styles.btnChat}
           onClick={toggleChat}
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 9999, // Asegura que el botón del chat aparezca por encima de otros contenidos
-          }}
+          
         >
           Abrir Chat
         </button>

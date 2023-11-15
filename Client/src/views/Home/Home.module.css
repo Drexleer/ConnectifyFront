@@ -20,12 +20,12 @@ z-index: 2;
 position: relative;
 }
 .card {
-
   display: grid;
   grid-template-columns: repeat(3, 7fr);
   gap: 5em;
   padding: 4em;
   grid-row-gap:2em;
+
 }
 
 
@@ -344,9 +344,7 @@ bottom: 17em;
 .contClear {
   margin-left: 0.7rem;
 }
-.applyFilter {
-  /* margin-top: -0.5rem; */
-}
+
 .contButtons {
   display: flex;
   flex-direction: row;
@@ -357,4 +355,19 @@ bottom: 17em;
 
 .paginado{
   z-index: 300;
+}
+
+.btnChat{
+  
+    position: fixed;
+    bottom: 2em;
+    right: 3em;
+    z-index: 9999;  
+    background-color: orange;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+        cursor: pointer;
 }
