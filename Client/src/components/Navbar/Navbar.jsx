@@ -24,7 +24,6 @@ import { IoHomeSharp } from "react-icons/io5";
 import { MdFolderSpecial } from "react-icons/md";
 import { fetchAds } from "../../redux/Slices/adsSlice";
 
-import fotoAdmin from '../../assets/perfilAnonimo.jpg';
 
 function ResponsiveAppBar({ setContainerLogin }) {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -144,45 +143,29 @@ function ResponsiveAppBar({ setContainerLogin }) {
                   
                       </div>
                       <div className={style.area3}>
-                          {users === "client" && (
-                          
-                              <div className={style.contContImg} >
-                                
-                                  <div onClick={handleOpenUserMenu} className={style.contImg} >
-                                      <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
-                                  </div>
-                                  <label className={style.clientProf}>Cliente</label>
-                                
-                              </div>
-                          )}
-                
-                          {users === "professional" && (
+                        {users === "client" && (
+                        
+                            <div className={style.contContImg} >
                               
-                              <div className={style.contContImg} >
-                                  
-                                  <div onClick={handleOpenUserMenu} className={style.contImg} >
-                                      <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
-                                  </div>
-                                  <label className={style.clientProf}>Profesional</label>
-                                  
-                              </div>
-                          )}
-
-                          {users === "admin" && (
+                                <div onClick={handleOpenUserMenu} className={style.contImg} >
+                                    <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
+                                </div>
+                                <label className={style.clientProf}>Cliente</label>
                               
-                              <div className={style.contContImg} >
-                                  
-                                  <div onClick={handleOpenUserMenu} className={style.contImg} >
-                                      <img alt="" src={fotoAdmin} />
-                                  </div>
-                                  <label className={style.clientProf}>Admin</label>
-                                  
-                              </div>
-                          )}
-
-
-
-
+                            </div>
+                        )}
+              
+                        {users === "professional" && (
+                            
+                            <div className={style.contContImg} >
+                                
+                                <div onClick={handleOpenUserMenu} className={style.contImg} >
+                                    <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
+                                </div>
+                                <label className={style.clientProf}>Profesional</label>
+                                
+                            </div>
+                        )}
                       </div>
                 </div>
 

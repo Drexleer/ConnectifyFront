@@ -14,6 +14,7 @@
 }
 
 .buttonCarpeta {
+  position: relative;
   color: #ffffff;
   width: 3rem;
   /* height: 2rem; */
@@ -164,4 +165,15 @@
 
 .contContImg:hover .clientProf {
   display: block;
+}
+
+.spanFav{
+  position: absolute;
+  top: 2px;
+  right: -2px;
+  z-index: 3;
+  background-color: #eb900a;
+  padding: 3px 6px;
+  border-radius: 50%;
+  font-size: 12px;
 }
