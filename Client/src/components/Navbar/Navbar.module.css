@@ -13,8 +13,10 @@
   margin-top: 1rem;
 }
 
-.buttonHome {
+.buttonCarpeta {
   color: #ffffff;
+  width: 3rem;
+  /* height: 2rem; */
   font-size: 1rem;
   font-weight: bold;
   padding: 6px;
@@ -22,12 +24,59 @@
   outline: none;
   border: none;
   cursor: pointer;
-  margin-right: 0.5rem;
+  margin-right: 0rem;
+  margin-top: 0rem;
+}
+.buttonCarpeta:hover{
+  /* border: 1px solid #e2af2f;
+  border-radius: 5px; */
+  border: none;
+  outline: 2px solid #e3d59e;
+}
+
+.buttonCarpeta:hover .Fav {
+  transform: translateY(-2px);
+}
+
+
+.buttonHome {
+  color: #ffffff;
+  width: 3rem;
+  /* height: 2rem; */
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 6px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 0rem;
+  margin-top: 0rem;
 }
 
 .buttonHome:hover{
-  border: 1px solid #e2af2f;
-  border-radius: 5px;
+  /* border: 1px solid #e2af2f; */
+  /* border-radius: 5px; */
+  border: none;
+  outline: 2px solid #e3d59e;
+}
+.buttonHome:hover .home{
+  transform: translateY(-2px);
+}
+
+.home {
+  font-size: 1.9rem;
+  height: 100%;
+  padding: 0;
+}
+
+.Fav {
+  font-size: 2.3rem;
+  height: 100%;
+  overflow: hidden;
+  color: white;
+  padding: 0;
+  /* margin-top: -1rem; */
 }
 
 .imgCarpetaEstrella {
@@ -36,15 +85,6 @@
   margin-left: 0rem;
 }
 
-.buttonCarpeta {
-  margin-top: 0rem;
-  height: auto;
-  width: auto;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
 
 .menuAvatar{
   display: flex;
@@ -65,4 +105,62 @@
 .menuAvatar li:hover{
   background-color: #3b7ba4;
   color: #ffffff;
+}
+
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto; 
+  gap: 10px; 
+}
+
+.area1 {
+  /* background-color: #cc9494; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.area2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #ccffcc; */
+}
+
+.area3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #ccccff; */
+}
+
+
+.contImg {
+  position: relative;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.contImg:hover {
+  outline: 2px solid #e3d59e;
+}
+
+.contImg img {
+  width: 100%;
+}
+
+.clientProf {
+  background-color: rgb(104, 103, 103);
+  display: none;
+  position: absolute;
+  border-radius: 5px;
+}
+
+.contContImg:hover .clientProf {
+  display: block;
 }

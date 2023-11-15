@@ -2,6 +2,7 @@
 import style from "./Comments.module.css";
 import CommentBox from "./CommentBox";
 
+
 const ReviewButton = ({
   professionalId,
   handleCommentBoxToggle,
@@ -16,6 +17,7 @@ const ReviewButton = ({
           className={style.btnreseña}
           onClick={() => handleCommentBoxToggle(professionalId)}
         >
+
           Dejar reseña
         </button>
         {openCommentBoxId === professionalId && (
