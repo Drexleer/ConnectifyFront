@@ -157,15 +157,17 @@ function ViewsPayments() {
     
     <div className={style.contentAll}>
       <Navbar />
+
       <ButtonBack />
       <Cover />
       <div className={style.fondo}>
       
+
         <div className={style.contTitle}>
           <h2>Historial de pagos</h2>
           <h4>
             {paymentData && paymentData[0] && paymentData[0].userName
-              ? `User: ${paymentData[0].userName}`
+              ? ` `
               : "Hasta la fecha no se registran pagos realizados."}
           </h4>
           {paymentData &&
