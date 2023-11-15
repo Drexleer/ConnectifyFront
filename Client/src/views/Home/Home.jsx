@@ -22,6 +22,7 @@ import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
 import Cover from '../../components/Cover/Cover';
+import Cookies from 'js-cookie';
 import { IconButton } from '@mui/material';
 
 const Home = () => {
@@ -30,6 +31,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   //* Estados locales
+  const [cookieCounter, setCookieCounter] = useState(0);
   const [containerLogin, setContainerLogin] = useState(false);
   const [priceRange, setPriceRange] = useState([1000, 10000]);
   const [profession, setProfession] = useState('');
@@ -114,6 +116,25 @@ const Home = () => {
   useEffect(() => {
     paginate(1);
   }, [adsFiltered]);
+
+  // Función para eliminar la cookie y reiniciar el contador
+  const deleteCookie = () => {
+    Cookies.remove('nombreCookie');
+    setCookieCounter(0);
+  };
+
+  // Efecto para manejar la eliminación de la cookie cada 2 horas
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCookieCounter((prevCounter) => prevCounter + 1);
+
+      if (cookieCounter === 6) {
+        deleteCookie();
+      }
+    }, 2 * 60 * 60 * 1000); // Intervalo de 2 horas
+
+    return () => clearInterval(intervalId);
+  }, [cookieCounter]);
 
   //* Filtros Combinados
   const handleLocation = (e) => {
