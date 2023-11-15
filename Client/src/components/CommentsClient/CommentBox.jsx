@@ -41,7 +41,6 @@ const CommentBox = ({ onClose, professionalId }) => {
       dispatch(postComment(commentData))
         .then((data) => {
           if (data.meta.requestStatus === 'fulfilled') {
-            console.log("Comentario enviado con éxito:", commentData);
             setNewComment("");
             setRating(0);
             setIsCommentBoxOpen(false);

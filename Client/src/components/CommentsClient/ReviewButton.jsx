@@ -8,7 +8,7 @@ const ReviewButton = ({ professionalId, handleCommentBoxToggle, openCommentBoxId
 
   
     if (!hasCommented) {
-        console.log(hasCommented,"coment3" );
+       
       return (
         <>
         <button className={style.btnreseña} onClick={() => handleCommentBoxToggle(professionalId)}>
