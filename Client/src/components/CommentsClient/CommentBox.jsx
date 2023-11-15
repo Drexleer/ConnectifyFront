@@ -29,12 +29,13 @@ const CommentBox = ({ onClose, professionalId }) => {
   const handleChange = (newRating) => {
     setRating(newRating);
   };
+  
 
   const handleComment = () => {
     if (newComment.trim() !== "") {
       const commentData = {
         comment: newComment,
-        client: usersGoogle?.userName || usersLocal.userName,
+        client: usersGoogle?.nickname || usersLocal.userName,
         professionalId: detail.detail.creator[0]._id,
         rating: rating,
       };
