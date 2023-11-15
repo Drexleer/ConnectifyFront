@@ -33,7 +33,7 @@ const CommentBox = ({ onClose, professionalId }) => {
     if (newComment.trim() !== "") {
       const commentData = {
         comment: newComment,
-        client: usersGoogle?.nickname || usersLocal.userName,
+        client: usersGoogle?.userName || usersLocal.userName,
         professionalId: detail.detail.creator[0]._id,
         rating: rating,
       };

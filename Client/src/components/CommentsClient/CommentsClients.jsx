@@ -18,7 +18,6 @@ function CommentsClient({ id }) {
 
   const professionalId = id;
 
-
   useEffect(() => {
     if (isAuthenticated) {
       setUserDataOk(user.nickname || users.userName);
@@ -35,7 +34,6 @@ function CommentsClient({ id }) {
   }, [comments, professionalId]);
  
 
-  
   return (
     <div>
       {commentsForProfessional.length > 0 ? (
