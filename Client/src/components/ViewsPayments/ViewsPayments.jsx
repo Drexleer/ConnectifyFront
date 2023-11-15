@@ -113,6 +113,7 @@ function ViewsPayments() {
     }
   }, [search, userName]);
 
+  // Crea las preferencias
   useEffect(() => {
     const createPreference = async () => {
       try {
