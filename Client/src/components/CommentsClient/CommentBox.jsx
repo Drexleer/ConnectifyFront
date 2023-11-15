@@ -49,7 +49,6 @@ const CommentBox = ({ onClose, professionalId }) => {
         })
         .catch((error) => {
           console.error("Error al enviar comentario:", error);
-          // Manejar el error según sea necesario
         });
     }
   };

@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import style from "./Comments.module.css";
 import CommentBox from "./CommentBox";
 

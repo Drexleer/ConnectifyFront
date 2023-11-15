@@ -35,6 +35,7 @@ function CommentsClient({ id }) {
   }, [comments, professionalId]);
  
 
+  
   return (
     <div>
       {commentsForProfessional.length > 0 ? (
