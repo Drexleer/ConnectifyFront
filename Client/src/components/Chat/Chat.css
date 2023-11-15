@@ -2,9 +2,10 @@
 .chat-container {
   max-width: fit-content; /* Ancho máximo */
   position: fixed;
-  bottom: 80px;
+  bottom: 3em;
   right: 20px;
   z-index: 9999;
+ 
 }
 .user-avatar {
   width: 30px;
@@ -159,3 +160,4 @@
   padding: 10px;
   cursor: pointer;
 }
+

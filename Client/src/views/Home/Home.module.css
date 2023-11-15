@@ -4,30 +4,27 @@ Cover {
   z-index: 1;
 }
 .container111 {
-  position: absolute;    
-background-color: #fff;
-padding-top: 0.3em;
-margin-left: 8em;
-margin-right: 8em;  
-border-radius: 0.51em;
-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-
+  position: absolute;
+  background-color: #fff;
+  padding-top: 0.3em;
+  margin-left: 8em;
+  margin-right: 8em;
+  border-radius: 0.51em;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.footer{
-margin-top: 140em;
-z-index: 2;
-position: relative;
+.footer {
+  margin-top: 140em;
+  z-index: 2;
+  position: relative;
 }
 .card {
-
   display: grid;
   grid-template-columns: repeat(3, 7fr);
   gap: 5em;
   padding: 4em;
-  grid-row-gap:2em;
+  grid-row-gap: 2em;
 }
-
 
 /* Establece un ancho máximo para la cuadrícula para evitar que los elementos se estiren demasiado en pantallas grandes */
 @media (min-width: 1200px) {
@@ -36,7 +33,7 @@ position: relative;
     grid-template-columns: repeat(3, 7fr);
     gap: 5em;
     padding: 4em;
-    grid-row-gap:7em;
+    grid-row-gap: 7em;
     /* Cambia a 4 columnas en pantallas más grandes */
   }
 }
@@ -107,7 +104,6 @@ position: relative;
     transform: rotate(360deg);
   }
 }
-
 
 /* .contSelectProf {
   background-color: red;
@@ -337,16 +333,14 @@ position: relative;
 }
 
 .buttonContainer {
-position: relative;
-bottom: 17em;
+  position: relative;
+  bottom: 17em;
 }
 /* ///////////////////////////////////////////// */
 .contClear {
   margin-left: 0.7rem;
 }
-.applyFilter {
-  /* margin-top: -0.5rem; */
-}
+
 .contButtons {
   display: flex;
   flex-direction: row;
@@ -355,6 +349,21 @@ bottom: 17em;
   margin-top: 0.2rem;
 }
 
-.paginado{
+.paginado {
   z-index: 300;
+}
+
+
+.btnChat {
+  position: fixed;
+  bottom: 2em;
+  right: 3em;
+  z-index: 9999;
+  background-color: orange;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
 }
