@@ -42,6 +42,7 @@ const DetailAd = () => {
   const { id } = useParams();
   const userType = useSelector(selectUserType);
   console.log(userType, 'aqui el tipo');
+  console.log(userType, 'aqui el tipo 2');
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detail);
   const location = useLocation();
