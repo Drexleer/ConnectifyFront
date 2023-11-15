@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 
-
+import style from './Comments.module.css'
 import CommentBox from './CommentBox';
 
 const ReviewButton = ({ professionalId, handleCommentBoxToggle, openCommentBoxId, hasCommented, handleClose }) => {
@@ -11,7 +11,7 @@ const ReviewButton = ({ professionalId, handleCommentBoxToggle, openCommentBoxId
         console.log(hasCommented,"coment3" );
       return (
         <>
-        <button onClick={() => handleCommentBoxToggle(professionalId)}>
+        <button className={style.btnreseña} onClick={() => handleCommentBoxToggle(professionalId)}>
           Dejar reseña
         </button>
         {openCommentBoxId === professionalId && (
