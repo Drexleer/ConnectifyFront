@@ -445,8 +445,7 @@ const Home = () => {
         <button
           className={styles.btnChat}
           onClick={toggleChat}
-          
-        >
+                  >
           Abrir Chat
         </button>
         {chatOpen && <Chat nickname={nickname} imageUser={imageUser} />}
