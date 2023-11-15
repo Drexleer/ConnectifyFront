@@ -6,3 +6,8 @@
     align-items: center;
     height:auto;
 }
+.contButtonBack {
+    display: block;
+    width: 100%;
+    /* background-color: red; */
+}
