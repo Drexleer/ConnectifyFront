@@ -14,6 +14,7 @@ import {
 import Cover from '../Cover/Cover';
 import style from './Favorites.module.css';
 import ButtonBack from '../Utils/ButtonBack/ButtonBack';
+import { AiFillDelete } from "react-icons/ai";
 
 const Favorites = () => {
   const usersLocal = useSelector((state) => state.usersLogin.user);
@@ -78,17 +79,18 @@ const Favorites = () => {
                     <div >
                       
                           
-                      <IconButton
+                     
+                        
+                        <div className={style.backgroundContainer}>
+                        <button className={style.deleteButton}
                               onClick={handleRemoveFavorite}
                               id={fav.professional._id}
                               value={fav.client}
-                              style={{ marginLeft: '51em', position: 'relative', top:'1.3em'  }}
+                              
                             >
-                              <DeleteIcon color="error" />
-                            </IconButton>
+                               <AiFillDelete className={style.deleteSvgIcon} />
+                            </button>
                           
-                        
-                        <div className={style.backgroundContainer}>
                           
                           <img className={style.profilePic}
                             src={fav.professional.image}
