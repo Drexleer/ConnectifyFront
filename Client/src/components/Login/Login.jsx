@@ -275,7 +275,7 @@ const Login = ({setContainerLogin}) => {
             onClick={handlerCloseLogin}
           />
           <div className={style.containerLoginProfessional}>
-            <h3 className={style.clientTitle}>Profesional:</h3>
+            <h3 className={style.professionalTitle}>Profesional:</h3>
             <form className={style.loginForm} onSubmit={onSubmit}>
               <input
                 id="email"
