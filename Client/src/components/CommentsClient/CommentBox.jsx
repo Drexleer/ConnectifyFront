@@ -23,11 +23,9 @@ const CommentBox = ({ onClose, professionalId }) => {
   const [rating, setRating] = useState(0);
   const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);
   const [popUpComment, setPopUpComment] = useState(false)
-  const [commentSuccessPopUp, setCommentSuccessPopUp] = useState(false);
 
   const handleChange = (newRating) => {
     setRating(newRating);
-    
   };
 
   const handleComment = () => {
@@ -41,10 +39,10 @@ const CommentBox = ({ onClose, professionalId }) => {
       dispatch(postComment(commentData))
         .then((data) => {
           if (data.meta.requestStatus === 'fulfilled') {
+            console.log("Comentario enviado con éxito:", commentData);
             setNewComment("");
             setRating(0);
             setIsCommentBoxOpen(false);
-            setCommentSuccessPopUp(true);
           }else {
             setPopUpComment(true)
           }
@@ -57,25 +55,40 @@ const CommentBox = ({ onClose, professionalId }) => {
   };
 
   const handlerClosePopUpComments = () => {
-    setPopUpComment(false);
-  setCommentSuccessPopUp(false); 
-  setNewComment("");
-  setRating(0);
-    
+    setPopUpComment(false)
   }
 
   return (
     <div>
-  
-       <div className={style.myCustomBox}>
-  <div className={style.closeIcon}>
-    <AiFillCloseCircle onClick={onClose} />
-  </div>
- 
-  
-            <h3 className={style.h3}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row-reverse",
+          alignItems: "flex-start",
+          marginTop: "20px",
+        }}
+      >
+        <div>
+          <Box
+            sx={{
+              width: "75%",
+              backgroundColor: "#D9D9D9",
+              border: "1px solid #ccc",
+              borderRadius: 5,
+              padding: 2,
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              marginRight: "10em",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <button onClick={onClose}>X</button>
+            </div>
+            <Typography
+              variant="h2"
+              sx={{ marginBottom: 1, fontSize: "22px", fontWeight: "bold" }}
+            >
               Agregar comentario
-            </h3>
+            </Typography>
             <Rating
               name="rating"
               value={rating}
@@ -97,10 +110,9 @@ const CommentBox = ({ onClose, professionalId }) => {
             <button onClick={handleComment} className={style.button}>
               Enviar
             </button>
-            
-        
+          </Box>
         </div>
-      
+      </Box>
       {
         popUpComment &&
         <div className={style.containerPopUpComments}>
@@ -113,17 +125,6 @@ const CommentBox = ({ onClose, professionalId }) => {
           </div>
         </div>
       }
-      {commentSuccessPopUp && (
-      <div className={style.containerPopUpSuccess}>
-        <div className={style.popUpSuccess}>
-          <AiFillCloseCircle
-            className={style.btnCerrarComments}
-            onClick={() => setCommentSuccessPopUp(false)}
-          />
-          <h3>¡Comentario enviado con éxito!</h3>
-        </div>
-      </div>
-    )}
     </div>
   );
 };

@@ -22,7 +22,6 @@ import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
 import Cover from '../../components/Cover/Cover';
-import Cookies from 'js-cookie';
 import { IconButton } from '@mui/material';
 
 const Home = () => {
@@ -31,7 +30,6 @@ const Home = () => {
   const dispatch = useDispatch();
 
   //* Estados locales
-  const [cookieCounter, setCookieCounter] = useState(0);
   const [containerLogin, setContainerLogin] = useState(false);
   const [priceRange, setPriceRange] = useState([1000, 10000]);
   const [profession, setProfession] = useState('');
@@ -117,25 +115,6 @@ const Home = () => {
     paginate(1);
   }, [adsFiltered]);
 
-  // Función para eliminar la cookie y reiniciar el contador
-  const deleteCookie = () => {
-    Cookies.remove('nombreCookie');
-    setCookieCounter(0);
-  };
-
-  // Efecto para manejar la eliminación de la cookie cada 2 horas
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCookieCounter((prevCounter) => prevCounter + 1);
-
-      if (cookieCounter === 6) {
-        deleteCookie();
-      }
-    }, 2 * 60 * 60 * 1000); // Intervalo de 2 horas
-
-    return () => clearInterval(intervalId);
-  }, [cookieCounter]);
-
   //* Filtros Combinados
   const handleLocation = (e) => {
     e.preventDefault();
@@ -192,6 +171,7 @@ const Home = () => {
     setSortPrice('');
     setPriceRange([1000, 10000]);
     setWorkLocation('');
+    // dispatch(fetchAds());
     dispatch(
       fetchFilter({
         profession: '',
@@ -218,8 +198,8 @@ const Home = () => {
 
   //* Función de comparación para ordenar por la primera letra
   function sortByFirstLetter(a, b) {
-    const firstLetterA = a.charAt(0).toUpperCase(); // Obtener la primera letra de a y convertirla a mayúsculas
-    const firstLetterB = b.charAt(0).toUpperCase(); // Obtener la primera letra de b y convertirla a mayúsculas
+    const firstLetterA = a.charAt(0).toUpperCase();
+    const firstLetterB = b.charAt(0).toUpperCase();
 
     if (firstLetterA < firstLetterB) {
       return -1;
@@ -324,7 +304,9 @@ const Home = () => {
           </div>
 
           <div className={styles.contOrdenar}>
-          
+            {/* <label>
+                Orden
+              </label> */}
             <select
               className={`${styles.selectCss} ${styles.selectOrder}`}
               id="sortPrice"
@@ -335,9 +317,16 @@ const Home = () => {
               <option value="asc">Ascendente</option>
               <option value="desc">Descendente</option>
             </select>
-           
+            {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
+                <InputLabel>Orden por Precio</InputLabel>
+                <Select id="sortPrice" onChange={handlesortPrice} value={sortPrice}>
+                  <MenuItem value="asc">Ascendente</MenuItem>
+                  <MenuItem value="desc">Descendente</MenuItem>
+                </Select>
+              </FormControl> */}
           </div>
-          
+          {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
+              <InputLabel>Trabajo</InputLabel> */}
           <div className={styles.contRemoto}>
             <select
               className={`${styles.selectCss} ${styles.selectRemoto}`}
@@ -349,7 +338,7 @@ const Home = () => {
               <option value="Remoto">Remoto</option>
               <option value="Presencial">Presencial</option>
             </select>
-            
+            {/* </FormControl> */}
           </div>
           <div className={styles.contButtons}>
             <div className={styles.contButton}>
@@ -363,7 +352,15 @@ const Home = () => {
                 />
               </button>
 
-        
+              {/* <Fab
+                color="primary"
+                onClick={applyFilters}
+                style={{
+                  zIndex: '1',
+                }}
+              >
+                <MdPersonSearch style={{ fontSize: '2.5em' }} />
+              </Fab> */}
             </div>
             <div className={styles.contClear}>
               <button

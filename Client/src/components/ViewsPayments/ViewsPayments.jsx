@@ -35,6 +35,9 @@ function ViewsPayments() {
     return acc;
   }, {});
 
+
+  console.log(professionalCommentsMap, "coment?");
+
   const handleCommentBoxToggle = (professionalId) => {
     setOpenCommentBoxId((prevId) =>
       prevId === professionalId ? null : professionalId
@@ -44,6 +47,7 @@ function ViewsPayments() {
   const handleClose = () => {
     setOpenCommentBoxId(null);
   };
+
 
   useEffect(() => {
     const userNameGoogle = usersGoogle && usersGoogle.userName;
@@ -55,6 +59,7 @@ function ViewsPayments() {
       setUserName(userNameLocal);
     }
   }, []);
+
 
   useEffect(() => {
     if (search) {
