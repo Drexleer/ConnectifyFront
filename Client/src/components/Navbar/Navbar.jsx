@@ -144,28 +144,27 @@ function ResponsiveAppBar({ setContainerLogin }) {
                       </div>
                       <div className={style.area3}>
                         {users === "client" && (
-                            // <Tooltip title="CLIENTE">
-                                // <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} style={{ marginTop: "-1rem" }}>
-                              <div className={style.contContImg} >
+                        
+                            <div className={style.contContImg} >
                               
                                 <div onClick={handleOpenUserMenu} className={style.contImg} >
                                     <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
                                 </div>
-                                <label className={style.clientProf}>CLIENTE</label>
+                                <label className={style.clientProf}>Cliente</label>
                               
-                              </div>
-                            // </Tooltip>
-          
+                            </div>
                         )}
               
                         {users === "professional" && (
-                            // <Tooltip title="PROFESIONAL">
-                                // <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} style={{ marginTop: "-1rem" }}>
-                                <div onClick={handleOpenUserMenu} className={style.contImg} data-texto-hover="PROFESIONAL">
+                            
+                            <div className={style.contContImg} >
+                                
+                                <div onClick={handleOpenUserMenu} className={style.contImg} >
                                     <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
                                 </div>
-                                // </IconButton>
-                            // </Tooltip>
+                                <label className={style.clientProf}>Profesional</label>
+                                
+                            </div>
                         )}
                       </div>
                 </div>
