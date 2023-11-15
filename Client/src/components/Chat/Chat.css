@@ -90,28 +90,72 @@
   overflow-y: auto; /* Agrega un desplazamiento vertical cuando sea necesario */
 }
 
-/* Chat Messages */
+.chat-message {
+  display: flex;
+  margin-bottom: 10px;
+}
+
 .chat-bubble {
-  max-width: 80%; /* Ajusta el ancho máximo según tus preferencias */
-  word-wrap: break-word;
+  max-width: 70%;
   padding: 10px;
-  border-radius: 20px; /* Un radio de borde más grande para hacerlas más alargadas */
+  border-radius: 4px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-nickname {
+  font-weight: bold;
 }
 
 .user-message,
 .other-message {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  padding: 10px; /* Añadir espacio interno a las burbujas */
+  border-radius: 8px; /* Bordes redondeados para las burbujas */
+  margin-right: auto; /* Empujar la burbuja al extremo derecho */
+}
+
+.user-message {
   background-color: #4caf50;
   color: #fff;
-  padding: 10px;
-  border-radius: 20px; /* Hazlo coincidir con el radio de borde de .chat-bubble */
-  margin-bottom: 5px;
-  max-width: 80%; /* Ajusta según tus preferencias */
-  text-align: left; /* Alinea el texto a la izquierda */
+  align-self: flex-end;
 }
 
 .other-message {
   background-color: #dcdcdc;
   color: #333;
-  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+/* Chat Form */
+.form-chat {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form-chat input {
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.form-chat button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
 }
