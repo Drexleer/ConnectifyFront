@@ -37,7 +37,7 @@ function ViewsPayments() {
     return acc;
   }, {});
 
-  console.log(professionalCommentsMap, "coment?");
+  
 
   const handleCommentBoxToggle = (professionalId) => {
       setOpenCommentBoxId((prevId) => (prevId === professionalId ? null : professionalId));
@@ -60,7 +60,7 @@ function ViewsPayments() {
 
     
     useEffect(() => {
-      // setUserName(path)
+      
       
 
     if (search) {

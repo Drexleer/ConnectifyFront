@@ -171,7 +171,6 @@ const Home = () => {
     setSortPrice('');
     setPriceRange([1000, 10000]);
     setWorkLocation('');
-    // dispatch(fetchAds());
     dispatch(
       fetchFilter({
         profession: '',
@@ -287,9 +286,7 @@ const Home = () => {
           </div>
 
           <div className={styles.contOrdenar}>
-            {/* <label>
-                Orden
-              </label> */}
+          
             <select
               className={`${styles.selectCss} ${styles.selectOrder}`}
               id="sortPrice"
@@ -300,16 +297,9 @@ const Home = () => {
               <option value="asc">Ascendente</option>
               <option value="desc">Descendente</option>
             </select>
-            {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
-                <InputLabel>Orden por Precio</InputLabel>
-                <Select id="sortPrice" onChange={handlesortPrice} value={sortPrice}>
-                  <MenuItem value="asc">Ascendente</MenuItem>
-                  <MenuItem value="desc">Descendente</MenuItem>
-                </Select>
-              </FormControl> */}
+           
           </div>
-          {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
-              <InputLabel>Trabajo</InputLabel> */}
+          
           <div className={styles.contRemoto}>
             <select
               className={`${styles.selectCss} ${styles.selectRemoto}`}
@@ -321,7 +311,7 @@ const Home = () => {
               <option value="Remoto">Remoto</option>
               <option value="Presencial">Presencial</option>
             </select>
-            {/* </FormControl> */}
+            
           </div>
           <div className={styles.contButtons}>
             <div className={styles.contButton}>
@@ -335,15 +325,7 @@ const Home = () => {
                 />
               </button>
 
-              {/* <Fab
-                color="primary"
-                onClick={applyFilters}
-                style={{
-                  zIndex: '1',
-                }}
-              >
-                <MdPersonSearch style={{ fontSize: '2.5em' }} />
-              </Fab> */}
+        
             </div>
             <div className={styles.contClear}>
               <button
