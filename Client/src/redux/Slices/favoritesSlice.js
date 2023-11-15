@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axiosInstance from '../Utils/AxiosInstance';
+import { createSlice } from "@reduxjs/toolkit";
+import axiosInstance from "../Utils/AxiosInstance";
 const VITE_API_BASE = import.meta.env.VITE_API_BASE;
 
 const favoritesSlice = createSlice({
-  name: 'favorites',
+  name: "favorites",
   initialState: {
     favoriteProfessionals: [],
     favoriteCount: 0,
@@ -71,7 +71,7 @@ export const fetchRemoveFavorites = (form) => {
     console.log(form);
     try {
       const { data } = await axiosInstance.post(
-        VITE_API_BASE + `/fav/delete/`,
+        `http://localhost:3001/fav/delete/`,
         form
       );
       console.log(data);
