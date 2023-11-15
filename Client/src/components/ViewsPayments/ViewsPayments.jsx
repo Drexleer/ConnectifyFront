@@ -11,6 +11,7 @@ import Navbar from "../Navbar/Navbar";
 import CommentBox from "../CommentsClient/CommentBox";
 import ReviewButton from "../CommentsClient/ReviewButton";
 import ButtonBack from "../Utils/ButtonBack/ButtonBack";
+import Cover from '../Cover/Cover'
 
 function ViewsPayments() {
   const { user, isAuthenticated } = useAuth0();
@@ -36,7 +37,7 @@ function ViewsPayments() {
   }, {});
 
 
-  console.log(professionalCommentsMap, "coment?");
+  
 
   const handleCommentBoxToggle = (professionalId) => {
     setOpenCommentBoxId((prevId) =>
@@ -152,14 +153,16 @@ function ViewsPayments() {
   };
 
   return (
+    
+    
     <div className={style.contentAll}>
       <Navbar />
-      
-      <div className={style.contButtonBack}>
-          <ButtonBack />
-      </div>
 
-      <div className={style.contentAll}>
+      <ButtonBack />
+      <Cover />
+      <div className={style.fondo}>
+      
+
         <div className={style.contTitle}>
           <h2>Historial de pagos</h2>
           <h4>
@@ -169,7 +172,7 @@ function ViewsPayments() {
           </h4>
           {paymentData &&
             paymentData.map((data) => (
-              <div key={data.paymentID}>
+              <div key={data.paymentID} >
                 <PaymentsCard data={data} />
                 <ReviewButton
                   comments={comments}
