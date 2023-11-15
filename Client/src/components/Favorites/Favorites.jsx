@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
     IconButton,
 } from "@mui/material";
@@ -11,12 +11,14 @@ import {
   fetchGetAllFavorites,
   fetchRemoveFavorites,
 } from "../../redux/Slices/favoritesSlice";
-import Cover from '../Cover/Cover'
-import style from './Favorites.module.css'
+import Cover from '../Cover/Cover';
+import style from './Favorites.module.css';
 import ButtonBack from '../Utils/ButtonBack/ButtonBack';
 
 const Favorites = () => {
-  const users = useSelector((state) => state.usersLogin.user);
+  const usersLocal = useSelector((state) => state.usersLogin.user);
+  const usersGoogle = useSelector((state) => state.googleLogin.user);
+  const [idUser, setIdUser] = useState()
   const dispatch = useDispatch();
   const favorites = useSelector(
     (state) => state.favorites.favoriteProfessionals
@@ -25,8 +27,19 @@ const Favorites = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchGetAllFavorites(users._id));
+    const idGoogle = usersGoogle && usersGoogle._id;
+    const idLocal = usersLocal && usersLocal._id;
+    if (idGoogle) {
+      setIdUser(idGoogle);
+    }
+    if (idLocal) {
+      setIdUser(idLocal);
+    }
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchGetAllFavorites(idUser));
+  }, [dispatch, idUser]);
 
   const handleRemoveFavorite = (e) => {
     const formFav = {
@@ -52,7 +65,6 @@ const Favorites = () => {
       <Navbar />
       <Cover />
       <ButtonBack />
-
       <h4 className={style.perfil}>
           Perfiles Guardados
         </h4>

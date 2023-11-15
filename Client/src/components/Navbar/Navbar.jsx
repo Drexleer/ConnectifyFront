@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Badge from "@mui/material/Badge";
+// import logo from "../../assets/LogoLetrasFondoBlanco.png";
 import logo from "../../assets/logoTituloC001.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -18,6 +19,9 @@ import { logoutUser } from "../../redux/Slices/loginSlice";
 import style from './Navbar.module.css';
 import carpetaEstrella from '../../assets/carpetaEstrella002.svg'
 import { logoutGoogle } from "../../redux/Slices/loginGoogleSlice";
+
+import { IoHomeSharp } from "react-icons/io5";
+import { MdFolderSpecial } from "react-icons/md";
 
 
 function ResponsiveAppBar({ setContainerLogin }) {
@@ -68,7 +72,6 @@ function ResponsiveAppBar({ setContainerLogin }) {
         navigate(`/payments/${nickNameLocal}`);
       }
     }
-
     if (text === "Salir" && usersLocal) {
       await dispatch(logoutUser());
         navigate('/home');
@@ -113,49 +116,67 @@ function ResponsiveAppBar({ setContainerLogin }) {
               <img src={logo} alt="" className={style.logoNav} />
             </Link>
             
-            <Box sx={{ flexGrow: 0 }}>
+
+
+          {/* <div className={style.contButtonsAll}>  */}
+            {/* <Box sx={{ flexGrow: 0 }}> */}
               {isAuthenticated || usersLocal.userName ? (
-                <div>
-                  {location.pathname !== "/home" && (
-                    <button className={style.buttonHome} onClick={() => navigate("/home")}>Home</button>
-                  )}
-                  {users !== "admin" &&
-                    users !== "professional" && (
-                      <Badge
-                        badgeContent={favoriteCount}
-                        color="secondary"
-                        style={{ marginRight: "1rem" }}
-                      >
-                        <button className={style.buttonCarpeta} onClick={() => navigate("/client/favorites")}>
-                          <img className={style.imgCarpetaEstrella} src={carpetaEstrella} alt="" />
-                        </button>
-                      
-                      </Badge>
-                    )}
-                  
-                  {users === "client" && (
-                  <Tooltip title="CLIENTE">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={user ? user.picture : usersLocal ? usersLocal.image : null}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                  )}
-                  
-                  {users === "professional" && (
-                  <Tooltip title="PROFESIONAL">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={user ? user.picture : usersLocal ? usersLocal.image : null}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                  )}
                 
+        <div className={style.cont3Buttons}>
+          
+                <div className={style.container}>
+                      <div className={style.area1}>
+                          {location.pathname !== "/home" && (
+                            <button className={style.buttonHome} onClick={() => navigate("/home")}>
+                                <IoHomeSharp className={style.home} />
+                            </button>
+                          )}
+                      </div>
+                      <div className={style.area2}>
+                          {users !== "admin" && users !== "professional" && (
+                            <button className={style.buttonCarpeta} onClick={() => navigate("/client/favorites")}>
+                                <MdFolderSpecial className={style.Fav} />
+                            </button>
+                          )}
+                  
+                      </div>
+                      <div className={style.area3}>
+                        {users === "client" && (
+                            // <Tooltip title="CLIENTE">
+                                // <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} style={{ marginTop: "-1rem" }}>
+                              <div className={style.contContImg} >
+                              
+                                <div onClick={handleOpenUserMenu} className={style.contImg} >
+                                    <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
+                                </div>
+                                <label className={style.clientProf}>CLIENTE</label>
+                              
+                              </div>
+                            // </Tooltip>
+          
+                        )}
+              
+                        {users === "professional" && (
+                            // <Tooltip title="PROFESIONAL">
+                                // <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} style={{ marginTop: "-1rem" }}>
+                                <div onClick={handleOpenUserMenu} className={style.contImg} data-texto-hover="PROFESIONAL">
+                                    <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
+                                </div>
+                                // </IconButton>
+                            // </Tooltip>
+                        )}
+                      </div>
                 </div>
+
+
+
+                  
+
+
+                  
+                  
+                
+        </div>
               ) : 
                 location.pathname !== "/client/registration" && location.pathname !== "/professional/registration" ?
                 (<Button
@@ -164,7 +185,7 @@ function ResponsiveAppBar({ setContainerLogin }) {
                   onClick={handlerButtonLogin}
                   className={style.button}
                 >
-                  Login
+                  Ingreso
                 </Button>) :
                 null
               }
@@ -186,13 +207,11 @@ function ResponsiveAppBar({ setContainerLogin }) {
                 onClose={handleCloseUserMenu}
               >
                 {
-                  users === "admin" || users === "professional" &&
+                  users === "admin" || users === "professional" ?
                   <ul className={style.menuAvatar} onClick={handleCloseUserMenu}>
                     <li onClick={handleAvatarButton}>Mi Panel</li>
                     <li onClick={handleAvatarButton}>Salir</li>
-                  </ul>
-                }
-                {
+                  </ul> :
                   users === "client" &&
                   <ul className={style.menuAvatar} onClick={handleCloseUserMenu}>
                     <li onClick={handleAvatarButton}>Mi Panel</li>
@@ -200,8 +219,12 @@ function ResponsiveAppBar({ setContainerLogin }) {
                     <li onClick={handleAvatarButton}>Salir</li>
                   </ul>
                 }
+                
               </Menu>
-            </Box>
+            {/* </Box> */}
+          {/* </div> */}
+
+
           </div>
         </Toolbar>
       </Container>

@@ -21,8 +21,10 @@ const CommentBox = ({ onClose, professionalId }) => {
   const [userDataOk, setUserDataOk] = useState("");
   const [rating, setRating] = useState(0);
   const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);
+
   const [popUpComment, setPopUpComment] = useState(false);
   const [commentSuccessPopUp, setCommentSuccessPopUp] = useState(false);
+
 
   const handleChange = (newRating) => {
     setRating(newRating);
@@ -39,6 +41,7 @@ const CommentBox = ({ onClose, professionalId }) => {
       };
       dispatch(postComment(commentData))
         .then((data) => {
+
           if (data.meta.requestStatus === "fulfilled") {
             setNewComment("");
             setRating(0);
@@ -46,6 +49,7 @@ const CommentBox = ({ onClose, professionalId }) => {
             setCommentSuccessPopUp(true);
           } else {
             setPopUpComment(true);
+
           }
         })
         .catch((error) => {
@@ -55,6 +59,7 @@ const CommentBox = ({ onClose, professionalId }) => {
   };
 
   const handlerClosePopUpComments = () => {
+
     setPopUpComment(false);
     setCommentSuccessPopUp(false);
     setNewComment("");
@@ -94,6 +99,7 @@ const CommentBox = ({ onClose, professionalId }) => {
       </div>
 
       {popUpComment && (
+
         <div className={style.containerPopUpComments}>
           <div className={style.popUpComments}>
             <AiFillCloseCircle
@@ -103,6 +109,7 @@ const CommentBox = ({ onClose, professionalId }) => {
             <h3>Ya dejaste un comentario</h3>
           </div>
         </div>
+
       )}
       {commentSuccessPopUp && (
         <div className={style.containerPopUpSuccess}>
@@ -115,6 +122,8 @@ const CommentBox = ({ onClose, professionalId }) => {
           </div>
         </div>
       )}
+
+
     </div>
   );
 };

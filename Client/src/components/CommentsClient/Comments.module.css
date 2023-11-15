@@ -1,3 +1,4 @@
+
 .myCustomBox {
   background-color: rgb(229, 228, 226);
   border: 1px solid #ccc;
@@ -39,6 +40,7 @@
   cursor: pointer;
 }
 
+
 .containerPopUpComments {
   display: flex;
   justify-content: center;
@@ -57,7 +59,7 @@
   position: relative;
   width: 25rem;
   height: 10rem;
-  border: 3px solid rgb(131, 14, 14);
+  border: 3px solid #e2af2f;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -74,6 +76,7 @@
   border-radius: 50%;
   transition: all 0.2s ease;
   color: #000000;
+
 }
 
 .containerPopUpSuccess {
