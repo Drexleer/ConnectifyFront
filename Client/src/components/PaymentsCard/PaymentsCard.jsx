@@ -55,7 +55,7 @@ function PaymentsCard(data) {
       </div>
       <div className={style.state}>
         {buyState && <h4>Estado:</h4>}
-        {buyState && <h5>{buyState}</h5>}
+        {buyState && <h5>{buyState === "approved" ? <label>Aprobado</label> : <label>Rechazado</label>}</h5>}
       </div>
 
     </div>
