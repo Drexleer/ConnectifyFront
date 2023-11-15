@@ -95,12 +95,12 @@ function ViewsPayments() {
       const fetchData = async () => {
         try {
           const checkPayment = await axios.get(
-            `http://localhost:3001/payments/check/${valuesMP.paymentIDD}`
+            VITE_API_BASE + `/payments/check/${valuesMP.paymentIDD}`
           );
           if (checkPayment.data.exists) {
             searchData();
           } else {
-            await axios.post("http://localhost:3001/payments/register", {
+            await axios.post(VITE_API_BASE + "/payments/register", {
               professionalId: valuesMP.profIDID,
               paymentID: valuesMP.paymentIDD,
               userName: userName,
@@ -123,7 +123,7 @@ function ViewsPayments() {
     const createPreference = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3001/create_preference",
+          VITE_API_BASE + "/create_preference",
           {
             description: detail.profession,
             price: detail.price,
@@ -142,7 +142,7 @@ function ViewsPayments() {
   const searchData = async () => {
     try {
       const resp = await axios.get(
-        `http://localhost:3001/payments/search/${userName}`
+        VITE_API_BASE + `/payments/search/${userName}`
       );
       console.log(resp);
       setPaymentData(resp.data);
