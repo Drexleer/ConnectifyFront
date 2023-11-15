@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 const VITE_API_BASE = import.meta.env.VITE_API_BASE || 'localhost';
-import axiosInstance from '../Utils/AxiosInstance';
 
 const initialState = {
   createAds: [],
@@ -27,9 +26,7 @@ export const createAd = createAsyncThunk('ads/createAd', async (adData) => {
 });
 
 export const deleteAd = createAsyncThunk('ads/deleteAd', async (id) => {
-  const response = await axiosInstance.patch(
-    `${VITE_API_BASE}/ads/${id}/delete`
-  );
+  const response = await axios.patch(`${VITE_API_BASE}/ads/${id}/delete`);
   return response.data;
 });
 
@@ -37,7 +34,7 @@ export const fetchAdsToProfDashboard = createAsyncThunk(
   'adsCreate/fetchAdsToProfDashboard',
   async (userId) => {
     const endpoint = `${VITE_API_BASE}/ads`;
-    const response = await axiosInstance.get(endpoint);
+    const response = await axios.get(endpoint);
     const adsFilter = response.data.filter(
       (ad) => ad.creator[0]._id === userId
     );
