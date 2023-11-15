@@ -36,6 +36,7 @@ function CommentsClient({ id }) {
   console.log(comments, 'comentarios');
   console.log(professionalId, 'prof');
 
+  
   return (
     <div>
       {commentsForProfessional.length > 0 ? (
