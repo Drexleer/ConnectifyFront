@@ -22,6 +22,7 @@ import { logoutGoogle } from "../../redux/Slices/loginGoogleSlice";
 
 import { IoHomeSharp } from "react-icons/io5";
 import { MdFolderSpecial } from "react-icons/md";
+import { fetchAds } from "../../redux/Slices/adsSlice";
 
 
 function ResponsiveAppBar({ setContainerLogin }) {
@@ -73,6 +74,7 @@ function ResponsiveAppBar({ setContainerLogin }) {
       }
     }
     if (text === "Salir" && usersLocal) {
+      await dispatch(fetchAds())
       await dispatch(logoutUser());
         navigate('/home');
     }
