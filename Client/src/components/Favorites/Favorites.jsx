@@ -40,6 +40,7 @@ const Favorites = () => {
     }
   }, []);
 
+  // Loading
   useEffect(() => {
     dispatch(fetchGetAllFavorites(idUser)).then(() => {
       setLoading(false)
@@ -83,9 +84,6 @@ const Favorites = () => {
                 
                     <div >
                       
-                          
-                     
-                        
                         <div className={style.backgroundContainer}>
                         <button className={style.deleteButton}
                               onClick={handleRemoveFavorite}
