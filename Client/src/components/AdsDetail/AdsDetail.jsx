@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Button,
   Card,
@@ -11,35 +11,38 @@ import {
   List,
   ListItem,
   Typography,
-} from "@mui/material";
-import MercadoPago from "../Payments/MercadoPago";
+} from '@mui/material';
+import MercadoPago from '../Payments/MercadoPago';
 // import "./DetailAd.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { fetchDetail } from "../../redux/Slices/detailSlice";
-import Navbar from "../Navbar/Navbar";
-import { locationUser } from "../../redux/Slices/persistSlice";
-
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
-import { useAuth0 } from "@auth0/auth0-react";
-import style from "./DetailAd.module.css";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { fetchDetail } from '../../redux/Slices/detailSlice';
+import Navbar from '../Navbar/Navbar';
+import { locationUser } from '../../redux/Slices/persistSlice';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
+import { useAuth0 } from '@auth0/auth0-react';
+import style from './DetailAd.module.css';
+import { Link } from 'react-router-dom';
 import {
   fetchAddFavorites,
   fetchRemoveFavorites,
-} from "../../redux/Slices/favoritesSlice";
-import Comments from "../CommentsClient/CommentsClients";
-import ButtonBack from "../Utils/ButtonBack/ButtonBack";
-import Loading from "../Utils/Loading/Loading";
-import Cover from "../Cover/Cover";
+} from '../../redux/Slices/favoritesSlice';
+import Comments from '../CommentsClient/CommentsClients';
+import ButtonBack from '../Utils/ButtonBack/ButtonBack';
+import Loading from '../Utils/Loading/Loading';
+import Cover from '../Cover/Cover';
+import { selectUserType } from '../../redux/Slices/userTypeSlice';
 
 const DetailAd = () => {
   const { user } = useAuth0();
   const { id } = useParams();
+  const userType = useSelector(selectUserType);
+  console.log(userType, 'aqui el tipo');
+  console.log(userType, 'aqui el tipo 2');
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detail);
   const location = useLocation();
@@ -123,12 +126,12 @@ const DetailAd = () => {
           ) : detail.detail.creator && detail.detail.creator.length > 0 ? (
             <Grid container spacing={2}>
               <Grid item xs={8} align="left">
-                <div style={{ paddingBottom: "1em" }}>
-                  <Link to={"/home"}>
+                <div style={{ paddingBottom: '1em' }}>
+                  <Link to={'/home'}>
                     <ButtonBack />
                   </Link>
                 </div>
-                {users.types !== "admin" && users.types !== "professional" && (
+                {users.types !== 'admin' && users.types !== 'professional' && (
                   <Grid item xs={8} align="left">
                     <Box
                       display="flex"
@@ -137,14 +140,14 @@ const DetailAd = () => {
                     >
                       <Button
                         sx={{
-                          backgroundColor: !newFav ? "#D9D9D9" : "#3B7BA4",
-                          alignItems: "center",
-                          justifyContent: "center",
+                          backgroundColor: !newFav ? '#D9D9D9' : '#3B7BA4',
+                          alignItems: 'center',
+                          justifyContent: 'center',
 
-                          width: "40px",
-                          height: "40px",
-                          marginLeft: "58em",
-                          marginTop: "-2em",
+                          width: '40px',
+                          height: '40px',
+                          marginLeft: '58em',
+                          marginTop: '-2em',
                         }}
                         variant="contained"
                         onClick={handleSaveOrRemoveProfile}
@@ -155,7 +158,7 @@ const DetailAd = () => {
                   </Grid>
                 )}
 
-                <Grid item xs={12} md={10} sx={{ margin: "16px" }}>
+                <Grid item xs={12} md={10} sx={{ margin: '16px' }}>
                   <h1 className={style.profession}>
                     {detail.detail.profession}
                   </h1>
@@ -179,7 +182,7 @@ const DetailAd = () => {
                     />
                     <CardContent>
                       <Typography fontWeight="900" variant="h5" component="div">
-                        {detail.detail.creator[0].name}{" "}
+                        {detail.detail.creator[0].name}{' '}
                         {detail.detail.creator[0].lastName}
                       </Typography>
                       <Grid container spacing={2}>
@@ -199,15 +202,16 @@ const DetailAd = () => {
                         </Grid>
                       </Grid>
 
-                      {buttonVisible && users.types !== "admin" && (
-                        <button
-                          className={style.buttonContratar}
-                          onClick={handleContract}
-                        >
-                          Contratar
-                        </button>
-                      )}
-
+                      {buttonVisible &&
+                        users.types !== 'admin' &&
+                        users.types !== 'professional' && (
+                          <button
+                            className={style.buttonContratar}
+                            onClick={handleContract}
+                          >
+                            Contratar
+                          </button>
+                        )}
                       <div className={style.mercadoP}>
                         <MercadoPago pay={pay} />
                       </div>
@@ -220,8 +224,10 @@ const DetailAd = () => {
             <div>No hay creadores disponibles.</div>
           )}
 
+
           <Comments id={detail.detail.creator?.[0]?._id || ""} />
           <div className={style.footerB}></div>
+
         </div>
       </div>
     </div>

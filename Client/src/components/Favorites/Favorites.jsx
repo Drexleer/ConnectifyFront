@@ -14,11 +14,14 @@ import {
 import Cover from '../Cover/Cover';
 import style from './Favorites.module.css';
 import ButtonBack from '../Utils/ButtonBack/ButtonBack';
+import { AiFillDelete } from "react-icons/ai";
+import Loading from "../Utils/Loading/Loading";
 
 const Favorites = () => {
   const usersLocal = useSelector((state) => state.usersLogin.user);
   const usersGoogle = useSelector((state) => state.googleLogin.user);
   const [idUser, setIdUser] = useState()
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const favorites = useSelector(
     (state) => state.favorites.favoriteProfessionals
@@ -37,8 +40,11 @@ const Favorites = () => {
     }
   }, []);
 
+  // Loading
   useEffect(() => {
-    dispatch(fetchGetAllFavorites(idUser));
+    dispatch(fetchGetAllFavorites(idUser)).then(() => {
+      setLoading(false)
+    });
   }, [dispatch, idUser]);
 
   const handleRemoveFavorite = (e) => {
@@ -69,26 +75,25 @@ const Favorites = () => {
           Perfiles Guardados
         </h4>
       <div >
-        
-        {favorites.length > 0 ? (
+      {loading ? (
+            <Loading />
+          ) : favorites.length > 0 ? (
           favorites.map((fav, index) => (
             <div key={fav.professional._id}>
               {fav.professional && (
                 
                     <div >
                       
-                          
-                      <IconButton
+                        <div className={style.backgroundContainer}>
+                        <button className={style.deleteButton}
                               onClick={handleRemoveFavorite}
                               id={fav.professional._id}
                               value={fav.client}
-                              style={{ marginLeft: '51em', position: 'relative', top:'1.3em'  }}
+                              
                             >
-                              <DeleteIcon color="error" />
-                            </IconButton>
+                               <AiFillDelete className={style.deleteSvgIcon} />
+                            </button>
                           
-                        
-                        <div className={style.backgroundContainer}>
                           
                           <img className={style.profilePic}
                             src={fav.professional.image}

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./ViewsPayments.module.css";
 const VITE_API_BASE = import.meta.env.VITE_API_BASE;
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import PaymentsCard from "../PaymentsCard/PaymentsCard";
 import axios from "axios";
@@ -11,6 +11,8 @@ import Navbar from "../Navbar/Navbar";
 import CommentBox from "../CommentsClient/CommentBox";
 import ReviewButton from "../CommentsClient/ReviewButton";
 import ButtonBack from "../Utils/ButtonBack/ButtonBack";
+import Cover from '../Cover/Cover'
+import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
 
 function ViewsPayments() {
   const { user, isAuthenticated } = useAuth0();
@@ -24,6 +26,7 @@ function ViewsPayments() {
   const [paymentData, setPaymentData] = useState(null);
   const [userName, setUserName] = useState("");
   const [openCommentBoxId, setOpenCommentBoxId] = useState(null);
+  const dispatch = useDispatch()
 
   console.log(detail);
 
@@ -36,7 +39,12 @@ function ViewsPayments() {
   }, {});
 
 
-  console.log(professionalCommentsMap, "coment?");
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchUserLoginWithGoogle({ email: user.email }));
+    }
+
+  }, [user, isAuthenticated])
 
   const handleCommentBoxToggle = (professionalId) => {
     setOpenCommentBoxId((prevId) =>
@@ -152,16 +160,21 @@ function ViewsPayments() {
   };
 
   return (
+    
+    
     <div className={style.contentAll}>
       <Navbar />
       
       <div className={style.contButtonBack}>
           <ButtonBack />
       </div>
+          <h2 className={style.h2Titulo}>Historial de pagos</h2>
+      
+      <Cover />
+      <div className={style.fondo}>
+      
 
-      <div className={style.contentAll}>
         <div className={style.contTitle}>
-          <h2>Historial de pagos</h2>
           <h4>
             {paymentData && paymentData[0] && paymentData[0].userName
               ? ` `
@@ -169,7 +182,7 @@ function ViewsPayments() {
           </h4>
           {paymentData &&
             paymentData.map((data) => (
-              <div key={data.paymentID}>
+              <div key={data.paymentID} >
                 <PaymentsCard data={data} />
                 <ReviewButton
                   comments={comments}
@@ -183,6 +196,7 @@ function ViewsPayments() {
                 />
               </div>
             ))}
+            <div className={style.footer2}></div>
         </div>
       </div>
     </div>
