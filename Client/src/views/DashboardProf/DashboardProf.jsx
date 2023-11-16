@@ -11,6 +11,10 @@ import { fetchGetProfById } from '../../redux/Slices/modifyProfSlice';
 import axios from 'axios';
 import PaymentsProf from '../../components/PaymentsProf/PaymentsProf';
 import Loading from '../../components/Utils/Loading/Loading';
+
+import ButtonBack from '../../components/Utils/ButtonBack/ButtonBack';
+import style from './DashboardProf.module.css';
+
 const VITE_API_BASE = import.meta.env.VITE_API_BASE;
 
 const DashboardProf = () => {
@@ -52,8 +56,13 @@ const DashboardProf = () => {
       ) : (
         <div>
           <NavBar />
-          <h1 style={{ marginLeft: '65px', fontSize: '30px', fontWeight: 300 }}>
-            Mi perfil
+
+          <div className={style.contButtonBack}>
+            <ButtonBack />
+          </div>
+
+          <h1 style={{ marginLeft: '65px', fontSize: '30px', fontWeight: 300, textAlign: 'center', marginTop: '-17px' }}>
+            Mi Panel
           </h1>
           <Divider />
           <Grid container justifyContent={'space-evenly'} sx={{ pb: 25 }}>
