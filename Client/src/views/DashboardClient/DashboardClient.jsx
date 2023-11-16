@@ -18,20 +18,25 @@ const DashboardClient = () => {
 
   useEffect(() => {
     dispatch(fetchClientsForAdmin());
-  }, []);
+  }, [dispatch]);
 
-  const usersLog = useSelector((state) => state.usersLogin.user); ////Los datos el usuario logueado
+  const userLocal = useSelector((state) => state.usersLogin.user); // Usuario Local
+  const googleUser = useSelector((state) => state.googleLogin.user); // Usuario Google
+
+  const usersLog =
+    googleUser && Object.keys(googleUser).length !== 0 ? googleUser : userLocal;
+
+  ////Los datos el usuario logueado
   const users = useSelector(
     (state) =>
       state.clients.clients.filter((client) => client._id === usersLog._id)[0]
   );
-  console.log('users:', users);
-  const userName = users.name;
-  const userLastName = users.lastName;
-  const userLocation = users.location;
-  const userEmail = users.email;
-  const userImage = users.image;
-  const userProvince = users.province;
+  const userName = users.name || '';
+  const userLastName = users.lastName || '';
+  const userLocation = users.location || '';
+  const userEmail = users.email || '';
+  const userImage = users.image || '';
+  const userProvince = users.province || '';
 
   const [user, setUser] = useState({
     name: userName,
@@ -59,8 +64,7 @@ const DashboardClient = () => {
       userName: users.userName,
       location: user.location,
       province: user.province,
-    };
-    // console.log("updatedUser:", updatedUser);
+    }; // console.log("updatedUser:", updatedUser);
     try {
       // Envía la solicitud PATCH al servidor para actualizar el cliente
       const response = await dispatch(updateClientOnServer(updatedUser));
@@ -102,8 +106,7 @@ const DashboardClient = () => {
         dispatch(setUserType(userType));
         window.location.href = '/password';
       } else {
-        alert(`Va a ser redirigido para realizar su pedido de ${actionType}.`);
-        // Redirige al usuario al formulario correspondiente usando react-router-dom u otro enfoque de enrutamiento
+        alert(`Va a ser redirigido para realizar su pedido de ${actionType}.`); // Redirige al usuario al formulario correspondiente usando react-router-dom u otro enfoque de enrutamiento
       }
     }
   };
@@ -112,10 +115,13 @@ const DashboardClient = () => {
     <div
       style={{ backgroundColor: '#D9D9D9', minHeight: '100vh', width: '100%' }}
     >
-      <Navbar />
+      <Navbar />{' '}
       <div style={{ margin: '0em 2em' }}>
+        {' '}
         <Grid container spacing={3}>
+          {' '}
           <Grid item xs={12} md={8}>
+            {' '}
             <UserInfoCard
               user={user}
               userImage={userImage}
@@ -123,17 +129,19 @@ const DashboardClient = () => {
               handleEdit={handleEdit}
               handleSave={handleSave}
               setUser={setUser}
-            />
+            />{' '}
             <Card style={{ margin: '1em', borderRadius: '16px' }}>
+              {' '}
               <div style={{ margin: '1.5em ' }}>
                 <h3>Mis reservas realizadas</h3>
                 <RenderReservs userName={users.userName} />
-                <div style={{ margin: ' 1.5em' }}></div>
+                <div style={{ margin: ' 1.5em' }}></div>{' '}
                 <Link to={`/payments/${users.userName}`}>
+                  {' '}
                   <Button variant="outlined">Ver pagos realizados</Button>{' '}
-                </Link>
-              </div>
-            </Card>
+                </Link>{' '}
+              </div>{' '}
+            </Card>{' '}
             <Card
               style={{
                 margin: '1em',
@@ -141,60 +149,63 @@ const DashboardClient = () => {
                 backgroundColor: '#868484',
               }}
             >
-              <div style={{ margin: '1.5em  ' }}>
-                <h3> Administración de cuenta ⚠️</h3>
+              {' '}
+              <div style={{ margin: '1.5em  ' }}>
+                <h3> Administración de cuenta ⚠️</h3>{' '}
                 <div style={{ margin: ' 1em 0em' }}>
+                  {' '}
                   <Button
                     variant="contained"
                     color="secondary"
                     style={{ marginRight: '2em' }}
                     onClick={() => confirmAction('cambio de contraseña')}
                   >
-                    Pedido de cambio de contraseña
-                  </Button>
-
+                    Pedido de cambio de contraseña{' '}
+                  </Button>{' '}
                   <Button
                     variant="contained"
                     color="error"
                     style={{ marginRight: '2em' }}
                     onClick={() => confirmAction('eliminación de cuenta')}
                   >
-                    Pedido de eliminación de cuenta
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          </Grid>
-
+                    Pedido de eliminación de cuenta{' '}
+                  </Button>{' '}
+                </div>{' '}
+              </div>{' '}
+            </Card>{' '}
+          </Grid>{' '}
           <Grid item xs={12} md={4}>
+            {' '}
             <h3>
               Reseñas realizadas a profesionales luego de los servicios
-              prestados:
-            </h3>
-
+              prestados:{' '}
+            </h3>{' '}
             {userComments.length > 0 ? (
-              userComments.map((comment, index) => (
-                // <Link to={`/detail/${comment.client_id}`} key={index}>
-                <ReviewItem
-                  key={index}
-                  review={{
-                    rating: comment.rating,
-                    text: comment.comment,
-                    clientProfileImage: comment.professionalPhoto,
-                    clientName: comment.professionalName,
-                    date: comment.date,
-                    professionalName: comment.professionalName,
-                    professionalProfileImage: comment.professionalPhoto,
-                  }}
-                />
-                // </Link>
-              ))
+              userComments.map(
+                (
+                  comment,
+                  index // <Link to={`/detail/${comment.client_id}`} key={index}>
+                ) => (
+                  <ReviewItem
+                    key={index}
+                    review={{
+                      rating: comment.rating,
+                      text: comment.comment,
+                      clientProfileImage: comment.professionalPhoto,
+                      clientName: comment.professionalName,
+                      date: comment.date,
+                      professionalName: comment.professionalName,
+                      professionalProfileImage: comment.professionalPhoto,
+                    }}
+                  /> // </Link>
+                )
+              )
             ) : (
               <p>No tienes reseñas aún</p>
-            )}
-          </Grid>
-        </Grid>
-      </div>
+            )}{' '}
+          </Grid>{' '}
+        </Grid>{' '}
+      </div>{' '}
     </div>
   );
 };

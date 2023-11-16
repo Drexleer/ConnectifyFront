@@ -10,16 +10,18 @@ export default function RequestPassword() {
   const [email, setEmail] = useState('');
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
+  const [disableForm, setDisableForm] = useState(false);
   const dispatch = useDispatch();
   const userType = useSelector(selectUserType);
 
   const handlePasswordReset = async (e) => {
     e.preventDefault();
+    setDisableForm(true);
     try {
       const response = await dispatch(fetchRequest(email, userType));
-      // Verificar si la respuesta es undefined
       if (response === undefined) {
         window.alert('Email invalido o no existe');
+        setDisableForm(false);
         return;
       }
       const message = response.data.message;
@@ -28,6 +30,7 @@ export default function RequestPassword() {
     } catch (error) {
       console.error('Error en la solicitud:', error);
       window.alert(error);
+      setDisableForm(false);
     }
   };
 
@@ -61,6 +64,7 @@ export default function RequestPassword() {
                       autoComplete="off"
                       className="form"
                       method="post"
+                      disabled={disableForm}
                     >
                       <div className="form-group">
                         <div className="input-group">
@@ -70,7 +74,7 @@ export default function RequestPassword() {
                           <input
                             id="email"
                             name="email"
-                            placeholder="email address"
+                            placeholder="Dirección de correo"
                             className="form-control"
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
