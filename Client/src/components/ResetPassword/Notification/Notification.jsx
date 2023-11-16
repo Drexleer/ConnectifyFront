@@ -22,7 +22,7 @@ export default function Notification({ message }) {
               to={`/home`}
               style={{ textDecoration: 'none', color: 'white' }}
             >
-              Go to Home
+              Volver al inicio
             </Link>
           </AllowBtn>
         </ButtonContainer>
