@@ -28,7 +28,7 @@ function ViewsPayments() {
   const [openCommentBoxId, setOpenCommentBoxId] = useState(null);
   const dispatch = useDispatch()
 
-  console.log(detail);
+
 
   // Nueva lógica para mapear los comentarios y verificar si el usuario ha dejado un comentario para cada profesional
   const professionalCommentsMap = comments.reduce((acc, comment) => {
@@ -160,8 +160,13 @@ function ViewsPayments() {
       const resp = await axios.get(
         VITE_API_BASE + `/payments/search/${userName}`
       );
-      console.log(resp);
-      setPaymentData(resp.data);
+      // Ordenar los pagos del más reciente al más antiguo
+      const sortedPayments = resp.data.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+
+      setPaymentData(sortedPayments);
+      
     } catch (error) {
       console.log("Error AxiosGet in ViewPayments,", error);
     }

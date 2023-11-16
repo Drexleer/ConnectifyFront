@@ -265,7 +265,7 @@ const Login = ({setContainerLogin}) => {
             <div className={style.line}></div>
             <button className={style.btnGoogle} onClick={handlerLoginGoogle}>
               <img src={LogoGoogle} alt="" className={style.imageGoogle} />
-              <span>Logueate con GOOGLE</span>
+              <span>Ingresa con GOOGLE</span>
             </button>
           </div>
         </div>
