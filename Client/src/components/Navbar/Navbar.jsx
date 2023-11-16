@@ -148,9 +148,16 @@ function ResponsiveAppBar({ setContainerLogin }) {
                           
                               <div className={style.contContImg} >
                                 
+                                  {!isAuthenticated? 
                                   <div onClick={handleOpenUserMenu} className={style.contImg} >
                                       <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
                                   </div>
+                                    :
+                                  <div onClick={handleOpenUserMenu} className={style.contImg2} >
+                                      <img alt="" src={user ? user.picture : usersLocal ? usersLocal.image : null} />
+                                  </div>
+                                  }
+
                                   <label className={style.clientProf}>Cliente</label>
                                 
                               </div>
