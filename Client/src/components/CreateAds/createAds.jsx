@@ -97,6 +97,7 @@ function CreateAdForm() {
         setIdAnuncio(response.payload._id);
         setShowNotification(true);
         dispatch(fetchAds());
+        localStorage.removeItem('formData');
       } else {
         // Manejar el caso en el que response.payload es undefined o no tiene _id
         console.error(
