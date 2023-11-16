@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./ViewsPayments.module.css";
 const VITE_API_BASE = import.meta.env.VITE_API_BASE;
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import PaymentsCard from "../PaymentsCard/PaymentsCard";
 import axios from "axios";
