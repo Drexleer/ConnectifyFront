@@ -12,6 +12,7 @@ import CommentBox from "../CommentsClient/CommentBox";
 import ReviewButton from "../CommentsClient/ReviewButton";
 import ButtonBack from "../Utils/ButtonBack/ButtonBack";
 import Cover from '../Cover/Cover'
+import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
 
 function ViewsPayments() {
   const { user, isAuthenticated } = useAuth0();
