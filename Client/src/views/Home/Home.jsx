@@ -23,7 +23,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
 import Cover from '../../components/Cover/Cover';
 
-
 const Home = () => {
   //* Declaraciones de variables
   const location = useLocation();
@@ -57,9 +56,6 @@ const Home = () => {
   const indexOfLastAd = currentPage * adsPerPage;
   const indexOfFirstAd = indexOfLastAd - adsPerPage;
   // Guardamos los anuncios que se van a mostrar de indice en indice
-  // const currentAds = adsFiltered
-  //   ? adsFiltered.slice(indexOfFirstAd, indexOfLastAd)
-  //   : [];
   const currentAds = adsFiltered.slice(indexOfFirstAd, indexOfLastAd);
 
   const paginate = (pageNumber) => {
@@ -99,16 +95,6 @@ const Home = () => {
     if (savedSortPrice && adsFiltered.length > 0) {
       setSortPrice(savedSortPrice);
     }
-    // dispatch(
-    //   fetchFilter({
-    //     profession: '',
-    //     locationProf: '',
-    //     workLocation: '',
-    //     minPrice: 1000,
-    //     maxPrice: 10000,
-    //     sortPrice: '',
-    //   })
-    // );
   }, []);
 
   useEffect(() => {
@@ -172,16 +158,6 @@ const Home = () => {
     setPriceRange([1000, 10000]);
     setWorkLocation('');
     dispatch(fetchAds());
-    // dispatch(
-    //   fetchFilter({
-    //     profession: '',
-    //     locationProf: '',
-    //     workLocation: '',
-    //     minPrice: 1000,
-    //     maxPrice: 10000,
-    //     sortPrice: '',
-    //   })
-    // );
 
     localStorage.setItem('locationProf', '');
     localStorage.setItem('profession', '');
@@ -317,7 +293,6 @@ const Home = () => {
               <option value="asc">Ascendente</option>
               <option value="desc">Descendente</option>
             </select>
-            
           </div>
           {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
               <InputLabel>Trabajo</InputLabel> */}
@@ -442,10 +417,7 @@ const Home = () => {
       <div className={styles.footer}>
         {' '}
         <Footer />
-        <button
-          className={styles.btnChat}
-          onClick={toggleChat}
-                  >
+        <button className={styles.btnChat} onClick={toggleChat}>
           Abrir Chat
         </button>
         {chatOpen && <Chat nickname={nickname} imageUser={imageUser} />}
