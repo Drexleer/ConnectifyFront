@@ -224,7 +224,10 @@ const DetailAd = () => {
             <div>No hay creadores disponibles.</div>
           )}
 
-          <Comments id={detail.detail.creator?.[0]?._id || ''} />
+
+          <Comments id={detail.detail.creator?.[0]?._id || ""} />
+          <div className={style.footerB}></div>
+
         </div>
       </div>
     </div>

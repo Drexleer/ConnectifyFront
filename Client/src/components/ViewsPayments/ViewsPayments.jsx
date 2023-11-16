@@ -164,14 +164,17 @@ function ViewsPayments() {
     
     <div className={style.contentAll}>
       <Navbar />
-
-      <ButtonBack />
+      
+      <div className={style.contButtonBack}>
+          <ButtonBack />
+      </div>
+          <h2 className={style.h2Titulo}>Historial de pagos</h2>
+      
       <Cover />
       <div className={style.fondo}>
       
 
         <div className={style.contTitle}>
-          <h2>Historial de pagos</h2>
           <h4>
             {paymentData && paymentData[0] && paymentData[0].userName
               ? ` `
@@ -193,6 +196,7 @@ function ViewsPayments() {
                 />
               </div>
             ))}
+            <div className={style.footer2}></div>
         </div>
       </div>
     </div>

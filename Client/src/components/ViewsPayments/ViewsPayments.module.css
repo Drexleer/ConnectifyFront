@@ -8,6 +8,17 @@
     
 }
 
+.contButtonBack {
+    /* background-color: red; */
+    width: 100%;
+    margin-left: 0.5rem;
+}
+.h2Titulo {
+    margin-top: -0.6rem;
+}
+.footer2 {
+    height: 2rem;
+}
 .fondo{
     background: #fff;
     left: 0;
@@ -17,8 +28,9 @@
   padding-left: 2em;
   padding-right: 2em;
     margin: 0 0 0 0;
+    width: 80%;
     border-radius: 0.51em;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+    /* cursor: pointer; */
 
 }
