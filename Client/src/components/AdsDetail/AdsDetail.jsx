@@ -221,6 +221,7 @@ const DetailAd = () => {
           )}
 
           <Comments id={detail.detail.creator?.[0]?._id || ""} />
+          <div className={style.footerB}></div>
         </div>
       </div>
     </div>
