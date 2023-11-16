@@ -20,3 +20,12 @@ img{
     overflow: hidden; 
     margin-left: 1rem;
   }
+
+  .roundMask img {
+    /* height: 100%; */
+    width: 100%; /* Asegura que la imagen llene completamente la máscara */
+    height: 100%; /* Asegura que la imagen llene completamente la máscara */
+    object-fit: cover; /* Escala la imagen para cubrir la máscara sin deformarla */
+    object-position: center center;
+  }
+

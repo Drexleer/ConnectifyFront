@@ -36,9 +36,9 @@ function PaymentsCard(data) {
   return (
     <div className={style.contentAll}>
       <div className={style.roundMask}>
-        {professionalData && professionalData.image && (
+        {professionalData && professionalData.image? (
           <img src={professionalData.image} alt="Image" />
-        )}
+        ): <label>Sin foto</label>}
       </div>
 
       <div className={style.dates}>
