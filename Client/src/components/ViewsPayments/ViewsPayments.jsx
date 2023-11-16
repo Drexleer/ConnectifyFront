@@ -25,6 +25,7 @@ function ViewsPayments() {
   const [paymentData, setPaymentData] = useState(null);
   const [userName, setUserName] = useState("");
   const [openCommentBoxId, setOpenCommentBoxId] = useState(null);
+  const dispatch = useDispatch()
 
   console.log(detail);
 
@@ -41,6 +42,7 @@ function ViewsPayments() {
     if (isAuthenticated) {
       dispatch(fetchUserLoginWithGoogle({ email: user.email }));
     }
+
   }, [user, isAuthenticated])
 
   const handleCommentBoxToggle = (professionalId) => {
