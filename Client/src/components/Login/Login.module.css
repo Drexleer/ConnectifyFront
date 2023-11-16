@@ -112,6 +112,10 @@
       outline: none;
       border: none;
       border-radius: 20px;
+      cursor: pointer;
+  }
+  .btnClient:hover {
+    transform: translateY(-2px);
   }
   
   .btnProfessional{
@@ -123,6 +127,10 @@
       outline: none;
       border: none;
       border-radius: 20px;
+      cursor: pointer;
+  }
+  .btnProfessional:hover {
+    transform: translateY(-2px);
   }
   
   .containerLoginClient{
@@ -168,6 +176,10 @@
       outline: none;
       border: none;
       border-radius: 20px;
+      cursor: pointer;
+  }
+  .btnGetIn:hover {
+    transform: translateY(-2px);
   }
   
   .imageGoogle{
@@ -187,6 +199,10 @@
       outline: none;
       border: none;
       border-radius: 20px;
+      cursor: pointer;
+  }
+  .btnGoogle:hover {
+    transform: translateY(-2px);
   }
   
   .btnGoogle span{
@@ -276,3 +292,13 @@
     flex-direction: column;
 }
 
+.recuperarPass {
+    font-size: 0.85rem;
+}
+
+.Aqui {
+    color: orange;
+}
+.Aqui:hover {
+    cursor: pointer;
+}

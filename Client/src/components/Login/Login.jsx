@@ -230,28 +230,38 @@ const Login = ({setContainerLogin}) => {
                 type="email"
                 onChange={handleChange}
                 value={form.email}
+                placeholder="Correo"
               />
+              
               <span className={style.spanFormEmail}>{error.email}</span>
               <input
                 id="password"
                 type="password"
                 onChange={handleChange}
                 value={form.password}
+                placeholder="Contraseña"
               />
+             
+             
+              <label className={style.recuperarPass}>Recupere su contraseña 
+                <Link to={"/password"}><label className={style.Aqui}> AQUÍ</label></Link>
+              </label>
+              
+             
               <span className={style.spanFormPass}>{error.password}</span>
               <button type="submit" className={style.btnGetIn}>
                 ENTRAR
               </button>
             </form>
             <p className={style.notAccount}>
-              No tenes cuenta?
+              ¿No tenes cuenta?
               <Link to={"/client/registration"}>
                 <span className={style.spanNotAccount}>REGISTRATE</span>
               </Link>
             </p>
-            <p>
+            {/* <p>
               <Link to={"/password"}>Recuperar contraseña</Link>
-            </p>
+            </p> */}
             <div className={style.line}></div>
             <button className={style.btnGoogle} onClick={handlerLoginGoogle}>
               <img src={LogoGoogle} alt="" className={style.imageGoogle} />
@@ -282,6 +292,7 @@ const Login = ({setContainerLogin}) => {
                 type="email"
                 onChange={handleChange}
                 value={form.email}
+                placeholder="Correo"
               />
               <span className={style.spanFormEmailProf}>{error.email}</span>
               <input
@@ -289,15 +300,19 @@ const Login = ({setContainerLogin}) => {
                 type="password"
                 onChange={handleChange}
                 value={form.password}
+                placeholder="Contraseña"
               />
               <span className={style.spanFormPassProf}>{error.password}</span>
               <button type="submit" className={style.btnGetIn}>
                 ENTRAR
               </button>
             </form>
-            <p>
+            <label className={style.recuperarPass}>Recupere su contraseña 
+                <Link to={"/password"}><label className={style.Aqui}> AQUÍ</label></Link>
+              </label>
+            {/* <p>
               <Link to={"/password"}>Recuperar contraseña</Link>
-            </p>
+            </p> */}
             <p className={style.notAccount}>
               No tenes cuenta?
               <Link to={"/professional/registration"}>
