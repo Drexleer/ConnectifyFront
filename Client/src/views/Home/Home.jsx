@@ -37,6 +37,8 @@ const Home = () => {
   const [workLocation, setWorkLocation] = useState('');
   const [chatOpen, setChatOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+ 
+
 
   //* Estados globales
   const adsFiltered = useSelector((state) => state.ads.adsFiltered);
@@ -169,8 +171,12 @@ const Home = () => {
   //* Función para abrir el chat
   // Función para alternar la visibilidad del  chat
   const toggleChat = () => {
-    setChatOpen(!chatOpen);
+    setChatOpen(true);
   };
+
+  const onClose = () => {
+    setChatOpen(false)
+  }
 
   //* Función de comparación para ordenar por la primera letra
   function sortByFirstLetter(a, b) {
@@ -321,15 +327,6 @@ const Home = () => {
                 />
               </button>
 
-              {/* <Fab
-                color="primary"
-                onClick={applyFilters}
-                style={{
-                  zIndex: '1',
-                }}
-              >
-                <MdPersonSearch style={{ fontSize: '2.5em' }} />
-              </Fab> */}
             </div>
             <div className={styles.contClear}>
               <button
@@ -417,10 +414,10 @@ const Home = () => {
       <div className={styles.footer}>
         {' '}
         <Footer />
-        <button className={styles.btnChat} onClick={toggleChat}>
+        <button className={styles.btnChat} onClick={toggleChat} >
           Abrir Chat
         </button>
-        {chatOpen && <Chat nickname={nickname} imageUser={imageUser} />}
+        {chatOpen && <Chat nickname={nickname} imageUser={imageUser} onClose={onClose}/>}
       </div>
     </div>
   );

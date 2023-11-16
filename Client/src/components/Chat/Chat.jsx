@@ -4,17 +4,20 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 const VITE_API_BASE = import.meta.env.VITE_API_BASE || 'localhost';
 import './Chat.css';
+import { AiFillCloseCircle } from "react-icons/ai";
 // Conexión para escuchar y enviar eventos
 const socket = io(VITE_API_BASE);
 
-function Chat({ nickname, imageUser }) {
+function Chat({ nickname, imageUser, onClose }) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [userColor] = useState(getRandomColor());
   const userEmail = nickname;
+  
 
   const url = VITE_API_BASE + `/chat`;
 
+ 
   useEffect(() => {
     setMessages([]);
     fetchStoredMessages();
@@ -96,6 +99,7 @@ function Chat({ nickname, imageUser }) {
         className="card"
         style={{ maxWidth: '800px', maxHeight: '800px', overflow: 'auto' }}
       >
+        <AiFillCloseCircle onClick={onClose} />
         <h5 className="text-center mb-3">CHAT</h5>
         <div
           id="content-chat"

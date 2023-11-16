@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 const ButtonContainer = styled.button`
   position: relative;
   display: inline-block;
@@ -91,10 +91,16 @@ const ButtonContainer = styled.button`
 
 const ButtonBack = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+
 
   const handleGoBack = () => {
+    if (location.pathname.includes('mercadopago')){
+      navigate('/home')
+    }else{
     navigate(-1)
   }
+}
   return (
     <ButtonContainer className="learn-more" onClick={handleGoBack}>
       <div className="circle">
