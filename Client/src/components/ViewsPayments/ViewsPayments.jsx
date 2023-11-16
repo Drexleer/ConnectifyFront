@@ -40,7 +40,7 @@ function ViewsPayments() {
 
 
   useEffect(() => {
-    if (!usersLocal){
+    if (!usersLocal.userName){
        // Verifica si Auth0 ha terminado de cargar
       if (!isLoading) {
         // Verifica si el usuario está autenticado
