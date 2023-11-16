@@ -15,7 +15,7 @@ import Cover from '../Cover/Cover'
 import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
 
 function ViewsPayments() {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);
   const { pathname, search } = useLocation(); // ( pathname: url - search: Querys )
   const path = pathname.split("/")[2];
@@ -40,11 +40,17 @@ function ViewsPayments() {
 
 
   useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(fetchUserLoginWithGoogle({ email: user.email }));
+    // Verifica si Auth0 ha terminado de cargar
+    if (!isLoading) {
+      // Verifica si el usuario está autenticado y maneja en consecuencia
+      if (isAuthenticated) {
+        dispatch(fetchUserLoginWithGoogle({ email: user.email }));
+      } else {
+        // Lógica cuando el usuario no está autenticado
+        loginWithRedirect();
+      }
     }
-
-  }, [user, isAuthenticated])
+  }, [isLoading, isAuthenticated, user, loginWithRedirect]);
 
   const handleCommentBoxToggle = (professionalId) => {
     setOpenCommentBoxId((prevId) =>
@@ -103,12 +109,12 @@ function ViewsPayments() {
       const fetchData = async () => {
         try {
           const checkPayment = await axios.get(
-            VITE_API_BASE + `/payments/check/${valuesMP.paymentIDD}`
+            `http://localhost:3001/payments/check/${valuesMP.paymentIDD}`
           );
           if (checkPayment.data.exists) {
             searchData();
           } else {
-            await axios.post(VITE_API_BASE + "/payments/register", {
+            await axios.post("http://localhost:3001/payments/register", {
               professionalId: valuesMP.profIDID,
               paymentID: valuesMP.paymentIDD,
               userName: userName,
@@ -131,7 +137,7 @@ function ViewsPayments() {
     const createPreference = async () => {
       try {
         const response = await axios.post(
-          VITE_API_BASE + "/create_preference",
+          "http://localhost:3001/create_preference",
           {
             description: detail.profession,
             price: detail.price,
@@ -150,7 +156,7 @@ function ViewsPayments() {
   const searchData = async () => {
     try {
       const resp = await axios.get(
-        VITE_API_BASE + `/payments/search/${userName}`
+        `http://localhost:3001/payments/search/${userName}`
       );
       console.log(resp);
       setPaymentData(resp.data);
