@@ -89,26 +89,27 @@ const ButtonContainer = styled.button`
   }
 `;
 
-const ButtonBack = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const ButtonBack = () => {
+    const navigate = useNavigate()
+    const location = useLocation()
 
 
-  const handleGoBack = () => {
-    if (location.pathname.includes('mercadopago')){
-      navigate('/home')
-    }else{
-    navigate(-1)
+    const handleGoBack = () => {
+      if (location.pathname.includes('mercadopago')){
+        // Limpiar el historial antes de navegar a '/home'
+      navigate('/home', { replace: true });
+      }else{
+      navigate(-1)
+    }
   }
-}
-  return (
-    <ButtonContainer className="learn-more" onClick={handleGoBack}>
-      <div className="circle">
-        <div className="icon arrow"></div>
-      </div>
-      <span className="button-text"> Volver Atrás</span>
-    </ButtonContainer>
-  );
-};
+    return (
+      <ButtonContainer className="learn-more" onClick={handleGoBack}>
+        <div className="circle">
+          <div className="icon arrow"></div>
+        </div>
+        <span className="button-text"> Volver Atrás</span>
+      </ButtonContainer>
+    );
+  };
 
-export default ButtonBack;
+  export default ButtonBack;
