@@ -40,15 +40,18 @@ function ViewsPayments() {
 
 
   useEffect(() => {
-    // Verifica si Auth0 ha terminado de cargar
-    if (!isLoading) {
-      // Verifica si el usuario está autenticado
-      if (isAuthenticated) {
-        dispatch(fetchUserLoginWithGoogle({ email: user.email }));
-      } else {
-        loginWithRedirect();
+    if (!usersLocal){
+       // Verifica si Auth0 ha terminado de cargar
+      if (!isLoading) {
+        // Verifica si el usuario está autenticado
+        if (isAuthenticated) {
+          dispatch(fetchUserLoginWithGoogle({ email: user.email }));
+        } else {
+          loginWithRedirect();
+        }
       }
     }
+   
   }, [isLoading, isAuthenticated, user, loginWithRedirect]);
 
   const handleCommentBoxToggle = (professionalId) => {
