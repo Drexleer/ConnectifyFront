@@ -37,7 +37,11 @@ function ViewsPayments() {
   }, {});
 
 
-  
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchUserLoginWithGoogle({ email: user.email }));
+    }
+  }, [user, isAuthenticated])
 
   const handleCommentBoxToggle = (professionalId) => {
     setOpenCommentBoxId((prevId) =>
