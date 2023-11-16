@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import styled from 'styled-components';
 import {useLocation, useNavigate} from 'react-router-dom'
+import { useEffect, useState } from 'react';
 const ButtonContainer = styled.button`
   position: relative;
   display: inline-block;
@@ -92,24 +94,34 @@ const ButtonContainer = styled.button`
   const ButtonBack = () => {
     const navigate = useNavigate()
     const location = useLocation()
+    const [shouldRedirectToHome, setShouldRedirectToHome] = useState(false);
 
-
+    useEffect(() => {
+      // Verifica si la URL incluye 'mercadopago'
+      setShouldRedirectToHome(location.pathname.includes('mercadopago'));
+    }, [location.pathname]);
+  
     const handleGoBack = () => {
-      if (location.pathname.includes('mercadopago')){
-        // Limpiar el historial antes de navegar a '/home'
-      navigate('/home', { replace: true });
-      }else{
-      navigate(-1)
-    }
-  }
+      if (shouldRedirectToHome) {
+        navigate('/home');
+      } else {
+        navigate(-1);
+      }
+    };
+  
     return (
-      <ButtonContainer className="learn-more" onClick={handleGoBack}>
-        <div className="circle">
-          <div className="icon arrow"></div>
-        </div>
-        <span className="button-text"> Volver Atrás</span>
-      </ButtonContainer>
+      <div>
+        {shouldRedirectToHome ? (
+          <button onClick={handleGoBack}>
+            Volver a Inicio
+          </button>
+        ) : (
+          <button onClick={handleGoBack}>
+            Volver Atrás
+          </button>
+        )}
+      </div>
     );
   };
-
+  
   export default ButtonBack;

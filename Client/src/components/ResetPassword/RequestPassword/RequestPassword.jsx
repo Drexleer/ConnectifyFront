@@ -5,6 +5,7 @@ import Notification from '../Notification/Notification';
 import { fetchRequest } from '../../../redux/Slices/RequestPasswordSlice';
 import { selectUserType } from '../../../redux/Slices/userTypeSlice';
 import './RequestPassword.css';
+import { Link } from 'react-router-dom';
 
 export default function RequestPassword() {
   const [email, setEmail] = useState('');
@@ -36,6 +37,7 @@ export default function RequestPassword() {
 
   return (
     <div>
+      
       <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
@@ -44,7 +46,8 @@ export default function RequestPassword() {
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
         rel="stylesheet"
       />
-
+<button className='scroll-up'>
+<Link to= '/home' className='Link'>Volver al inicio</Link></button>
       <div className="form-gap"></div>
       <div className="container">
         <div className="row">
