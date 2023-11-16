@@ -15,7 +15,7 @@ import Cover from '../Cover/Cover'
 import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
 
 function ViewsPayments() {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [isCommentBoxOpen, setIsCommentBoxOpen] = useState(false);
   const { pathname, search } = useLocation(); // ( pathname: url - search: Querys )
   const path = pathname.split("/")[2];
@@ -40,11 +40,16 @@ function ViewsPayments() {
 
 
   useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(fetchUserLoginWithGoogle({ email: user.email }));
+    // Verifica si Auth0 ha terminado de cargar
+    if (!isLoading) {
+      // Verifica si el usuario está autenticado
+      if (isAuthenticated) {
+        dispatch(fetchUserLoginWithGoogle({ email: user.email }));
+      } else {
+        loginWithRedirect();
+      }
     }
-
-  }, [user, isAuthenticated])
+  }, [isLoading, isAuthenticated, user, loginWithRedirect]);
 
   const handleCommentBoxToggle = (professionalId) => {
     setOpenCommentBoxId((prevId) =>
