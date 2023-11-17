@@ -1,13 +1,13 @@
-/* eslint-disable no-unused-vars */
-import miApi from '../../../localidades.json';
-import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { fetchUserRegister } from '../../redux/Slices/registerSlice';
-import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Cover from '../Cover/Cover'
+
+import miApi from "../../../localidades.json";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchUserRegister } from "../../redux/Slices/registerSlice";
+import TextField from "@mui/material/TextField";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 import {
   InputLabel,
   Box,
@@ -16,57 +16,60 @@ import {
   FormControl,
   Autocomplete,
   Button,
-} from '@mui/material';
-import * as validations from './ValidationsRegister';
-import Navbar from '../Navbar/Navbar';
+} from "@mui/material";
+import * as validations from "./ValidationsRegister";
+import Navbar from "../Navbar/Navbar";
+
+const profesiones = [
+  "Profesor de Matemáticas",
+  "Profesor de Lengua",
+  "Profesor de Música",
+  "Profesor de Robótica",
+  "Plomero",
+  "Gasista",
+  "Carpintero",
+  "Albañil",
+  "Pintor",
+  "Programador",
+  "Arquitecto",
+  "Diseñador Gráfico",
+  "Enfermero",
+  "Cuidador",
+  "Abogado",
+];
 
 const Registration = () => {
   const navigate = useNavigate();
-  const profesiones = [
-    'Abogado',
-    'Arquitecto',
-    'Contador',
-    'Plomero',
-    'Gasista',
-    'Electricista',
-    'Diseñador',
-    'Desarrollador web',
-    'Profesor',
-    'Fotógrafo',
-    'Asistente Virtual',
-    'Instalación y Service',
-    'Pintor',
-    'Esteticista' /* ... otras profesiones */,
-  ];
+
   ///localStorage.clear();
   const [errorMessages, setErrorMessages] = useState({});
   const [clientRegister, setClientRegister] = useState(() => {
-    let localStorageData = localStorage.getItem('clientRegisterData');
+    let localStorageData = localStorage.getItem("clientRegisterData");
     return localStorageData
       ? JSON.parse(localStorageData)
       : {
-          name: '',
-          lastName: '',
-          userName: '',
-          email: '',
-          password: '',
+          name: "",
+          lastName: "",
+          userName: "",
+          email: "",
+          password: "",
           profession: [],
-          description: '',
-          province: '',
-          location: '',
-          provinceJob: '',
-          locationJob: '',
+          description: "",
+          province: "",
+          location: "",
+          provinceJob: "",
+          locationJob: "",
         };
   });
 
   const updateUserName = () => {
     if (clientRegister.email) {
-      const userName = clientRegister.email.split('@')[0];
+      const userName = clientRegister.email.split("@")[0];
       const currentDate = new Date();
       const dateString = currentDate.toISOString().substring(0, 10); // Obtén la fecha en formato "YYYY-MM-DD"
       const uniqueUserName = `${userName}${dateString}`.replace(
         /[^a-zA-Z0-9]/g,
-        ''
+        ""
       ); // Elimina los caracteres especiales del string
       setClientRegister((prevState) => ({
         ...prevState,
@@ -80,25 +83,25 @@ const Registration = () => {
   }, [clientRegister.email]);
 
   useEffect(() => {
-    localStorage.setItem('clientRegisterData', JSON.stringify(clientRegister));
+    localStorage.setItem("clientRegisterData", JSON.stringify(clientRegister));
   }, [clientRegister]);
 
   useEffect(() => {
     updateUserName();
-    setClientRegister((prevState) => ({ ...prevState, image: '' }));
+    setClientRegister((prevState) => ({ ...prevState, image: "" }));
   }, []);
 
   const routeLocation = useLocation();
-  const ifProfRoute = routeLocation.pathname === '/professional/registration';
-  const ifClientRoute = routeLocation.pathname === '/client/registration';
+  const ifProfRoute = routeLocation.pathname === "/professional/registration";
+  const ifClientRoute = routeLocation.pathname === "/client/registration";
 
   const [passwordType, setPasswordType] = useState();
   const [remoteWork, setRemoteWork] = useState(false);
   const [formData, setFormData] = useState(new FormData());
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [error, setError] = useState({
     error: false,
-    message: '',
+    message: "",
   });
 
   function getProvinces(data) {
@@ -130,12 +133,12 @@ const Registration = () => {
 
   const renderPasswordToggle = () => (
     <Button type="button" onClick={handleHidePassword}>
-      {' '}
+      {" "}
       {passwordType ? (
         <Visibility style={{ fontSize: 18 }} />
       ) : (
         <VisibilityOff style={{ fontSize: 18 }} />
-      )}{' '}
+      )}{" "}
     </Button>
   );
   const handleHidePassword = () => {
@@ -143,7 +146,7 @@ const Registration = () => {
   };
 
   function validateEmail(email) {
-    if (email.includes(',') || email.includes('+')) {
+    if (email.includes(",") || email.includes("+")) {
       setError({
         error: true,
         message:
@@ -156,11 +159,11 @@ const Registration = () => {
     if (!emailRegex.test(email)) {
       setError({
         error: true,
-        message: 'Correo electrónico no válido.',
+        message: "Correo electrónico no válido.",
       });
       return false;
     }
-    setError({ error: false, message: '' }); // Actualizar el estado del campo "email"
+    setError({ error: false, message: "" }); // Actualizar el estado del campo "email"
     setEmail(email);
     return true;
   }
@@ -170,13 +173,13 @@ const Registration = () => {
 
     const errors = {}; // Validación de formato de imagen
 
-    errors.image = validations.validateImageFormat(formData.get('image')); // Validación del correo electrónico
+    errors.image = validations.validateImageFormat(formData.get("image")); // Validación del correo electrónico
     if (validateEmail(clientRegister.email)) {
       errors.mail = null; // Correo electrónico válido
     } else {
       // El correo electrónico es inválido, muestra un mensaje de error
       errors.mail =
-        'Email no valido, no puede contener caracteres especiales y debe estar completo.';
+        "Email no valido, no puede contener caracteres especiales y debe estar completo.";
       setError({
         error: true,
         message: errors.mail,
@@ -185,61 +188,61 @@ const Registration = () => {
     setErrorMessages(errors); // Si hay un error en el correo electrónico o en la imagen, muestra un mensaje de alerta
     if (errors.mail !== null || errors.image !== null) {
       alert(
-        'Hay errores en el formulario. Por favor, revisa los campos e intenta de nuevo.'
+        "Hay errores en el formulario. Por favor, revisa los campos e intenta de nuevo."
       );
     } else {
       setError({
         error: false,
-        message: '',
+        message: "",
       });
     }
     if (Object.values(errors).some((error) => error !== null)) {
       return;
     }
-    formData.set('name', clientRegister.name);
-    formData.set('lastName', clientRegister.lastName);
-    formData.set('userName', clientRegister.userName);
-    formData.set('email', clientRegister.email);
-    formData.set('province', clientRegister.province);
-    formData.set('location', clientRegister.location);
-    formData.set('password', clientRegister.password);
-    formData.set('profession', clientRegister.profession);
-    formData.set('description', clientRegister.description);
-    formData.set('locationJob', clientRegister.locationJob);
-    formData.set('provinceJob', clientRegister.provinceJob);
-    formData.set('remoteWork', remoteWork);
+    formData.set("name", clientRegister.name);
+    formData.set("lastName", clientRegister.lastName);
+    formData.set("userName", clientRegister.userName);
+    formData.set("email", clientRegister.email);
+    formData.set("province", clientRegister.province);
+    formData.set("location", clientRegister.location);
+    formData.set("password", clientRegister.password);
+    formData.set("profession", clientRegister.profession);
+    formData.set("description", clientRegister.description);
+    formData.set("locationJob", clientRegister.locationJob);
+    formData.set("provinceJob", clientRegister.provinceJob);
+    formData.set("remoteWork", remoteWork);
 
     if (clientRegister.profession.length === 0) {
-      const response = await dispatch(fetchUserRegister(formData, 'client'));
-      if (response === 'Successfully registered client.') {
+      const response = await dispatch(fetchUserRegister(formData, "client"));
+      if (response === "Successfully registered client.") {
         alert(
-          'Se ha registrado exitosamente. Ahora podrá hacer su ingreso en el Login con su email y contraseña'
+          "Se ha registrado exitosamente. Ahora podrá hacer su ingreso en el Login con su email y contraseña"
         );
-        localStorage.removeItem('clientRegisterData');
-        navigate('/home');
+        localStorage.removeItem("clientRegisterData");
+        navigate("/home");
       } else {
         if (response) {
           alert(response);
         } else {
-          alert('Vuelva a intentarlo más tarde');
+          alert("Vuelva a intentarlo más tarde");
         }
       }
     } else {
-      if (clientRegister.profession !== '') {
+      if (clientRegister.profession !== "") {
         const response = await dispatch(
-          fetchUserRegister(formData, 'professional')
+          fetchUserRegister(formData, "professional")
         );
-        if (response === 'Profesional registrado exitosamente') {
+        if (response === "Profesional registrado exitosamente") {
           alert(
-            'Se ha registrado exitosamente. Ahora podrá hacer su ingreso en el Login con su email y contraseña'
+            "Se ha registrado exitosamente. Ahora podrá hacer su ingreso en el Login con su email y contraseña"
           );
-          localStorage.removeItem('clientRegisterData');
-          navigate('/home');
+          localStorage.removeItem("clientRegisterData");
+          navigate("/home");
         } else {
           if (response) {
             alert(response);
           } else {
-            alert('Ocurrió un error durante su registración');
+            alert("Ocurrió un error durante su registración");
           }
         }
       }
@@ -256,14 +259,14 @@ const Registration = () => {
       const defaultLocation =
         citiesInSelectedProvince.length > 0
           ? {
-              nombre: 'Elija una ciudad de la provincia seleccionada',
-              value: '',
+              nombre: "Elija una ciudad de la provincia seleccionada",
+              value: "",
             }
           : {
-              nombre: 'Elija una ciudad de la provincia seleccionada',
-              value: '',
+              nombre: "Elija una ciudad de la provincia seleccionada",
+              value: "",
             }; // Guarda el valor predeterminado en localStorage
-      localStorage.setItem('location', defaultLocation.value); // Actualiza el estado con las ciudades y la opción predeterminada
+      localStorage.setItem("location", defaultLocation.value); // Actualiza el estado con las ciudades y la opción predeterminada
       setClientRegister((prevState) => ({
         ...prevState,
         location: clientRegister.location,
@@ -274,34 +277,34 @@ const Registration = () => {
   const handleChange = (e) => {
     const { name, type, value } = e.target;
 
-    if (name === 'email') {
+    if (name === "email") {
       // Verificar si el valor contiene el carácter "+"
-      if (value.includes('+')) {
+      if (value.includes("+")) {
         setError({
           error: true,
           message: "El correo electrónico no puede contener el carácter '+'",
         });
-      } else if (value.includes(',')) {
+      } else if (value.includes(",")) {
         setError({
           error: true,
-          message: 'El correo electrónico no puede contener comas.',
+          message: "El correo electrónico no puede contener comas.",
         });
       } else if (!/\S+@\S+\.\S+/.test(value)) {
         setError({
           error: true,
-          message: 'Completar su correo hasta obtener un formato válido.',
+          message: "Completar su correo hasta obtener un formato válido.",
         });
       } else {
         setError({
           error: false,
-          message: '',
+          message: "",
         });
       } // Actualizar el estado del campo "email"
 
       setEmail(value);
     }
-    if (type === 'checkbox') setRemoteWork(e.target.checked);
-    const nameArray = name.split('.');
+    if (type === "checkbox") setRemoteWork(e.target.checked);
+    const nameArray = name.split(".");
 
     if (nameArray.length === 2) {
       const [outer, inner] = nameArray;
@@ -316,7 +319,7 @@ const Registration = () => {
       setClientRegister({ ...clientRegister, [name]: value });
     }
 
-    if (name === 'location') {
+    if (name === "location") {
       setClientRegister((prevState) => ({
         ...prevState,
         ...prevState,
@@ -325,10 +328,10 @@ const Registration = () => {
       }));
     } // Validación específica para "name" y "Apellido"
 
-    if (name === 'name' || name === 'lastName') {
+    if (name === "name" || name === "lastName") {
       // Transformar la primera letra a mayúscula
       const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1); // Validar que solo haya una palabra
-      const isOneWord = /^[^\s]+$/.test(capitalizedValue);
+      const isOneWord = capitalizedValue;
 
       if (isOneWord) {
         setClientRegister((prevState) => ({
@@ -344,16 +347,16 @@ const Registration = () => {
     setErrorMessages((prevErrors) => ({ ...prevErrors, image: null }));
 
     if (image) {
-      formData.set('image', image);
+      formData.set("image", image);
       setClientRegister({
         ...clientRegister,
         image: URL.createObjectURL(image),
       });
     }
 
-    const imageFile = formData.get('image');
+    const imageFile = formData.get("image");
 
-    const imgElement = document.createElement('img');
+    const imgElement = document.createElement("img");
     imgElement.src = URL.createObjectURL(image);
   };
 
@@ -412,24 +415,28 @@ const Registration = () => {
     );
   };
 
+  console.log(formData);
+
   return (
     <div>
+
       <Navbar />{' '}
       <Cover />
+
       <div
         style={{
-          padding: '2rem 8rem ',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '800px',
-          backgroundColor: 'transparent',
+          padding: "2rem 8rem ",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "800px",
+          backgroundColor: "transparent",
         }}
       >
-        <h2>Registrate </h2>{' '}
+        <h2>Registrate </h2>{" "}
         <Box component="form" onSubmit={(e) => handleSubmit(e)}>
-          {' '}
-          <div style={{ padding: '5px' }}>
-            {' '}
+          {" "}
+          <div style={{ padding: "5px" }}>
+            {" "}
             <TextField
               id="name"
               label="Nombre"
@@ -440,10 +447,10 @@ const Registration = () => {
               placeholder="Nombre"
               fullWidth
               required
-            />{' '}
-          </div>{' '}
-          <div style={{ padding: '5px' }}>
-            {' '}
+            />{" "}
+          </div>{" "}
+          <div style={{ padding: "5px" }}>
+            {" "}
             <TextField
               id="Apellido"
               label="Apellido"
@@ -454,10 +461,10 @@ const Registration = () => {
               placeholder="Apellido"
               fullWidth
               required
-            />{' '}
-          </div>{' '}
-          <div style={{ padding: '5px' }}>
-            {' '}
+            />{" "}
+          </div>{" "}
+          <div style={{ padding: "5px" }}>
+            {" "}
             <TextField
               id="email"
               label="Email"
@@ -471,14 +478,14 @@ const Registration = () => {
               helperText={error.message}
               error={error.error}
               autoComplete="off"
-            />{' '}
-          </div>{' '}
-          <div style={{ padding: '5px' }}>
-            {' '}
+            />{" "}
+          </div>{" "}
+          <div style={{ padding: "5px" }}>
+            {" "}
             <TextField
               id="contraseña"
               label="Contraseña"
-              type={passwordType ? 'text' : 'password'}
+              type={passwordType ? "text" : "password"}
               value={clientRegister.password}
               name="password"
               onChange={handleChange}
@@ -487,12 +494,12 @@ const Registration = () => {
               required
               autoComplete="off"
             />
-            {renderPasswordToggle()}{' '}
-          </div>{' '}
-          <div style={{ padding: '5px' }}>
-            <h3>Ubicación dentro de Argentina</h3> <h4>Provincia*</h4>{' '}
+            {renderPasswordToggle()}{" "}
+          </div>{" "}
+          <div style={{ padding: "5px" }}>
+            <h3>Ubicación dentro de Argentina</h3> <h4>Provincia*</h4>{" "}
             <FormControl fullWidth required>
-              {' '}
+              {" "}
               <Select
                 type="text"
                 name="province"
@@ -504,56 +511,61 @@ const Registration = () => {
               >
                 <MenuItem value="filterProvinciasParticular">
                   Elija Provincia
-                </MenuItem>{' '}
+                </MenuItem>{" "}
                 {provincesList.map((province) => (
                   <MenuItem key={province} value={province}>
-                    {province}{' '}
+                    {province}{" "}
                   </MenuItem>
-                ))}{' '}
-              </Select>{' '}
+                ))}{" "}
+              </Select>{" "}
             </FormControl>
-            <h4>Ciudad*</h4>{' '}
-            <Autocomplete
-              id="location-autocomplete"
-              options={[
-                'Elija una provincia para comenzar',
-                ...citiesInSelectedProvince,
-              ]}
-              getOptionLabel={(option) =>
-                option.nombre || 'Elija una provincia para comenzar'
-              }
-              value={clientRegister.location}
-              onChange={(event, value) =>
-                handleChange({ target: { name: 'location', value } })
-              }
-              renderInput={(params) => (
-                <TextField {...params} label="Ciudad" fullWidth required />
-              )}
-            />{' '}
-          </div>{' '}
+            <h4>Ciudad*</h4> {" "}
+            <FormControl fullWidth required>
+              {" "}
+              <Select
+                labelId="location-label"
+                id="location"
+                name="location"
+                value={clientRegister.location}
+                onChange={handleChange}
+                fullWidth
+                required
+              >
+                <MenuItem key="default" value={clientRegister.location}>
+                  Elija una cuidad de la provincia seleccionada{" "}
+                </MenuItem>{" "}
+                {[
+                  citiesInSelectedProvince.map((city, index) => (
+                    <MenuItem key={index} value={city.nombre}>
+                      {city.nombre}{" "}
+                    </MenuItem>
+                  )),
+                ]}{" "}
+              </Select>{" "}
+            </FormControl>{" "}
+          </div>{" "}
           {ifProfRoute && (
-            <div style={{ backgroundColor: 'transparent' }}>
-              {' '}
+            <div style={{ backgroundColor: "transparent" }}>
+              {" "}
               <div>
-                <h2>Oferta de servicios</h2>{' '}
-              </div>{' '}
-              <Autocomplete
-                options={profesiones}
-                getOptionLabel={(option) => option}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Profesión u oficio."
-                    name="profession"
-                    value={clientRegister.profession}
-                    onChange={handleChange}
-                    placeholder="Profesión u oficio."
-                    fullWidth
-                    required
-                  />
-                )}
-              />
-              <div style={{ padding: '5px' }}></div>{' '}
+                <h2>Oferta de servicios</h2>{" "}
+              </div>{" "}
+              <div>
+                <select
+                  id="profession"
+                  name="profession"
+                  value={clientRegister.profession}
+                  onChange={handleChange}
+                >
+                  <option value="">Selecciona una opción</option>
+                  {profesiones.map((profesion, index) => (
+                    <option key={index} value={profesion}>
+                      {profesion}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={{ padding: "5px" }}></div>{" "}
               <TextField
                 label="Biografia descriptiva"
                 type="text"
@@ -564,71 +576,71 @@ const Registration = () => {
                 fullWidth
                 required
                 inputProps={{ maxLength: 100 }}
-              />{' '}
+              />{" "}
             </div>
           )}
-          <div style={{ padding: '5px' }}></div>{' '}
-          <InputLabel htmlFor="image">Imagen</InputLabel>{' '}
+          <div style={{ padding: "5px" }}></div>{" "}
+          <InputLabel htmlFor="image">Imagen</InputLabel>{" "}
           <input
             type="file"
             accept="image/*"
             name="image"
             onChange={handleImageUpload}
-            style={{ width: '100%', height: '50px', fontSize: '18px' }}
-          />{' '}
+            style={{ width: "100%", height: "50px", fontSize: "18px" }}
+          />{" "}
           {clientRegister.image && (
             <img
               src={clientRegister.image}
               alt="Uploaded Image"
-              style={{ maxWidth: '100px' }}
+              style={{ maxWidth: "100px" }}
             />
-          )}{' '}
+          )}{" "}
           {errorMessages.image && (
-            <div style={{ color: 'red' }}>{errorMessages.image}</div>
-          )}{' '}
+            <div style={{ color: "red" }}>{errorMessages.image}</div>
+          )}{" "}
           {(!areAllProfFieldsCompleted() && ifProfRoute) ||
           (!areAllClienFieldsCompleted() && ifClientRoute) ? (
-            <p style={{ color: 'red' }}>
+            <p style={{ color: "red" }}>
               Completá todos los campos sin errores para poder enviar este
               formulario
             </p>
           ) : (
             <div>
-              <div style={{ padding: '10px' }}></div>{' '}
+              <div style={{ padding: "10px" }}></div>{" "}
               {areAllProfFieldsCompleted() && ifProfRoute && (
                 <Button
                   variant="contained"
                   color="secondary"
                   type="submit"
                   style={{
-                    width: '100%',
-                    paddingInline: '35px',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
+                    width: "100%",
+                    paddingInline: "35px",
+                    paddingBlock: "10px",
+                    marginBottom: "20px",
                   }}
                 >
-                  Enviar formulario{' '}
+                  Enviar formulario{" "}
                 </Button>
-              )}{' '}
+              )}{" "}
               {areAllClienFieldsCompleted() && ifClientRoute && (
                 <Button
                   variant="contained"
                   color="secondary"
                   type="submit"
                   style={{
-                    width: '100%',
-                    paddingInline: '35px',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
+                    width: "100%",
+                    paddingInline: "35px",
+                    paddingBlock: "10px",
+                    marginBottom: "20px",
                   }}
                 >
-                  Enviar formulario{' '}
+                  Enviar formulario{" "}
                 </Button>
-              )}{' '}
+              )}{" "}
             </div>
-          )}{' '}
-        </Box>{' '}
-      </div>{' '}
+          )}{" "}
+        </Box>{" "}
+      </div>{" "}
     </div>
   );
 };

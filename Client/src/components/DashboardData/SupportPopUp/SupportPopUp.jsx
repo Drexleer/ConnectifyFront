@@ -6,16 +6,21 @@ import { useNavigate } from "react-router-dom";
 
 const SupportPopUp = ({ isVisible, professional, onClose }) => {
   const navigate = useNavigate();
+  console.log(professional);
+  console.log(professional.payments);
 
   const handlerToDetail = (_id) => {
+    console.log(_id);
     navigate(`/detail/${_id}`);
   };
   const handlerToPayments = (userName) => {
     navigate(`/payments/${userName}`);
   };
   const handlerSeeClientsProfile = (userId) => {
-    console.log(userId);
     navigate(`/admin/client/dashboard/${userId}`);
+  };
+  const handlerSeeProfessionalsProfile = (userId) => {
+    navigate(`/admin/professional/dashboard/${userId}`);
   };
   return (
     <div className={style.modal}>
@@ -27,9 +32,16 @@ const SupportPopUp = ({ isVisible, professional, onClose }) => {
           </h2>
         </div>
         <div className={style.buttons}>
-          {!professional.creator && (
+          {!professional.creator && !professional.profession && (
             <button onClick={() => handlerSeeClientsProfile(professional._id)}>
-              Editar Perfil
+              Editar Perfil del Cliente
+            </button>
+          )}
+          {!professional.creator && professional.profession && (
+            <button
+              onClick={() => handlerSeeProfessionalsProfile(professional._id)}
+            >
+              Editar Perfil del Profesional
             </button>
           )}
 
