@@ -168,11 +168,11 @@ function ViewsPayments() {
   return (
     <div className={style.contentAll}>
       <Navbar />
-
-      <button className={style.buttonContratar}>
-        <Link to="/home">Volver al inicio</Link>
-      </button>
-
+      <div className={style.contButtonBack}>
+          <button className={style.buttonContratar}>
+              <Link to="/home">Volver al inicio</Link>
+          </button>
+      </div>
       <h2 className={style.h2Titulo}>Historial de pagos</h2>
 
       <Cover />

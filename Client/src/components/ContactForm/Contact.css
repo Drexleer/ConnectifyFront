@@ -160,7 +160,7 @@ textarea {
   resize: none;
 }
 
-[type='submit'] {
+.input-submit {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   width: 100%;
   background: #3b7ba4;
@@ -175,6 +175,6 @@ textarea {
   margin-top: -4px;
   font-weight: 700;
 }
-[type='submit']:hover {
+.input-submit:hover {
   background: #0f7fc4;
 }

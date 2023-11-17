@@ -12,7 +12,8 @@
 .h3 {
   display: flex;
   margin-top: -1em;
-  margin-bottom: -0.2em;
+  margin-bottom: -1em;
+  margin-left: 18em;
 }
 
 .myCustomBox .closeIcon {
@@ -21,12 +22,14 @@
 }
 
 .textarea {
-  resize: vertical;
-  width: 100%;
+resize: none;
+  width: 85%;
   border-radius: 4px;
   border: 1px solid #ccc;
   font-size: 14px;
-  resize: none;
+  height: 80%;
+  margin-top: 0.5em;
+
 }
 
 .button {
@@ -36,8 +39,10 @@
   border-radius: 4px;
   padding: 8px 16px;
   font-size: 14px;
-  margin-left: 16em;
+  position: absolute;
   cursor: pointer;
+  margin-top: -3em;
+  margin-left: 60em;
 }
 
 
@@ -106,10 +111,27 @@
 }
 
 .btnreseña {
+  margin-top: 0.2rem;
   background-color: #3b7ba4;
   color: #faf9f9;
   border: none;
   border-radius: 4px;
   padding: 5px 12px;
   font-size: 14px;
+  cursor: pointer;
+}
+.btnreseña:hover {
+  transform: translateY(-2px);
+}
+
+.p{
+  color: rgb(64, 48, 48);
+font-size: 0.8em;
+position: absolute;
+margin-top: 0.5em;
+}
+
+.labelEstrellas {
+  font-size: 0.8rem;
+  color: rgb(223, 15, 15);
 }

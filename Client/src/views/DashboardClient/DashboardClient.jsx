@@ -31,12 +31,12 @@ const DashboardClient = () => {
     (state) =>
       state.clients.clients.filter((client) => client._id === usersLog._id)[0]
   );
-  const userName = users.name || '';
-  const userLastName = users.lastName || '';
-  const userLocation = users.location || '';
-  const userEmail = users.email || '';
-  const userImage = users.image || '';
-  const userProvince = users.province || '';
+  const userName = userLocal.name || googleUser.name ||'';
+  const userLastName = userLocal.lastName || googleUser.lastName || '';
+  const userLocation = userLocal.location || googleUser.location || '';
+  const userEmail = userLocal.email || googleUser.email || '';
+  const userImage = userLocal.image || googleUser.image || '';
+  const userProvince = userLocal.province || googleUser.province || '';
 
   const [user, setUser] = useState({
     name: userName,
@@ -49,7 +49,7 @@ const DashboardClient = () => {
 
   const [comments, setComments] = useState([]);
   const userComments = comments.filter(
-    (comment) => comment.client_id === users._id
+    (comment) => comment.client_id === user._id
   );
 
   const handleEdit = () => {
@@ -58,10 +58,10 @@ const DashboardClient = () => {
 
   const handleSave = async () => {
     const updatedUser = {
-      _id: users._id,
+      _id: user._id,
       name: user.name,
       lastName: user.LastName,
-      userName: users.userName,
+      userName: user.userName,
       location: user.location,
       province: user.province,
     }; // console.log("updatedUser:", updatedUser);
@@ -95,7 +95,7 @@ const DashboardClient = () => {
     };
 
     fetchComments(); // Llama a la función de solicitud al montar el componente
-  }, [users._id]); // Se ejecutará cada vez que cambie el ID del usuario
+  }, [userLocal._id, googleUser._id]); // Se ejecutará cada vez que cambie el ID del usuario
 
   const confirmAction = (actionType) => {
     const confirmationMessage = `¿Está seguro de que desea hacer un pedido para ${actionType}?`;
@@ -134,9 +134,9 @@ const DashboardClient = () => {
               {' '}
               <div style={{ margin: '1.5em ' }}>
                 <h3>Mis reservas realizadas</h3>
-                <RenderReservs userName={users.userName} />
+                <RenderReservs userName={user.userName} />
                 <div style={{ margin: ' 1.5em' }}></div>{' '}
-                <Link to={`/payments/${users.userName}`}>
+                <Link to={`/payments/${user.userName}`}>
                   {' '}
                   <Button variant="outlined">Ver pagos realizados</Button>{' '}
                 </Link>{' '}
@@ -154,14 +154,18 @@ const DashboardClient = () => {
                 <h3> Administración de cuenta ⚠️</h3>{' '}
                 <div style={{ margin: ' 1em 0em' }}>
                   {' '}
-                  <Button
+                  {
+                    !googleUser._id &&
+                    <Button
                     variant="contained"
                     color="secondary"
                     style={{ marginRight: '2em' }}
                     onClick={() => confirmAction('cambio de contraseña')}
                   >
                     Pedido de cambio de contraseña{' '}
-                  </Button>{' '}
+                  </Button>
+                  }
+                  
                   <Button
                     variant="contained"
                     color="error"

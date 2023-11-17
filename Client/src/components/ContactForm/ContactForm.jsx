@@ -92,7 +92,6 @@ const ContactForm = () => {
                 placeholder="Mensaje"
                 required
               ></textarea>
-
               <input type="submit" value="SUBMIT" />
             </form>
             <div className="direct-contact-container">
@@ -105,7 +104,6 @@ const ContactForm = () => {
                     </span>
                   </i>
                 </li>
-
                 <li className="list-item">
                   <i className="fa fa-phone fa-2x">
                     <span className="contact-text phone">
