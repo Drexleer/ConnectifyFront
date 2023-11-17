@@ -72,7 +72,7 @@ const Login = ({setContainerLogin}) => {
 
   const handlerLoginGoogle = () => {
     setPopUpGoogle(true);
-    const loginGoogle = () => {
+    const loginGoogle = async () => {
       loginWithRedirect();
       setPopUpGoogle(false);
     };
