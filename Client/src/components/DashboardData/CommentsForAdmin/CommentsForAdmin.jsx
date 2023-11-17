@@ -8,7 +8,6 @@ import {
 import style from "./CommentsForAdmin.module.css";
 
 const CommentsForAdmin = () => {
-  console.log(654654);
   // const comments = useSelector((state) => state.comments.comments);
   const comments = useSelector((state) =>
     state.comment.comments.filter((comment) => !comment.isChecked)
@@ -74,10 +73,10 @@ const CommentsForAdmin = () => {
       setLoading(false);
     }, 750);
   }
-
+  const amount = allComments.length;
   return (
     <div>
-      <h1>Comentarios Recientes:</h1>
+      <h1>Comentarios Recientes: ({amount})</h1>
       {allComments.length !== 0 ? (
         allComments.map((comment) => (
           <div key={comment._id}>
@@ -117,6 +116,7 @@ const CommentsForAdmin = () => {
               </h4>
               <p>Comentario: {comment.comment}</p>
             </div>
+            <hr></hr>
           </div>
         ))
       ) : (
