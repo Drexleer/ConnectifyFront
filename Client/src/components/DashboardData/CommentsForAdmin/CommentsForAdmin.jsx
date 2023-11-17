@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchCommentsForAdmin,
   deleteCommentByIdAdmin,
   checkCommentByIdAdmin,
-} from "../../../redux/Slices/commentSlice";
-import style from "./CommentsForAdmin.module.css";
-import Cover from "../../Cover/Cover";
+} from '../../../redux/Slices/commentSlice';
+import style from './CommentsForAdmin.module.css';
+import Cover from '../../Cover/Cover';
 
 const CommentsForAdmin = () => {
   // const comments = useSelector((state) => state.comments.comments);
@@ -25,7 +25,7 @@ const CommentsForAdmin = () => {
         const newState = response.filter((comment) => !comment.isChecked);
         setAllComments(newState);
       } catch (error) {
-        console.error("Falló el fetcheo", error);
+        console.error('Falló el fetcheo', error);
       }
     };
     fetchData();
@@ -84,26 +84,26 @@ const CommentsForAdmin = () => {
         allComments.map((comment) => (
           <div key={comment._id} className={style.containesCommentAdmin}>
             <h4>
-              De{" "}
+              De{' '}
               <button
                 onClick={() => handleClickReviewer(comment.Client)}
                 style={{
-                  background: "none",
-                  border: "none",
-                  color: "blue",
-                  cursor: "pointer",
+                  background: 'none',
+                  border: 'none',
+                  color: 'blue',
+                  cursor: 'pointer',
                 }}
               >
                 {comment.Client.userName}
-              </button>{" "}
-              hacia{" "}
+              </button>{' '}
+              hacia{' '}
               <button
                 onClick={() => handleClickReviewee(comment.Professional)}
                 style={{
-                  background: "none",
-                  border: "none",
-                  color: "blue",
-                  cursor: "pointer",
+                  background: 'none',
+                  border: 'none',
+                  color: 'blue',
+                  cursor: 'pointer',
                 }}
               >
                 {comment.Professional.userName}
@@ -117,12 +117,22 @@ const CommentsForAdmin = () => {
                 </p>
               </div>
               <div className={style.containerButtonCommentAdmin}>
-                <button onClick={() => handleCensura(comment._id)}  className={ comment.isDeleted ? style.buttonCommentAdminHabilitado : style.buttonCommentAdminCensurado}>
-                  {comment.isDeleted ? "Habilitar" : "Censurar"}
-                </button>{" "}
-                <button onClick={() => handleCheck(comment._id)} className={style.buttonCommentAdminLeido}> 
+                <button
+                  onClick={() => handleCensura(comment._id)}
+                  className={
+                    comment.isDeleted
+                      ? style.buttonCommentAdminHabilitado
+                      : style.buttonCommentAdminCensurado
+                  }
+                >
+                  {comment.isDeleted ? 'Habilitar' : 'Censurar'}
+                </button>{' '}
+                <button
+                  onClick={() => handleCheck(comment._id)}
+                  className={style.buttonCommentAdminLeido}
+                >
                   Leído
-                </button>{" "}
+                </button>{' '}
               </div>
             </div>
             <hr></hr>
@@ -133,7 +143,7 @@ const CommentsForAdmin = () => {
       )}
       <div
         className={style.loadingMessage}
-        style={{ display: loading ? "flex" : "none" }}
+        style={{ display: loading ? 'flex' : 'none' }}
       >
         <div className={style.spinner}>
           <span className={style.ball1}></span>
@@ -152,13 +162,15 @@ const CommentsForAdmin = () => {
             <img
               src={
                 whoToShow.image ||
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMq4cGfAmaJAYVpXFPLY57EzVip1FTMK-ETQH1aU24VD-bYx5wJ4srHFP99zAgqXBvfQ&usqp=CAU"
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMq4cGfAmaJAYVpXFPLY57EzVip1FTMK-ETQH1aU24VD-bYx5wJ4srHFP99zAgqXBvfQ&usqp=CAU'
               }
             />
-            <button onClick={handleClose}>X</button>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <h3>Nombre: {whoToShow.name}</h3>
-              <h3>Apellido: {whoToShow.lastName}</h3>
+            <button onClick={handleClose} className={style.closeButton}>
+              X
+            </button>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {whoToShow.name ? <h3>Nombre: {whoToShow.name}</h3> : null}
+              {whoToShow.name ? <h3>Apellido: {whoToShow.lastName}</h3> : null}
               <h3>Nombre de Usarió: {whoToShow.userName}</h3>
               <h3>Email: {whoToShow.email}</h3>
             </div>
@@ -169,11 +181,13 @@ const CommentsForAdmin = () => {
         <div className={style.vemos}>
           <div className={style.details}>
             <img src={whoToShow.image} />
-            <button onClick={handleClose}>X</button>
+            <button onClick={handleClose} className={style.closeButton}>
+              X
+            </button>
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <h3>Nombre: {whoToShow.name}</h3>
