@@ -67,6 +67,7 @@ export const fetchAdsForAdmin = () => {
     }
   };
 };
+//
 export const deleteAdByIdAdmin = (id) => {
   return async (dispatch) => {
     const endpoint = `${VITE_API_BASE}/ads/${id}/delete`;
