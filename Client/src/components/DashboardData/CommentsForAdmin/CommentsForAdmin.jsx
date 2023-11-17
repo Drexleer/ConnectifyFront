@@ -6,6 +6,7 @@ import {
   checkCommentByIdAdmin,
 } from "../../../redux/Slices/commentSlice";
 import style from "./CommentsForAdmin.module.css";
+import Cover from "../../Cover/Cover";
 
 const CommentsForAdmin = () => {
   // const comments = useSelector((state) => state.comments.comments);
@@ -77,48 +78,52 @@ const CommentsForAdmin = () => {
   return (
     <div className={style.containerCommentsAdmin}>
       <div className={style.titleCommentsAdmin}>
-      <h2>Comentarios Recientes: ({amount})</h2>
+        <h2>Comentarios Recientes: ({amount})</h2>
       </div>
       {allComments.length !== 0 ? (
         allComments.map((comment) => (
           <div key={comment._id} className={style.containesCommentAdmin}>
-            <div>
-              <h4>
-                De{" "}
-                <button
-                  onClick={() => handleClickReviewer(comment.Client)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "blue",
-                    cursor: "pointer",
-                  }}
-                >
-                  {comment.Client.userName}
-                </button>{" "}
-                hacia{" "}
-                <button
-                  onClick={() => handleClickReviewee(comment.Professional)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "blue",
-                    cursor: "pointer",
-                  }}
-                >
-                  {comment.Professional.userName}
-                </button>
-                Fecha: {comment.date.substring(0, 10)}
-              </h4>
-              <p>Comentario: {comment.comment}</p>
-            </div>
-            <div>
-            <button onClick={() => handleCensura(comment._id)}>
+            <h4>
+              De{" "}
+              <button
+                onClick={() => handleClickReviewer(comment.Client)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "blue",
+                  cursor: "pointer",
+                }}
+              >
+                {comment.Client.userName}
+              </button>{" "}
+              hacia{" "}
+              <button
+                onClick={() => handleClickReviewee(comment.Professional)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "blue",
+                  cursor: "pointer",
+                }}
+              >
+                {comment.Professional.userName}
+              </button>
+              Fecha: {comment.date.substring(0, 10)}
+            </h4>
+            <div className={style.containerTextButtonCommentAdmin}>
+              <div className={style.containerTextCommentAdmin}>
+                <p className={style.commentAdmin}>
+                  Comentario: {comment.comment}
+                </p>
+              </div>
+              <div className={style.containerButtonCommentAdmin}>
+                <button onClick={() => handleCensura(comment._id)}  className={ comment.isDeleted ? style.buttonCommentAdminHabilitado : style.buttonCommentAdminCensurado}>
                   {comment.isDeleted ? "Habilitar" : "Censurar"}
                 </button>{" "}
-                <button onClick={() => handleCheck(comment._id)}>
-                  Marcar como leído
+                <button onClick={() => handleCheck(comment._id)} className={style.buttonCommentAdminLeido}> 
+                  Leído
                 </button>{" "}
+              </div>
             </div>
             <hr></hr>
           </div>
