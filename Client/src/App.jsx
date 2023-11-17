@@ -1,23 +1,24 @@
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import Landing from "./components/Landing/Landing";
-import Home from "./views/Home/Home";
-import CreateAdForm from "./components/CreateAds/createAds";
-import Detail from "./components/AdsDetail/AdsDetail";
-import Registration from "./components/register/register";
-import Favortites from "./components/Favorites/Favorites";
-import DashboardAdmin from "./views/DashboardAdmin/DashboardAdmin";
-import DashboardProf from "./views/DashboardProf/DashboardProf";
-import Payments from "./components/ViewsPayments/ViewsPayments";
-import ClientProfile from "./views/DashboardClient/DashboardClient";
-import Chat from "./components/Chat/Chat";
-import DashboardClient from "./views/DashboardClient/DashboardClient";
-import Team from "./components/Footer/Team/Team";
-import RequestPassword from "./components/ResetPassword/RequestPassword/RequestPassword";
-import ResetPassword from "./components/ResetPassword/ResetPassword/ResetPassword";
-import { useSelector } from "react-redux";
-import ClientDashboarsRenderer from "./components/DashboardData/Renderizers/clientDashboarsRenderer";
-import ProfessionalDashboarsRenderer from "./components/DashboardData/Renderizers/professionalDashboarsRenderer";
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
+import Landing from './components/Landing/Landing';
+import Home from './views/Home/Home';
+import CreateAdForm from './components/CreateAds/createAds';
+import Detail from './components/AdsDetail/AdsDetail';
+import Registration from './components/register/register';
+import Favortites from './components/Favorites/Favorites';
+import DashboardAdmin from './views/DashboardAdmin/DashboardAdmin';
+import DashboardProf from './views/DashboardProf/DashboardProf';
+import Payments from './components/ViewsPayments/ViewsPayments';
+import ClientProfile from './views/DashboardClient/DashboardClient';
+import Chat from './components/Chat/Chat';
+import DashboardClient from './views/DashboardClient/DashboardClient';
+import Team from './components/Footer/Team/Team';
+import RequestPassword from './components/ResetPassword/RequestPassword/RequestPassword';
+import ResetPassword from './components/ResetPassword/ResetPassword/ResetPassword';
+import { useSelector } from 'react-redux';
+import ClientDashboarsRenderer from './components/DashboardData/Renderizers/clientDashboarsRenderer';
+import ProfessionalDashboarsRenderer from './components/DashboardData/Renderizers/professionalDashboarsRenderer';
+import ContactForm from './components/ContactForm/ContactForm';
 
 function App() {
   const users = useSelector((state) => state.usersLogin.user);
@@ -47,12 +48,13 @@ function App() {
           <Route path="/ourTeam" element={<Team />} />
           <Route path="/password" element={<RequestPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          {users.types === "admin" ? (
+          <Route path="/contact" element={<ContactForm />} />
+          {users.types === 'admin' ? (
             <Route path="/admin/dashboard" element={<DashboardAdmin />} />
           ) : (
             <Route path="/admin/dashboard" element={<Landing />} />
           )}
-          {users.types === "admin" ? (
+          {users.types === 'admin' ? (
             <Route
               path="/admin/client/dashboard/:userId"
               element={<ClientDashboarsRenderer />}
@@ -63,7 +65,7 @@ function App() {
               element={<Landing />}
             />
           )}
-          {users.types === "admin" ? (
+          {users.types === 'admin' ? (
             <Route
               path="/admin/professional/dashboard/:userId"
               element={<ProfessionalDashboarsRenderer />}
@@ -81,4 +83,3 @@ function App() {
 }
 
 export default App;
-
