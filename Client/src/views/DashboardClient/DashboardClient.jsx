@@ -31,7 +31,7 @@ const DashboardClient = () => {
     (state) =>
       state.clients.clients.filter((client) => client._id === usersLog._id)[0]
   );
-  const userId = userLocal._id || googleUser._id || ""
+  const userId = userLocal._id || googleUser._id || "";
   const userName = userLocal.name || googleUser.name || "";
   const userUserName = userLocal.userName || googleUser.userName || "";
   const userLastName = userLocal.lastName || googleUser.lastName || "";
@@ -159,23 +159,25 @@ const DashboardClient = () => {
                 <div style={{ margin: " 1em 0em" }}>
                   {" "}
                   {!googleUser._id && (
+                    <Link to="/contact">
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        style={{ marginRight: "2em" }}
+                      >
+                        Pedido de cambio de contraseña{" "}
+                      </Button>
+                    </Link>
+                  )}
+                  <Link to="/contact">
                     <Button
                       variant="contained"
-                      color="secondary"
+                      color="error"
                       style={{ marginRight: "2em" }}
-                      onClick={() => confirmAction("cambio de contraseña")}
                     >
-                      Pedido de cambio de contraseña{" "}
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="error"
-                    style={{ marginRight: "2em" }}
-                    onClick={() => confirmAction("eliminación de cuenta")}
-                  >
-                    Pedido de eliminación de cuenta{" "}
-                  </Button>{" "}
+                      Pedido de eliminación de cuenta{" "}
+                    </Button>{" "}
+                  </Link>
                 </div>{" "}
               </div>{" "}
             </Card>{" "}
