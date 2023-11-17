@@ -3,7 +3,6 @@ import {
   NotificationCard,
   NotificationPara,
   ButtonContainer,
-  HomeBtn,
   DetailBtn,
   Imagen,
   DivContainer,
@@ -22,14 +21,6 @@ export default function Notification({ anuncio }) {
           confiar en nuestros servicios.
         </NotificationPara>
         <ButtonContainer>
-          <HomeBtn>
-            <Link
-              to={`/home`}
-              style={{ textDecoration: 'none', color: 'white' }}
-            >
-              ir al Inicio
-            </Link>
-          </HomeBtn>
           <DetailBtn>
             <Link
               to={`/detail/${anuncio}`}
