@@ -15,6 +15,13 @@ export const isValidTitle = (title) => {
 };
 
 export const isValidPrice = (price) => {
+  if (isNaN(price)) {
+    return {
+      isValid: false,
+      errorMessage: 'El precio debe ser un número.',
+    };
+  }
+
   if (price < 0) {
     return {
       isValid: false,
@@ -36,8 +43,9 @@ export const isValidPrice = (price) => {
 
 export const isValidDescription = (description) => {
   const maxLength = 300;
+  const minLength = 10;
 
-  if (description.length < 0) {
+  if (description.length < minLength) {
     return {
       isValid: false,
       errorMessage: 'La descripción debe tener al menos 10 caracteres.',
