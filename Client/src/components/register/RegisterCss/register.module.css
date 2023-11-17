@@ -23,4 +23,13 @@ label {
   
 }
 
-
+.selectRegisterProf{
+  width: 100%;
+  height: 3.5rem;
+  background-color: transparent;
+  color: #7c7c7c;
+  border-radius: 3px;
+  border: 1px solid #7c7c7c;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
