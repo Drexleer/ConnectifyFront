@@ -41,7 +41,7 @@ export default function Footer() {
           </Link>
         </li>
         <li className="menu__item">
-          <Link to={'/ourTeam'} style={{ textDecoration: 'none' }}>
+          <Link to={'/aboutus'} style={{ textDecoration: 'none' }}>
             <a className="menu__link">Sobre nosotros</a>
           </Link>
         </li>

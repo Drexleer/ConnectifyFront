@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Grid } from '@mui/material';
-import UserInfoCard from './UserInfoCardClient';
-import { updateClientOnServer } from '../../redux/Slices/clientSlice';
-import Navbar from '../../components/Navbar/Navbar';
-import ReviewItem from '../../components/ReusableComponents/ReviewShow';
-import { getComments } from './CommentsOrganized';
-import { Link } from 'react-router-dom';
-import RenderReservs from './RenderReservs';
-import { Button, Card } from '@mui/material';
-import { setUserType } from '../../redux/Slices/userTypeSlice';
-import { fetchClientsForAdmin } from '../../redux/Slices/clientSlice';
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Grid } from "@mui/material";
+import UserInfoCard from "./UserInfoCardClient";
+import { updateClientOnServer } from "../../redux/Slices/clientSlice";
+import Navbar from "../../components/Navbar/Navbar";
+import ReviewItem from "../../components/ReusableComponents/ReviewShow";
+import { getComments } from "./CommentsOrganized";
+import { Link } from "react-router-dom";
+import RenderReservs from "./RenderReservs";
+import { Button, Card } from "@mui/material";
+import { setUserType } from "../../redux/Slices/userTypeSlice";
+import { fetchClientsForAdmin } from "../../redux/Slices/clientSlice";
 
 const DashboardClient = () => {
   const dispatch = useDispatch();
@@ -31,16 +31,20 @@ const DashboardClient = () => {
     (state) =>
       state.clients.clients.filter((client) => client._id === usersLog._id)[0]
   );
-  const userName = userLocal.name || googleUser.name ||'';
-  const userLastName = userLocal.lastName || googleUser.lastName || '';
-  const userLocation = userLocal.location || googleUser.location || '';
-  const userEmail = userLocal.email || googleUser.email || '';
-  const userImage = userLocal.image || googleUser.image || '';
-  const userProvince = userLocal.province || googleUser.province || '';
+  const userId = userLocal._id || googleUser._id || ""
+  const userName = userLocal.name || googleUser.name || "";
+  const userUserName = userLocal.userName || googleUser.userName || "";
+  const userLastName = userLocal.lastName || googleUser.lastName || "";
+  const userLocation = userLocal.location || googleUser.location || "";
+  const userEmail = userLocal.email || googleUser.email || "";
+  const userImage = userLocal.image || googleUser.image || "";
+  const userProvince = userLocal.province || googleUser.province || "";
 
   const [user, setUser] = useState({
+    id: userId,
     name: userName,
     LastName: userLastName,
+    userName: userUserName,
     email: userEmail,
     province: userProvince,
     location: userLocation,
@@ -49,7 +53,7 @@ const DashboardClient = () => {
 
   const [comments, setComments] = useState([]);
   const userComments = comments.filter(
-    (comment) => comment.client_id === user._id
+    (comment) => comment.client_id === user.id
   );
 
   const handleEdit = () => {
@@ -58,7 +62,7 @@ const DashboardClient = () => {
 
   const handleSave = async () => {
     const updatedUser = {
-      _id: user._id,
+      _id: user.id,
       name: user.name,
       lastName: user.LastName,
       userName: user.userName,
@@ -70,15 +74,15 @@ const DashboardClient = () => {
       const response = await dispatch(updateClientOnServer(updatedUser));
       if (response) {
         setEditMode(false);
-        alert('Su cambio se ha guardado con éxito');
+        alert("Su cambio se ha guardado con éxito");
         dispatch(fetchClientsForAdmin());
       } else {
         // Manejar el caso en que la actualización no sea exitosa
-        console.error('Error al actualizar el cliente:', response);
+        console.error("Error al actualizar el cliente:", response);
       }
     } catch (error) {
       // Maneja el error, por ejemplo, mostrando un mensaje al usuario
-      console.error('Error al actualizar el cliente:', error);
+      console.error("Error al actualizar el cliente:", error);
     }
   };
 
@@ -90,7 +94,7 @@ const DashboardClient = () => {
         const commentsData = await getComments();
         setComments(commentsData);
       } catch (error) {
-        console.error('Error al obtener comentarios:', error);
+        console.error("Error al obtener comentarios:", error);
       }
     };
 
@@ -101,10 +105,10 @@ const DashboardClient = () => {
     const confirmationMessage = `¿Está seguro de que desea hacer un pedido para ${actionType}?`;
 
     if (window.confirm(confirmationMessage)) {
-      if (actionType === 'cambio de contraseña') {
-        const userType = 'professional';
+      if (actionType === "cambio de contraseña") {
+        const userType = "professional";
         dispatch(setUserType(userType));
-        window.location.href = '/password';
+        window.location.href = "/password";
       } else {
         alert(`Va a ser redirigido para realizar su pedido de ${actionType}.`); // Redirige al usuario al formulario correspondiente usando react-router-dom u otro enfoque de enrutamiento
       }
@@ -113,15 +117,15 @@ const DashboardClient = () => {
 
   return (
     <div
-      style={{ backgroundColor: '#D9D9D9', minHeight: '100vh', width: '100%' }}
+      style={{ backgroundColor: "#D9D9D9", minHeight: "100vh", width: "100%" }}
     >
-      <Navbar />{' '}
-      <div style={{ margin: '0em 2em' }}>
-        {' '}
+      <Navbar />{" "}
+      <div style={{ margin: "0em 2em" }}>
+        {" "}
         <Grid container spacing={3}>
-          {' '}
+          {" "}
           <Grid item xs={12} md={8}>
-            {' '}
+            {" "}
             <UserInfoCard
               user={user}
               userImage={userImage}
@@ -129,61 +133,59 @@ const DashboardClient = () => {
               handleEdit={handleEdit}
               handleSave={handleSave}
               setUser={setUser}
-            />{' '}
-            <Card style={{ margin: '1em', borderRadius: '16px' }}>
-              {' '}
-              <div style={{ margin: '1.5em ' }}>
+            />{" "}
+            <Card style={{ margin: "1em", borderRadius: "16px" }}>
+              {" "}
+              <div style={{ margin: "1.5em " }}>
                 <h3>Mis reservas realizadas</h3>
                 <RenderReservs userName={user.userName} />
-                <div style={{ margin: ' 1.5em' }}></div>{' '}
+                <div style={{ margin: " 1.5em" }}></div>{" "}
                 <Link to={`/payments/${user.userName}`}>
-                  {' '}
-                  <Button variant="outlined">Ver pagos realizados</Button>{' '}
-                </Link>{' '}
-              </div>{' '}
-            </Card>{' '}
+                  {" "}
+                  <Button variant="outlined">Ver pagos realizados</Button>{" "}
+                </Link>{" "}
+              </div>{" "}
+            </Card>{" "}
             <Card
               style={{
-                margin: '1em',
-                borderRadius: '16px',
-                backgroundColor: '#868484',
+                margin: "1em",
+                borderRadius: "16px",
+                backgroundColor: "#868484",
               }}
             >
-              {' '}
-              <div style={{ margin: '1.5em  ' }}>
-                <h3> Administración de cuenta ⚠️</h3>{' '}
-                <div style={{ margin: ' 1em 0em' }}>
-                  {' '}
-                  {
-                    !googleUser._id &&
+              {" "}
+              <div style={{ margin: "1.5em  " }}>
+                <h3> Administración de cuenta ⚠️</h3>{" "}
+                <div style={{ margin: " 1em 0em" }}>
+                  {" "}
+                  {!googleUser._id && (
                     <Button
-                    variant="contained"
-                    color="secondary"
-                    style={{ marginRight: '2em' }}
-                    onClick={() => confirmAction('cambio de contraseña')}
-                  >
-                    Pedido de cambio de contraseña{' '}
-                  </Button>
-                  }
-                  
+                      variant="contained"
+                      color="secondary"
+                      style={{ marginRight: "2em" }}
+                      onClick={() => confirmAction("cambio de contraseña")}
+                    >
+                      Pedido de cambio de contraseña{" "}
+                    </Button>
+                  )}
                   <Button
                     variant="contained"
                     color="error"
-                    style={{ marginRight: '2em' }}
-                    onClick={() => confirmAction('eliminación de cuenta')}
+                    style={{ marginRight: "2em" }}
+                    onClick={() => confirmAction("eliminación de cuenta")}
                   >
-                    Pedido de eliminación de cuenta{' '}
-                  </Button>{' '}
-                </div>{' '}
-              </div>{' '}
-            </Card>{' '}
-          </Grid>{' '}
+                    Pedido de eliminación de cuenta{" "}
+                  </Button>{" "}
+                </div>{" "}
+              </div>{" "}
+            </Card>{" "}
+          </Grid>{" "}
           <Grid item xs={12} md={4}>
-            {' '}
+            {" "}
             <h3>
               Reseñas realizadas a profesionales luego de los servicios
-              prestados:{' '}
-            </h3>{' '}
+              prestados:{" "}
+            </h3>{" "}
             {userComments.length > 0 ? (
               userComments.map(
                 (
@@ -206,10 +208,10 @@ const DashboardClient = () => {
               )
             ) : (
               <p>No tienes reseñas aún</p>
-            )}{' '}
-          </Grid>{' '}
-        </Grid>{' '}
-      </div>{' '}
+            )}{" "}
+          </Grid>{" "}
+        </Grid>{" "}
+      </div>{" "}
     </div>
   );
 };
