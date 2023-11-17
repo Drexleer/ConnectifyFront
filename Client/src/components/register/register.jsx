@@ -1,4 +1,3 @@
-
 import miApi from "../../../localidades.json";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -7,6 +6,7 @@ import { fetchUserRegister } from "../../redux/Slices/registerSlice";
 import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Cover from '../Cover/Cover'
 
 import {
   InputLabel,
