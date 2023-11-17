@@ -111,11 +111,11 @@ export function CardProfileProf({ setPopUpModify }) {
         </CardContent>
       </div>
       <CardActions style={{ flex: 1, height: "auto" }}>
-        <Link to="/chat">
+        {/* <Link to="/chat">
           <Button variant="contained" size="small" startIcon={<HelpIcon />}>
             Ayuda
           </Button>
-        </Link>
+        </Link> */}
         <Link>
           <Button
             variant="contained"

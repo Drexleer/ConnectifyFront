@@ -2,11 +2,14 @@
   width: 100%;
   min-height: 45rem;
   margin-top: 1.55rem;
+  padding: 1rem;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  background-color: #e2af2f;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
+  border: 2px solid #2196f3;
+  gap: 1rem;
 }
 
 .titleCommentsAdmin{
@@ -15,7 +18,72 @@
   justify-content: center;
 }
 
+.containesCommentAdmin{
+  width: 100%;
+  height: 10rem;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column;
+  border: 1px solid #3b7ba4;
+  border-radius: 20px;
+}
 
+.commentAdmin{
+  text-align: center;
+  font-size: 1rem;
+}
+
+.containerTextButtonCommentAdmin{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.containerButtonCommentAdmin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.containerTextCommentAdmin{
+  width: 70%;
+}
+
+.buttonCommentAdminCensurado{
+  width: 10rem;
+  padding: 0.3rem;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color: rgb(122, 44, 44);
+  color: #ffffff;
+}
+
+.buttonCommentAdminHabilitado{
+  width: 10rem;
+  padding: 0.3rem;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color:#4caf50; 
+  color: #000000;
+}
+
+.buttonCommentAdminLeido{
+  width: 10rem;
+  padding: 0.3rem;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color: #2196f3;
+  color: #ffffff;
+}
 
 .vemos {
   display: flex;
