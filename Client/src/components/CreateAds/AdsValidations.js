@@ -43,7 +43,7 @@ export const isValidPrice = (price) => {
 
 export const isValidDescription = (description) => {
   const maxLength = 300;
-  const minLength = 10;
+  const minLength = 0;
 
   if (description.length < minLength) {
     return {
