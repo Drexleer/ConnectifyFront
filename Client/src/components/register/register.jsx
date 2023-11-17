@@ -20,21 +20,7 @@ import Navbar from '../Navbar/Navbar';
 
 const Registration = () => {
   const navigate = useNavigate();
-  const profesiones = [
-    'Abogado',
-    'Arquitecto',
-    'Contador',
-    'Plomero Gasista',
-    'Electricista',
-    'Diseñador',
-    'Desarrollador web',
-    'Profesor',
-    'Fotógrafo',
-    'Asistente Virtual',
-    'Instalación y Service',
-    'Pintor',
-    'Esteticista' /* ... otras profesiones */,
-  ];
+
   ///localStorage.clear();
   const [errorMessages, setErrorMessages] = useState({});
   const [clientRegister, setClientRegister] = useState(() => {
@@ -206,6 +192,8 @@ const Registration = () => {
     formData.set('provinceJob', clientRegister.provinceJob);
     formData.set('remoteWork', remoteWork);
 
+    console.log('formData:', formData);
+
     if (clientRegister.profession.length === 0) {
       const response = await dispatch(fetchUserRegister(formData, 'client'));
       if (response === 'Successfully registered client.') {
@@ -325,7 +313,7 @@ const Registration = () => {
     if (name === 'name' || name === 'lastName') {
       // Transformar la primera letra a mayúscula
       const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1); // Validar que solo haya una palabra
-      const isOneWord = /^[^\s]+$/.test(capitalizedValue);
+      const isOneWord = capitalizedValue;
 
       if (isOneWord) {
         setClientRegister((prevState) => ({
@@ -508,24 +496,30 @@ const Registration = () => {
                 ))}{' '}
               </Select>{' '}
             </FormControl>
-            <h4>Ciudad*</h4>{' '}
-            <Autocomplete
-              id="location-autocomplete"
-              options={[
-                'Elija una provincia para comenzar',
-                ...citiesInSelectedProvince,
-              ]}
-              getOptionLabel={(option) =>
-                option.nombre || 'Elija una provincia para comenzar'
-              }
-              value={clientRegister.location}
-              onChange={(event, value) =>
-                handleChange({ target: { name: 'location', value } })
-              }
-              renderInput={(params) => (
-                <TextField {...params} label="Ciudad" fullWidth required />
-              )}
-            />{' '}
+            <h4>Ciudad*</h4> {' '}
+            <FormControl fullWidth required>
+              {' '}
+              <Select
+                labelId="location-label"
+                id="location"
+                name="location"
+                value={clientRegister.location}
+                onChange={handleChange}
+                fullWidth
+                required
+              >
+                <MenuItem key="default" value={clientRegister.location}>
+                  Elija una cuidad de la provincia seleccionada{' '}
+                </MenuItem>{' '}
+                {[
+                  citiesInSelectedProvince.map((city, index) => (
+                    <MenuItem key={index} value={city.nombre}>
+                      {city.nombre}{' '}
+                    </MenuItem>
+                  )),
+                ]}{' '}
+              </Select>{' '}
+            </FormControl>{' '}
           </div>{' '}
           {ifProfRoute && (
             <div style={{ backgroundColor: 'transparent' }}>
@@ -533,22 +527,48 @@ const Registration = () => {
               <div>
                 <h2>Oferta de servicios</h2>{' '}
               </div>{' '}
-              <Autocomplete
-                options={profesiones}
-                getOptionLabel={(option) => option}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Profesión u oficio."
-                    name="profession"
-                    value={clientRegister.profession}
-                    onChange={handleChange}
-                    placeholder="Profesión u oficio."
-                    fullWidth
-                    required
-                  />
-                )}
-              />
+              <FormControl fullWidth>
+                {' '}
+                <InputLabel id="profession-label">
+                  Profesión u oficio
+                </InputLabel>{' '}
+                <Select
+                  labelId="profession-label"
+                  id="profession"
+                  name="profession"
+                  value={clientRegister.profession}
+                  onChange={handleChange}
+                  label="Profesión u oficio"
+                  required
+                >
+                  {' '}
+                  <MenuItem value="Profesor de Matemáticas">
+                    Profesor de Matemáticas
+                  </MenuItem>{' '}
+                  <MenuItem value="Profesor de Lengua">
+                    Profesor de Lengua
+                  </MenuItem>{' '}
+                  <MenuItem value="Profesor de Música">
+                    Profesor de Música
+                  </MenuItem>{' '}
+                  <MenuItem value="Profesor de Robótica">
+                    Profesor de Robótica
+                  </MenuItem>
+                  <MenuItem value="Plomero">Plomero</MenuItem>{' '}
+                  <MenuItem value="Gasista">Gasista</MenuItem>{' '}
+                  <MenuItem value="Carpintero">Carpintero</MenuItem>
+                  <MenuItem value="Albañil">Albañil</MenuItem>
+                  <MenuItem value="Pintor">Pintor</MenuItem>
+                  <MenuItem value="Programador">Programador</MenuItem>
+                  <MenuItem value="Arquitecto">Arquitecto</MenuItem>
+                  <MenuItem value="Diseñador Gráfico">
+                    Diseñador Gráfico
+                  </MenuItem>
+                  <MenuItem value="Enfermero">Enfermero/a</MenuItem>
+                  <MenuItem value="Cuidador">Cuidador</MenuItem>
+                  <MenuItem value="Abogado">Abogado/a</MenuItem>{' '}
+                </Select>
+              </FormControl>
               <div style={{ padding: '5px' }}></div>{' '}
               <TextField
                 label="Biografia descriptiva"
