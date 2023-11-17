@@ -75,19 +75,15 @@ const CommentsForAdmin = () => {
   }
   const amount = allComments.length;
   return (
-    <div>
-      <h1>Comentarios Recientes: ({amount})</h1>
+    <div className={style.containerCommentsAdmin}>
+      <div className={style.titleCommentsAdmin}>
+      <h2>Comentarios Recientes: ({amount})</h2>
+      </div>
       {allComments.length !== 0 ? (
         allComments.map((comment) => (
-          <div key={comment._id}>
+          <div key={comment._id} className={style.containesCommentAdmin}>
             <div>
               <h4>
-                <button onClick={() => handleCensura(comment._id)}>
-                  {comment.isDeleted ? "Descensurar" : "Censurar"}
-                </button>{" "}
-                <button onClick={() => handleCheck(comment._id)}>
-                  Marcar como leído
-                </button>{" "}
                 De{" "}
                 <button
                   onClick={() => handleClickReviewer(comment.Client)}
@@ -115,6 +111,14 @@ const CommentsForAdmin = () => {
                 Fecha: {comment.date.substring(0, 10)}
               </h4>
               <p>Comentario: {comment.comment}</p>
+            </div>
+            <div>
+            <button onClick={() => handleCensura(comment._id)}>
+                  {comment.isDeleted ? "Habilitar" : "Censurar"}
+                </button>{" "}
+                <button onClick={() => handleCheck(comment._id)}>
+                  Marcar como leído
+                </button>{" "}
             </div>
             <hr></hr>
           </div>

@@ -56,7 +56,6 @@ const DashboardProf = () => {
       ) : (
         <div>
           <NavBar />
-
           <div className={style.contButtonBack}>
             <ButtonBack />
           </div>

@@ -1,6 +1,25 @@
+.containerCommentsAdmin{
+  width: 100%;
+  min-height: 45rem;
+  margin-top: 1.55rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: #e2af2f;
+  border-radius: 20px;
+}
+
+.titleCommentsAdmin{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
 .vemos {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   position: fixed;
@@ -74,12 +93,12 @@
   z-index: 1000;
 }
 
-.loadingText {
+/* .loadingText {
   font-size: 200px;
   color: #333;
   text-align: center;
   margin: auto;
-}
+} */
 
 .spinner {
   position: absolute;
