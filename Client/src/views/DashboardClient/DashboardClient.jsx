@@ -159,15 +159,14 @@ const DashboardClient = () => {
                 <div style={{ margin: " 1em 0em" }}>
                   {" "}
                   {!googleUser._id && (
-                    <Link to="/contact">
                       <Button
                         variant="contained"
                         color="secondary"
                         style={{ marginRight: "2em" }}
+                        onClick={() => confirmAction("cambio de contraseña")}
                       >
                         Pedido de cambio de contraseña{" "}
                       </Button>
-                    </Link>
                   )}
                   <Link to="/contact">
                     <Button
