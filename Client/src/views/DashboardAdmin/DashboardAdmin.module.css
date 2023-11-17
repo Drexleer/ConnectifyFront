@@ -7,3 +7,10 @@
   gap: 2rem;
 }
 
+.containerDashCommets{
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box; 
+}

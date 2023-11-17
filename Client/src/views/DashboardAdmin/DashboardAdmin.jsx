@@ -17,7 +17,7 @@ const DashboardAdmin = () => {
         <div className={style.containerDashAdminProf}>
           <ProfsForAdmin />
         </div>
-        <div>
+        <div className={style.containerDashCommets}>
           <AdminDashboard />
         </div>
       </div>
