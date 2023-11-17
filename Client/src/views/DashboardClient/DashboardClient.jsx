@@ -33,6 +33,7 @@ const DashboardClient = () => {
   );
   const userId = userLocal._id || googleUser._id || ""
   const userName = userLocal.name || googleUser.name || "";
+  const userUserName = userLocal.userName || googleUser.userName || "";
   const userLastName = userLocal.lastName || googleUser.lastName || "";
   const userLocation = userLocal.location || googleUser.location || "";
   const userEmail = userLocal.email || googleUser.email || "";
@@ -43,6 +44,7 @@ const DashboardClient = () => {
     id: userId,
     name: userName,
     LastName: userLastName,
+    userName: userUserName,
     email: userEmail,
     province: userProvince,
     location: userLocation,
