@@ -131,88 +131,118 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
           <img src={form.image} alt="" className={style.imageUpdateProf}/>
         </div>
         <form action="" onSubmit={handlerSubmit} className={style.containerFormUpdateProf}>
+          <div className={style.cont3Inputs}>
+            <div className={style.contLabelInput}> 
+                <label>Nombre</label>  
+                <input
+                  type="text"
+                  placeholder="Nombre"
+                  value={form.name}
+                  disabled
+                  onChange={handlerChange}
+                  id="name"
+                  className={style.inputDisableUpdateProf}
+                />
+            </div>
+            <div className={style.contLabelInput}> 
+                <label>Apellido</label>  
+                <input
+                  type="text"
+                  placeholder="Apellido"
+                  value={form.lastName}
+                  disabled
+                  onChange={handlerChange}
+                  id="lastName"
+                  className={style.inputDisableUpdateProf}
+                />
+            </div>
+
+            <div className={style.contLabelInput}> 
+                <label>Nombre de Usuario</label>  
+                <input
+                  type="text"
+                  placeholder="Nombre de Usuario"
+                  value={form.userName}
+                  disabled
+                  onChange={handlerChange}
+                  id="userName"
+                  className={style.inputDisableUpdateProf}
+                />
+            </div>    
+          
+          
+          </div>
+
           <div>
-          <input
-            type="text"
-            placeholder="Nombre"
-            value={form.name}
-            disabled
-            onChange={handlerChange}
-            id="name"
-            className={style.inputDisableUpdateProf}
-          />
-          <input
-            type="text"
-            placeholder="Apellido"
-            value={form.lastName}
-            disabled
-            onChange={handlerChange}
-            id="lastName"
-            className={style.inputDisableUpdateProf}
-          />
-          <input
-            type="text"
-            placeholder="Nombre de Usuario"
-            value={form.userName}
-            disabled
-            onChange={handlerChange}
-            id="userName"
-            className={style.inputDisableUpdateProf}
-          />
+            <div className={style.contEmailProf}>
+                <label>Correo</label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={form.email}
+                  onChange={handlerChange}
+                  id="email"
+                  className={style.inputUpdateProfemail}
+                />
+                <span className={style.spanUpdateProfEmail}>{error.email}</span>
+            </div>
+            <div className={style.contEmailProf}>
+                <label>Profesión</label>
+                <input
+                  type="text"
+                  placeholder="Profesion"
+                  value={form.profession}
+                  onChange={handlerChange}
+                  id="profession"
+                  className={style.inputUpdateProf}
+                />
+                <span className={style.spanUpdateProfProfession}>{error.profession}</span>
+            </div>
+            
+
+
+
+
           </div>
           <div>
-          <input
-            type="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handlerChange}
-            id="email"
-            className={style.inputUpdateProfemail}
-          />
-          <span className={style.spanUpdateProfEmail}>{error.email}</span>
-          <input
-            type="text"
-            placeholder="Profesion"
-            value={form.profession}
-            onChange={handlerChange}
-            id="profession"
-            className={style.inputUpdateProf}
-          />
-          <span className={style.spanUpdateProfProfession}>{error.profession}</span>
-          </div>
-          <div>
-            <select
-            name="province"
-            id="province"
-            value={form.province}
-            onChange={handlerChange}
-            required
-            className={style.selectUpdateProf}
-          >
-            <option value="" disabled defaultValue={form.province}>
-              {form.province}
-            </option>
-            {provincesList.map((province) => (
-              <option key={province} value={province}>
-                {province}
-              </option>
-            ))}
-          </select>
-          <select
-            name="location"
-            id="location"
-            value={form.location}
-            onChange={handlerChange}
-            required
-            className={style.selectUpdateProf}
-          >
-            {citiesInSelectedProvince.map((location, index) => (
-              <option key={index} value={location.nombre} defaultValue={location.nombre}>
-                {location.nombre}
-              </option>
-            ))}
-          </select>
-          <span className={style.spanUpdateProfLocation}>{error.location}</span>
+            <div className={style.contProvCity}>
+              <label>Provincia</label>
+              <select
+                name="province"
+                id="province"
+                value={form.province}
+                onChange={handlerChange}
+                required
+                className={style.selectUpdateProf}
+              >
+                <option value="" disabled defaultValue={form.province}>
+                  {form.province}
+                </option>
+                {provincesList.map((province) => (
+                  <option key={province} value={province}>
+                    {province}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={style.contProvCity}>
+              <label>Ciudad</label>
+              <select
+                name="location"
+                id="location"
+                value={form.location}
+                onChange={handlerChange}
+                required
+                className={style.selectUpdateProf}
+              >
+                {citiesInSelectedProvince.map((location, index) => (
+                  <option key={index} value={location.nombre} defaultValue={location.nombre}>
+                    {location.nombre}
+                  </option>
+                ))}
+              </select>
+              <span className={style.spanUpdateProfLocation}>{error.location}</span>
+            </div>
           </div>
           <textarea
             placeholder="Descripcion"
