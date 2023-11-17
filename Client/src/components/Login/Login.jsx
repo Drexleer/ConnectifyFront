@@ -18,6 +18,8 @@ import RequestPassword from "../ResetPassword/RequestPassword/RequestPassword";
 import { setUserType } from "../../redux/Slices/userTypeSlice";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { IconButton } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Login = ({setContainerLogin}) => {
   const dispatch = useDispatch();
@@ -41,6 +43,10 @@ const Login = ({setContainerLogin}) => {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleChange = (e) => {
     const propiedad = e.target.id;
@@ -234,14 +240,20 @@ const Login = ({setContainerLogin}) => {
               />
               
               <span className={style.spanFormEmail}>{error.email}</span>
+              
               <input
                 id="password"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 onChange={handleChange}
                 value={form.password}
                 placeholder="Contraseña"
               />
-             
+              <span
+            className={style.togglePassword}
+            onClick={togglePasswordVisibility}
+          >
+            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+          </span>
              
               <label className={style.recuperarPass}>Recupere su contraseña 
                 <Link to={"/password"}><label className={style.Aqui}> AQUÍ</label></Link>
@@ -297,11 +309,17 @@ const Login = ({setContainerLogin}) => {
               <span className={style.spanFormEmailProf}>{error.email}</span>
               <input
                 id="password"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 onChange={handleChange}
                 value={form.password}
                 placeholder="Contraseña"
               />
+              <span
+            className={style.togglePasswordProf}
+            onClick={togglePasswordVisibility}
+          >
+            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+          </span>
               <span className={style.spanFormPassProf}>{error.password}</span>
               <button type="submit" className={style.btnGetIn}>
                 ENTRAR
