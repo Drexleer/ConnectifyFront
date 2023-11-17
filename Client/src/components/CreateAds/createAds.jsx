@@ -21,6 +21,7 @@ function CreateAdForm() {
   const [showNotification, setShowNotification] = useState(false);
   const [idAnuncio, setIdAnuncio] = useState('');
   const [hasReachedLimit, setHasReachedLimit] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationErrors, setValidationErrors] = useState({
     title: '',
     price: '',
@@ -82,6 +83,12 @@ function CreateAdForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Evitar múltiples envíos si ya está en proceso
+    if (isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
     const userInput = {
       ...formData,
       creator: user._id,
@@ -108,6 +115,8 @@ function CreateAdForm() {
       }
     } catch (error) {
       console.error('Error al crear el anuncio:', error);
+    } finally {
+      setIsSubmitting(false); // Finaliza la solicitud
     }
   };
 
@@ -244,7 +253,7 @@ function CreateAdForm() {
                   variant="contained"
                   color="primary"
                   type="submit"
-                  disabled={!isFormFilled || hasReachedLimit}
+                  disabled={!isFormFilled || hasReachedLimit || isSubmitting}
                 >
                   Crear anuncio
                 </Button>
