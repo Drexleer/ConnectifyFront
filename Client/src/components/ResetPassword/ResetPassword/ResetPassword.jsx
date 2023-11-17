@@ -8,6 +8,9 @@ import logo from '../../../assets/logoTituloC.png';
 import validatePassword from './passwordValidation';
 import Notification from '../Notification/Notification';
 import './ResetPassword.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import Cover from '../../Cover/Cover'
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -21,6 +24,11 @@ const ResetPassword = () => {
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   useEffect(() => {}, [tokenRecovery]);
 
@@ -77,7 +85,9 @@ const ResetPassword = () => {
   };
 
   return (
+    
     <div className="mainDiv">
+      <Cover />
       <div className="cardStyle">
         <form>
           <img
@@ -96,23 +106,29 @@ const ResetPassword = () => {
           <div className="inputDiv">
             <label className="inputLabel">Nueva contraseña</label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               value={newPassword}
               onChange={(e) => handlePasswordChange(e.target.value)}
               required
             />
           </div>
-
+          <span
+            className="togglePassword"
+            onClick={togglePasswordVisibility}
+          >
+            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+          </span>
           <div className="inputDiv">
             <label className="inputLabel">Confirmar contraseña</label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => handleConfirmPasswordChange(e.target.value)}
               required
             />
+          
           </div>
           {passwordError && <p className="errorText">{passwordError}</p>}
           <div className="buttonWrapper">
