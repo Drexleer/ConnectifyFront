@@ -1,10 +1,12 @@
 import AdminDashboard from "../../components/DashboardData/Dashboard";
 import ProfsForAdmin from "../../components/DashboardData/ProfsForAdmin/ProfsForAdmin";
 import Header from "../../components/DashboardData/Header";
+import Navbar from '../../components/Navbar/Navbar'
 
 const DashboardAdmin = () => {
   return (
     <div>
+     <Navbar/>
       <div>
         <Header />
       </div>

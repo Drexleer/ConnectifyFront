@@ -233,7 +233,7 @@ const ProfsForAdmin = () => {
                 style={{ backgroundColor: "#3b7ba4" }}
                 onClick={(e) => handleUnbanProf(e)}
               >
-                Dessuspender Profesión
+                Habilitar Profesión
               </button>
             </div>
           )}
