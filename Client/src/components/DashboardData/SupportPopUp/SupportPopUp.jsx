@@ -1,13 +1,14 @@
-import { useState } from "react";
-import style from "./SupportPopUp.module.css";
-import { useNavigate } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
+import style from './SupportPopUp.module.css';
+import { useNavigate } from 'react-router-dom';
 // import ClientDashboarsRenderer from "../Renderizers/clientDashboarsRenderer";
 // import { DashboardClient } from "../../../views/DashboardClient/DashboardClient";
 
 const SupportPopUp = ({ isVisible, professional, onClose }) => {
   const navigate = useNavigate();
   console.log(professional);
-  console.log(professional.payments);
+  // console.log(professional.payments);
 
   const handlerToDetail = (_id) => {
     console.log(_id);
@@ -28,7 +29,12 @@ const SupportPopUp = ({ isVisible, professional, onClose }) => {
       <div className={style.overlay}>
         <div className={style.nameContainer}>
           <h2 className={style.overlayTitle}>
-            {professional.name + " " + professional.lastName}
+            {professional.name
+              ? professional.name + ' ' + professional.lastName
+              : professional.userName ||
+                professional.profession +
+                  ': ' +
+                  professional.creator[0].userName}
           </h2>
         </div>
         <div className={style.buttons}>
@@ -50,11 +56,17 @@ const SupportPopUp = ({ isVisible, professional, onClose }) => {
               Ver Detalle
             </button>
           )}
-          {professional.payments?.length > 0 && (
-            <button onClick={() => handlerToPayments(professional.userName)}>
-              Ver Pagos
-            </button>
-          )}
+          {professional.payments?.length > 0
+            ? !professional.title && (
+                <button
+                  onClick={() => handlerToPayments(professional.userName)}
+                >
+                  Ver Pagos
+                </button>
+              )
+            : !professional.title && (
+                <button style={{ background: 'grey' }}>Ver Pagos</button>
+              )}
         </div>
       </div>
     </div>
