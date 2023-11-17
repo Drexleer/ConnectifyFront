@@ -82,12 +82,16 @@ const CommentBox = ({ onClose, professionalId }) => {
           precision={0.5}
           onChange={handleChange}
         />
-        <textarea
-          name="Comentario"
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          className={style.textarea}
-        />
+        <div>
+  <textarea
+    name="Comentario"
+    value={newComment}
+    onChange={(e) => setNewComment(e.target.value)}
+    className={style.textarea}
+    maxLength={100}
+  />
+  <p className={style.p}>Máximo 100 caracteres</p>
+</div>
         {isCommentBoxOpen && (
           <button onClick={onClose} className={style.button}>
             X
