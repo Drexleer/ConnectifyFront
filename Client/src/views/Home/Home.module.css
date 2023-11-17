@@ -3,7 +3,7 @@
 Cover {
   z-index: 1;
 }
-.container111 {
+/* .container111 {
   position: absolute;
   background-color: #fff;
   padding-top: 0.3em;
@@ -11,7 +11,7 @@ Cover {
   margin-right: 8em;
   border-radius: 0.51em;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-}
+} */
 
 .footer {
   margin-top: 140em;
