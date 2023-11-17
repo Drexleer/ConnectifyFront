@@ -233,7 +233,7 @@ const ProfsForAdmin = () => {
                 style={{ backgroundColor: "#3b7ba4" }}
                 onClick={(e) => handleUnbanProf(e)}
               >
-                Dessuspender Profesión
+                Habilitar Profesión
               </button>
             </div>
           )}
@@ -393,7 +393,16 @@ const ProfsForAdmin = () => {
         className={style.loadingMessage}
         style={{ display: loading ? "flex" : "none" }}
       >
-        <div className={style.loadingText}>Loading...</div>
+        <div className={style.spinner}>
+          <span className={style.ball1}></span>
+          <span className={style.ball2}></span>
+          <span className={style.ball3}></span>
+          <span className={style.ball4}></span>
+          <span className={style.ball5}></span>
+          <span className={style.ball6}></span>
+          <span className={style.ball7}></span>
+          <span className={style.ball8}></span>
+        </div>
       </div>
     </div>
   );
