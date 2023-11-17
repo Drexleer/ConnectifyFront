@@ -40,7 +40,7 @@ export default function Footer() {
           </a>
         </li>
         <li className="menu__item">
-          <a className="menu__link" href="#">
+          <a className="menu__link" href="/aboutus">
             Sobre nosotros
           </a>
         </li>
