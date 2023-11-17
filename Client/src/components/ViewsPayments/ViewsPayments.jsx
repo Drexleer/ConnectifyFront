@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import style from "./ViewsPayments.module.css";
 const VITE_API_BASE = import.meta.env.VITE_API_BASE;
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PaymentsCard from "../PaymentsCard/PaymentsCard";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -11,7 +11,7 @@ import Navbar from "../Navbar/Navbar";
 import CommentBox from "../CommentsClient/CommentBox";
 import ReviewButton from "../CommentsClient/ReviewButton";
 import ButtonBack from "../Utils/ButtonBack/ButtonBack";
-import Cover from '../Cover/Cover'
+import Cover from "../Cover/Cover";
 import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
 
 function ViewsPayments() {
@@ -26,9 +26,7 @@ function ViewsPayments() {
   const [paymentData, setPaymentData] = useState(null);
   const [userName, setUserName] = useState("");
   const [openCommentBoxId, setOpenCommentBoxId] = useState(null);
-  const dispatch = useDispatch()
-
-
+  const dispatch = useDispatch();
 
   // Nueva lógica para mapear los comentarios y verificar si el usuario ha dejado un comentario para cada profesional
   const professionalCommentsMap = comments.reduce((acc, comment) => {
@@ -38,10 +36,9 @@ function ViewsPayments() {
     return acc;
   }, {});
 
-
   useEffect(() => {
-    if (!usersLocal.userName){
-       // Verifica si Auth0 ha terminado de cargar
+    if (!usersLocal.userName) {
+      // Verifica si Auth0 ha terminado de cargar
       if (!isLoading) {
         // Verifica si el usuario está autenticado
         if (isAuthenticated) {
@@ -51,7 +48,6 @@ function ViewsPayments() {
         }
       }
     }
-   
   }, [isLoading, isAuthenticated, user, loginWithRedirect]);
 
   const handleCommentBoxToggle = (professionalId) => {
@@ -64,7 +60,6 @@ function ViewsPayments() {
     setOpenCommentBoxId(null);
   };
 
-
   useEffect(() => {
     const userNameGoogle = usersGoogle && usersGoogle.userName;
     const userNameLocal = usersLocal && usersLocal.userName;
@@ -75,7 +70,6 @@ function ViewsPayments() {
       setUserName(userNameLocal);
     }
   }, []);
-
 
   useEffect(() => {
     if (search) {
@@ -166,27 +160,23 @@ function ViewsPayments() {
       );
 
       setPaymentData(sortedPayments);
-      
     } catch (error) {
       console.log("Error AxiosGet in ViewPayments,", error);
     }
   };
 
   return (
-    
-    
     <div className={style.contentAll}>
       <Navbar />
-      
-      <div className={style.contButtonBack}>
-          <ButtonBack />
-      </div>
-          <h2 className={style.h2Titulo}>Historial de pagos</h2>
-      
+
+      <button className={style.buttonContratar}>
+        <Link to="/home">Volver al inicio</Link>
+      </button>
+
+      <h2 className={style.h2Titulo}>Historial de pagos</h2>
+
       <Cover />
       <div className={style.fondo}>
-      
-
         <div className={style.contTitle}>
           <h4>
             {paymentData && paymentData[0] && paymentData[0].userName
@@ -195,7 +185,7 @@ function ViewsPayments() {
           </h4>
           {paymentData &&
             paymentData.map((data) => (
-              <div key={data.paymentID} >
+              <div key={data.paymentID}>
                 <PaymentsCard data={data} />
                 <ReviewButton
                   comments={comments}
@@ -209,7 +199,7 @@ function ViewsPayments() {
                 />
               </div>
             ))}
-            <div className={style.footer2}></div>
+          <div className={style.footer2}></div>
         </div>
       </div>
     </div>

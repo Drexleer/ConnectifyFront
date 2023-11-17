@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
-import styled from 'styled-components';
-import {useLocation, useNavigate} from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 const ButtonContainer = styled.button`
   position: relative;
   display: inline-block;
@@ -46,13 +44,13 @@ const ButtonContainer = styled.button`
 
           &::before {
             position: absolute;
-            content: '';
+            content: "";
             top: -0.27rem;
             right: 0;
             left: 0;
             width: 0.625rem;
             height: 0.625rem;
-            border-top: 0.125rem solid ;
+            border-top: 0.125rem solid;
             border-right: 0.125rem solid #fff;
             transform: rotate(-135deg); /* Cambiar la rotación a -135deg */
           }
@@ -91,37 +89,21 @@ const ButtonContainer = styled.button`
   }
 `;
 
-  const ButtonBack = () => {
-    const navigate = useNavigate()
-    const location = useLocation()
-    const [shouldRedirectToHome, setShouldRedirectToHome] = useState(false);
+const ButtonBack = () => {
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      // Verifica si la URL incluye 'mercadopago'
-      setShouldRedirectToHome(location.pathname.includes('mercadopago'));
-    }, [location.pathname]);
-  
-    const handleGoBack = () => {
-      if (shouldRedirectToHome) {
-        navigate('/home');
-      } else {
-        navigate(-1);
-      }
-    };
-  
-    return (
-      <div>
-        {shouldRedirectToHome ? (
-          <button onClick={handleGoBack}>
-            Volver a Inicio
-          </button>
-        ) : (
-          <button onClick={handleGoBack}>
-            Volver Atrás
-          </button>
-        )}
-      </div>
-    );
+  const handleGoBack = () => {
+    navigate(-1);
   };
-  
-  export default ButtonBack;
+
+  return (
+    <ButtonContainer className="learn-more" onClick={handleGoBack}>
+      <div className="circle">
+        <div className="icon arrow"></div>
+      </div>
+      <span className="button-text"> Volver Atrás</span>
+    </ButtonContainer>
+  );
+};
+
+export default ButtonBack;

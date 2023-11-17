@@ -46,8 +46,8 @@ export default function RequestPassword() {
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
         rel="stylesheet"
       />
-<button className='scroll-up'>
-<Link to= '/home' className='Link'>Volver al inicio</Link></button>
+<button className='buttonContratar'>
+<Link to= '/home' className='LinkTo'>Volver al inicio</Link></button>
       <div className="form-gap"></div>
       <div className="container">
         <div className="row">

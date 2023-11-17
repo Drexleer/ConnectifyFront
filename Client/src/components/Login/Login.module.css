@@ -231,7 +231,7 @@
   .spanFormEmail{
       position: absolute;
       font-size: 0.8rem;
-      top: 143px;
+      top: 11.6em;
       color: #e22f2f;
       font-weight: bold;
   }
@@ -239,7 +239,7 @@
   .spanFormPass{
       position: absolute;
       font-size: 0.8rem;
-      top: 200px;
+      top: 16.5em;
       color: #e22f2f;
       font-weight: bold;
   }
@@ -256,7 +256,7 @@
   .spanFormEmailProf{
       position: absolute;
       font-size: 0.8rem;
-      top: 168px;
+      top: 15.3em;
       color: #e22f2f;
       font-weight: bold;
   }
@@ -264,7 +264,7 @@
   .spanFormPassProf{
       position: absolute;
       font-size: 0.8rem;
-      top: 225px;
+      top: 20em;
       color: #e22f2f;
       font-weight: bold;
   }
@@ -302,3 +302,18 @@
 .Aqui:hover {
     cursor: pointer;
 }
+
+
+ 
+  
+  .togglePassword {
+    position: absolute;
+    margin-top: -2.6em;
+    margin-left: 10em  
+     }
+
+     .togglePasswordProf{
+        position: absolute;
+    margin-top: -0.5em;
+    margin-left: 10em 
+     }
