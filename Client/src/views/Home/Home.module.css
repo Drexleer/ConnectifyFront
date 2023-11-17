@@ -14,7 +14,7 @@ Cover {
 } */
 
 .footer {
-  margin-top: 140em;
+  
   z-index: 2;
   position: relative;
 }
@@ -45,6 +45,9 @@ Cover {
   }
 }
 
+/* .cover{
+  height: 100vh;
+} */
 /* En pantallas muy pequeñas, cambia a 1 columna */
 @media (max-width: 480px) {
   .card {

@@ -216,7 +216,7 @@ const Home = () => {
 
   return (
     <div>
-      <Cover />
+      <Cover className={styles.cover}/>
       <Navbar setContainerLogin={setContainerLogin} />
       <div className={styles.container111}>
         {containerLogin ? (
