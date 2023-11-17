@@ -5,12 +5,18 @@ import {
   ButtonContainer,
   DetailBtn,
   Imagen,
+  HomeBtn,
   DivContainer,
 } from './StyledNotification';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logoTituloC.png';
 
-export default function Notification({ anuncio }) {
+export default function Notification({ anuncio, setShowNotification }) {
+  const handleClose = (e) => {
+    e.preventDefault();
+    setShowNotification(false);
+  };
+
   return (
     <DivContainer>
       <NotificationCard>
@@ -29,6 +35,7 @@ export default function Notification({ anuncio }) {
               Ir al Anuncio
             </Link>
           </DetailBtn>
+          <HomeBtn onClick={handleClose}>Cerrar Notificación</HomeBtn>
         </ButtonContainer>
       </NotificationCard>
     </DivContainer>

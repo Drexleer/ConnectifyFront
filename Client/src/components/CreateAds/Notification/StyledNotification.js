@@ -52,7 +52,7 @@ export const ButtonContainer = styled.div`
 export const HomeBtn = styled.button`
   width: 180px;
   height: 40px;
-  background-color: #84bcda;
+  background-color: #903838;
   color: white;
   border: none;
   border-radius: 20px;
@@ -60,7 +60,7 @@ export const HomeBtn = styled.button`
   font-weight: 600;
   cursor: pointer;
   &:hover {
-    background-color: #067bc2;
+    background-color: #ff1b1c;
   }
 `;
 export const DetailBtn = styled.button`
