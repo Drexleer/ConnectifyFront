@@ -38,6 +38,7 @@ const profesiones = [
   "Abogado",
 ];
 
+// 
 const Registration = () => {
   const navigate = useNavigate();
 
