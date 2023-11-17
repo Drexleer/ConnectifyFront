@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAd } from '../../redux/Slices/createAdsSlice';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { Button, Divider, Grid, InputLabel, Paper } from '@mui/material';
+import { Divider, Grid, InputLabel, Paper } from '@mui/material';
 import NavBar from '../../components/Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import { fetchAds } from '../../redux/Slices/adsSlice';
@@ -21,7 +21,6 @@ function CreateAdForm() {
   const [showNotification, setShowNotification] = useState(false);
   const [idAnuncio, setIdAnuncio] = useState('');
   const [hasReachedLimit, setHasReachedLimit] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationErrors, setValidationErrors] = useState({
     title: '',
     price: '',
@@ -29,24 +28,15 @@ function CreateAdForm() {
   });
   const user = useSelector((state) => state.usersLogin.user);
 
-  const [formData, setFormData] = useState(() => {
-    const savedFormData = localStorage.getItem('formData');
-    return savedFormData
-      ? JSON.parse(savedFormData)
-      : {
-          title: '',
-          description: '',
-          price: '',
-          contractType: '',
-          workLocation: '',
-        };
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    price: '',
+    contractType: '',
+    workLocation: '',
   });
 
   const isFormFilled = Object.values(formData).every((value) => value !== '');
-
-  useEffect(() => {
-    localStorage.setItem('formData', JSON.stringify(formData));
-  }, [formData]);
 
   const handleInputChange = (fieldName, value) => {
     let validation;
@@ -83,12 +73,7 @@ function CreateAdForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Evitar múltiples envíos si ya está en proceso
-    if (isSubmitting) {
-      return;
-    }
-
-    setIsSubmitting(true);
+    console.log('Manejando envío...');
     const userInput = {
       ...formData,
       creator: user._id,
@@ -99,24 +84,34 @@ function CreateAdForm() {
 
     try {
       const response = await dispatch(createAd(userInput));
+      console.log('Respuesta:', response);
+
       if (response.payload && response.payload._id) {
         // Éxito al crear el anuncio
+        console.log('Anuncio creado exitosamente.');
         setIdAnuncio(response.payload._id);
         setShowNotification(true);
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 3000);
+        setFormData({
+          title: '',
+          description: '',
+          price: '',
+          contractType: '',
+          workLocation: '',
+        });
         dispatch(fetchAds());
-        localStorage.removeItem('formData');
       } else {
         // Manejar el caso en el que response.payload es undefined o no tiene _id
         console.error(
           'Error al crear el anuncio:',
-          'No puede crear mas de 2 anuncios'
+          'No se pudo crear el anuncio'
         );
         setHasReachedLimit(true);
       }
     } catch (error) {
       console.error('Error al crear el anuncio:', error);
-    } finally {
-      setIsSubmitting(false); // Finaliza la solicitud
     }
   };
 
@@ -185,7 +180,7 @@ function CreateAdForm() {
                     fullWidth
                     sx={{ marginBottom: 2 }}
                   />
-                  {validationErrors.province && (
+                  {validationErrors.price && (
                     <p style={{ color: 'red' }}>{validationErrors.price}</p>
                   )}
                   <InputLabel id="contractType">
@@ -249,14 +244,14 @@ function CreateAdForm() {
                 </Grid>
               </Grid>
               <div style={{ paddingTop: '40px' }}>
-                <Button
-                  variant="contained"
-                  color="primary"
+                <button
                   type="submit"
-                  disabled={!isFormFilled || hasReachedLimit || isSubmitting}
+                  disabled={
+                    !isFormFilled || hasReachedLimit || showNotification
+                  }
                 >
                   Crear anuncio
-                </Button>
+                </button>
                 {hasReachedLimit && (
                   <p style={{ color: 'red', marginTop: '10px' }}>
                     Has alcanzado el límite de anuncios (máximo 2).
