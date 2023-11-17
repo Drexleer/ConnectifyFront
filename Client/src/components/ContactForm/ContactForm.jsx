@@ -82,7 +82,7 @@ const ContactForm = () => {
             required
           ></textarea>
 
-          <input type="submit" value="SUBMIT" />
+          <button type="submit" value="SUBMIT" className="input-submit">Enviar</button>
         </form>
         <div className="direct-contact-container">
           <ul className="contact-list">
