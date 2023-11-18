@@ -37,7 +37,6 @@ export default function RequestPassword() {
 
   return (
     <div>
-      
       <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
@@ -46,8 +45,11 @@ export default function RequestPassword() {
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
         rel="stylesheet"
       />
-<button className='buttonContratar'>
-<Link to= '/home' className='LinkTo'>Volver al inicio</Link></button>
+      <button className="buttonContratar">
+        <Link to="/home" className="LinkTo">
+          Volver al inicio
+        </Link>
+      </button>
       <div className="form-gap"></div>
       <div className="container">
         <div className="row">
@@ -65,7 +67,7 @@ export default function RequestPassword() {
                       id="register-form"
                       role="form"
                       autoComplete="off"
-                      className="form"
+                      className="formRequest"
                       method="post"
                       disabled={disableForm}
                     >
