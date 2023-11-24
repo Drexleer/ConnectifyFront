@@ -37,12 +37,12 @@ const CommentsForAdmin = () => {
   const [loading, setLoading] = useState(false);
 
   const handleClickReviewer = (Client) => {
-    console.log(Client);
+    
     setShowReviewerDetails(true);
     setWhoToShow(Client);
   };
   const handleClickReviewee = (Professional) => {
-    console.log(Professional);
+   
     setShowRevieweeDetails(true);
     setWhoToShow(Professional);
   };

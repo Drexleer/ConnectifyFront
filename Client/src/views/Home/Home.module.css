@@ -14,7 +14,6 @@ Cover {
 } */
 
 .footer {
-  
   z-index: 2;
   position: relative;
 }
@@ -28,6 +27,9 @@ Cover {
 
 /* Establece un ancho máximo para la cuadrícula para evitar que los elementos se estiren demasiado en pantallas grandes */
 @media (min-width: 1200px) {
+  .btnHamburguer {
+    visibility: hidden;
+  }
   .card {
     display: grid;
     grid-template-columns: repeat(3, 7fr);
@@ -36,14 +38,16 @@ Cover {
     grid-row-gap: 7em;
     /* Cambia a 4 columnas en pantallas más grandes */
   }
+
+  .contentselect {
+    /* background-color: blue; */
+    margin-left: 0rem;
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 /* En pantallas aún más pequeñas, cambia a 2 columnas */
-@media (max-width: 768px) {
-  .card {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
 /* .cover{
   height: 100vh;
@@ -77,6 +81,7 @@ Cover {
   margin-top: 1em;
   height: 3rem;
 }
+
 .wideLabel {
   width: 100%;
 }
@@ -152,7 +157,6 @@ Cover {
   display: flex;
   flex-direction: row;
 }
-
 /* ::::::::::::::::::::::::::::::::::::::::::::::::: */
 /* ::::::::::::::::::::::::::::::::::::::::::::::::: */
 /* ::::::::::::::::::::::::::::::::::::::::::::::::: */
@@ -356,7 +360,6 @@ Cover {
   z-index: 300;
 }
 
-
 .btnChat {
   position: fixed;
   bottom: 2em;
@@ -369,4 +372,60 @@ Cover {
   padding: 8px 16px;
   font-size: 14px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .card {
+    grid-template-columns: repeat(1, 8fr);
+    gap: 7em;
+  }
+
+  .filterStyle {
+    display: none;
+  }
+  .ulVisible {
+    visibility: visible;
+    z-index: 1000;
+    position: absolute;
+    background-color: rgb(215, 213, 213);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: start;
+  }
+  .contentselect {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    margin-left: -16em;
+    margin-top: 5em;
+  }
+  .selCity {
+    margin-left: 2.3em;
+  }
+  .contPrecios{
+    margin-top: 5em;
+  }
+  .contOrdenar{
+    margin-top: 1em;
+    margin-left: -0.3em;
+  }
+
+  .contRemoto{
+    margin-top: 1em;
+    margin-left: 0.2em;
+  }
+  .contButtons{
+    margin-top: 4em;
+    padding-bottom: 2em;
+    margin-left: 4.3em;
+    gap: 3em;
+  }
+
+  .btnAbrir{
+    font-size: 2em;
+  }
 }

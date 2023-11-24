@@ -17,7 +17,7 @@ const ProfsForAdmin = () => {
     };
     fetchData();
   }, [dispatch]);
-  console.log(profsList);
+;
   return (
     <>
       {profsList.map((prof) => (

@@ -75,3 +75,11 @@
     }
 
 
+    @media screen and (max-width: 768px){
+      .Cover {
+ 
+width: 170vh;
+
+     
+    }
+  }

@@ -22,6 +22,7 @@ import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
 import Cover from '../../components/Cover/Cover';
+import { RiMenuSearchFill } from "react-icons/ri";
 
 const Home = () => {
   //* Declaraciones de variables
@@ -37,6 +38,9 @@ const Home = () => {
   const [workLocation, setWorkLocation] = useState('');
   const [chatOpen, setChatOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [menuVisible, setMenuVisible] = useState(false);
+
+
  
 
 
@@ -218,11 +222,14 @@ const Home = () => {
     <div>
       <Cover className={styles.cover}/>
       <Navbar setContainerLogin={setContainerLogin} />
+     
       <div className={styles.container111}>
         {containerLogin ? (
           <Login setContainerLogin={setContainerLogin} />
         ) : null}
-        <div className={styles.filterStyle}>
+         <button onClick={() => setMenuVisible(!menuVisible)} className={styles.btnHamburguer}><RiMenuSearchFill className={styles.btnAbrir}/></button>
+      <ul className={menuVisible ? styles.ulVisible : styles.filterStyle}>
+      
           <div className={styles.contProfesionales}>
             <div className={styles.contenedorSelect}>
               <div className={styles.contentselect}>
@@ -343,7 +350,7 @@ const Home = () => {
               </button>
             </div>
           </div>
-        </div>
+        </ul>
         <div className={styles.container}>
           {isLoading ? (
             <div>

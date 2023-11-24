@@ -6,6 +6,7 @@ import { fetchRequest } from '../../../redux/Slices/RequestPasswordSlice';
 import { selectUserType } from '../../../redux/Slices/userTypeSlice';
 import './RequestPassword.css';
 import { Link } from 'react-router-dom';
+import Cover from '../../Cover/Cover'
 
 export default function RequestPassword() {
   const [email, setEmail] = useState('');
@@ -37,6 +38,9 @@ export default function RequestPassword() {
 
   return (
     <div>
+
+      <Cover />
+
       <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
