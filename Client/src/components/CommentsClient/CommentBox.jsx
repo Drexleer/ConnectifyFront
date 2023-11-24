@@ -82,6 +82,9 @@ const CommentBox = ({ onClose, professionalId }) => {
           precision={0.5}
           onChange={handleChange}
         />
+
+        {rating<1 && <label className={style.labelEstrellas}>No olvides calificar</label>}
+        
         <div>
   <textarea
     name="Comentario"
@@ -97,9 +100,14 @@ const CommentBox = ({ onClose, professionalId }) => {
             X
           </button>
         )}
-        <button onClick={handleComment} className={style.button}>
-          Enviar
-        </button>
+        
+        {rating<1? 
+            <button onClick={handleComment} disabled className={style.button}>Enviar </button>
+        :
+            <button onClick={handleComment} className={style.button}>Enviar </button>
+
+        }
+          
       </div>
 
       {popUpComment && (

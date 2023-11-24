@@ -19,6 +19,8 @@ import { useSelector } from 'react-redux';
 import ClientDashboarsRenderer from './components/DashboardData/Renderizers/clientDashboarsRenderer';
 import ProfessionalDashboarsRenderer from './components/DashboardData/Renderizers/professionalDashboarsRenderer';
 import ContactForm from './components/ContactForm/ContactForm';
+import AboutUs from './components/AboutUs/AboutUs';
+
 
 function App() {
   const users = useSelector((state) => state.usersLogin.user);
@@ -29,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/aboutus" element={<AboutUs/>} />
           <Route
             path="/professional/dashboardProf"
             element={<DashboardProf />}

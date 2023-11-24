@@ -56,7 +56,7 @@ function CommentsClient({ id }) {
             <CardContent>
               <div className="profile-container">
                 <div className="profile-text">
-                <Typography variant="body2" sx={{ fontSize: '15px', fontWeight:'bold', marginLeft:'37em' }}>
+                <Typography variant="body2" sx={{ fontSize: '15px', fontWeight:'bold', marginLeft:'35em' }}>
                   {new Date(comment.date).toLocaleDateString()}
                   </Typography>
                   <Typography variant="h6" sx={{marginTop:'-1.5em', paddingBottom:'1em'}}>

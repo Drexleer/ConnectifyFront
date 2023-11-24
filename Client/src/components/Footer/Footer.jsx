@@ -1,6 +1,7 @@
 import './Footer.css';
 import { BsFacebook, BsLinkedin, BsInstagram } from 'react-icons/bs';
 import { AiOutlineTwitter } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -35,24 +36,19 @@ export default function Footer() {
       </ul>
       <ul className="menu">
         <li className="menu__item">
-          <a className="menu__link" href="ourTeam">
-            Nuestro Equipo
-          </a>
+          <Link to={'/ourTeam'} style={{ textDecoration: 'none' }}>
+            <a className="menu__link">Nuestro Equipo</a>
+          </Link>
         </li>
         <li className="menu__item">
-          <a className="menu__link" href="#">
-            Sobre nosotros
-          </a>
+          <Link to={'/aboutus'} style={{ textDecoration: 'none' }}>
+            <a className="menu__link">Sobre nosotros</a>
+          </Link>
         </li>
         <li className="menu__item">
-          <a className="menu__link" href="#">
-            Necesitas Ayuda
-          </a>
-        </li>
-        <li className="menu__item">
-          <a className="menu__link" href="contact">
-            Contacto
-          </a>
+          <Link to={'/contact'} style={{ textDecoration: 'none' }}>
+            <a className="menu__link">Contacto</a>
+          </Link>
         </li>
       </ul>
       <p>&copy;2023 Connectify | All Rights Reserved</p>

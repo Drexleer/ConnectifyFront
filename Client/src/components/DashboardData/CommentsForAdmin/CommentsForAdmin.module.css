@@ -1,6 +1,7 @@
-.containerCommentsAdmin{
+.containerCommentsAdmin {
   width: 100%;
   min-height: 45rem;
+  max-height: 45rem;
   margin-top: 1.55rem;
   padding: 1rem;
   display: flex;
@@ -10,32 +11,33 @@
   border-radius: 20px;
   border: 2px solid #2196f3;
   gap: 1rem;
+  overflow: auto;
 }
 
-.titleCommentsAdmin{
+.titleCommentsAdmin {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.containesCommentAdmin{
+.containesCommentAdmin {
   width: 100%;
-  height: 10rem;
+  height: auto;
   display: flex;
   padding: 1rem;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   flex-direction: column;
   border: 1px solid #3b7ba4;
   border-radius: 20px;
 }
 
-.commentAdmin{
+.commentAdmin {
   text-align: center;
   font-size: 1rem;
 }
 
-.containerTextButtonCommentAdmin{
+.containerTextButtonCommentAdmin {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -43,7 +45,7 @@
   gap: 2rem;
 }
 
-.containerButtonCommentAdmin{
+.containerButtonCommentAdmin {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,11 +53,11 @@
   gap: 1rem;
 }
 
-.containerTextCommentAdmin{
+.containerTextCommentAdmin {
   width: 70%;
 }
 
-.buttonCommentAdminCensurado{
+.buttonCommentAdminCensurado {
   width: 10rem;
   padding: 0.3rem;
   border-radius: 20px;
@@ -65,17 +67,17 @@
   color: #ffffff;
 }
 
-.buttonCommentAdminHabilitado{
+.buttonCommentAdminHabilitado {
   width: 10rem;
   padding: 0.3rem;
   border-radius: 20px;
   outline: none;
   border: none;
-  background-color:#4caf50; 
+  background-color: #4caf50;
   color: #000000;
 }
 
-.buttonCommentAdminLeido{
+.buttonCommentAdminLeido {
   width: 10rem;
   padding: 0.3rem;
   border-radius: 20px;
@@ -87,21 +89,34 @@
 
 .vemos {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  flex-direction: column;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .details {
   background-color: white;
-  height: 400px;
+  height: 450px;
   width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 5%;
+  border: 2px solid rgb(38, 38, 104);
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 .modal {
   display: flex;
