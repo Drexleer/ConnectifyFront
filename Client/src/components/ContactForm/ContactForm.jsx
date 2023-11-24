@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import axios from 'axios';
 const VITE_API_BASE = import.meta.env.VITE_API_BASE || 'localhost';
@@ -33,7 +34,7 @@ const ContactForm = () => {
       );
 
       // Handle the response as needed
-      console.log(response.data);
+      
       window.alert('Mensaje enviado');
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);

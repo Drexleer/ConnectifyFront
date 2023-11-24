@@ -73,7 +73,7 @@ function CreateAdForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Manejando envío...');
+    
     const userInput = {
       ...formData,
       creator: user._id,
@@ -84,11 +84,11 @@ function CreateAdForm() {
 
     try {
       const response = await dispatch(createAd(userInput));
-      console.log('Respuesta:', response);
+    
 
       if (response.payload && response.payload._id) {
         // Éxito al crear el anuncio
-        console.log('Anuncio creado exitosamente.');
+       
         setIdAnuncio(response.payload._id);
         setShowNotification(true);
         setTimeout(() => {
