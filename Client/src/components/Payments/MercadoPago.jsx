@@ -91,10 +91,14 @@ function mercadoPago(pay) {
   return (
     <>
       <h4>{cargandoSiNo}</h4>
-      (walletVisible && preferenceId && pay.pay) &&{" "}
-      <Wallet initialization={{ preferenceId }} />
+      {(walletVisible && preferenceId && pay.pay) && (
+        <>
+          {console.log('Renderizando el componente Wallet')}
+          <Wallet initialization={{ preferenceId }} />
+        </>
+      )}
     </>
-  );
-}
 
+  )
+}
 export default mercadoPago;
