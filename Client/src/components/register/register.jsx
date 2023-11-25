@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import miApi from "../../../localidades.json";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -6,8 +7,8 @@ import { fetchUserRegister } from "../../redux/Slices/registerSlice";
 import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Cover from '../Cover/Cover'
-import style from './RegisterCss/register.module.css'
+import Cover from "../Cover/Cover";
+import style from "./RegisterCss/register.module.css";
 
 import {
   InputLabel,
@@ -15,7 +16,6 @@ import {
   Select,
   MenuItem,
   FormControl,
-  Autocomplete,
   Button,
 } from "@mui/material";
 import * as validations from "./ValidationsRegister";
@@ -39,7 +39,7 @@ const profesiones = [
   "Abogado",
 ];
 
-// 
+//
 const Registration = () => {
   const navigate = useNavigate();
 
@@ -417,14 +417,9 @@ const Registration = () => {
     );
   };
 
-  console.log(formData);
-
   return (
     <div>
-
-      <Navbar />{' '}
-      <Cover />
-
+      <Navbar /> <Cover />
       <div
         style={{
           padding: "2rem 8rem ",

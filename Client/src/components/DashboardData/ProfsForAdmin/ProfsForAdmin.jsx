@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
@@ -58,21 +59,20 @@ const ProfsForAdmin = () => {
       try {
         const banned = await dispatch(deleteClientByIdAdmin(prof._id));
         const update = await dispatch(fetchClientsForAdmin());
-        console.log("ID del cliente a bannear", banned);
         setSelectedData(update);
       } catch (error) {}
     } else if (prof.creator) {
       try {
         const banned = await dispatch(deleteAdByIdAdmin(prof._id));
         const update = await dispatch(fetchAdsForAdmin());
-        console.log("ID del anuncio a bannear", banned);
+        
         setSelectedData(update);
       } catch (error) {}
     } else if (prof.locationJob) {
       try {
         const banned = await dispatch(deleteProfByIdAdmin(prof._id));
         const update = await dispatch(fetchProfsForAdmin());
-        console.log("ID del profecional a bannear", banned.data);
+       
         newState = selectedData.map((sel) =>
           sel._id === banned.data._id ? banned.data : sel
         );
@@ -129,14 +129,16 @@ const ProfsForAdmin = () => {
           if (!prof.isDeleted) {
             const banned = await dispatch(deleteProfByIdAdmin(prof._id));
             await dispatch(fetchProfsForAdmin());
-            console.log("ID del profecional a bannear", banned);
+
 
             update.push(banned.data);
           }
         })
       );
       setSelectedData(update);
-    } catch (error) {}
+    } catch (error) {
+      console.error(error)
+    }
   };
   const handleUnbanProf = async () => {
     showLongLoading();
@@ -155,7 +157,9 @@ const ProfsForAdmin = () => {
         })
       );
       setSelectedData(update);
-    } catch (error) {}
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -165,7 +169,7 @@ const ProfsForAdmin = () => {
     setSelectedProfessional(prof);
     console.log(prof);
     !isModalVisible ? setIsModalVisible(true) : setIsModalVisible(false);
-    console.log("PopUp de " + prof.userName);
+    
   };
 
   const handleClosePopUp = () => {

@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import miApi from "../../../localidades.json";
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import style from "./ModifyProfessionalData.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchModifyDataProf } from "../../redux/Slices/modifyProfSlice";
@@ -49,27 +50,6 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
     setForm({ ...form, description: valor });
     setError(validationModify({ ...form, description: valor }));
   };
-
-  // const handleImageUpload = (e) => {
-  //   const image = e.target.files[0];
-
-  //   const imgElement = document.createElement("img");
-  //   imgElement.src = URL.createObjectURL(image)
-
-  //   const imageUpdate = imgElement.src.slice(5)
-
-  //   if (imageUpdate) {
-  //     setForm({
-  //       ...form,
-  //       image: imageUpdate,
-  //     });
-  //     setImagePreview(imageUpdate)
-  //   }
-
-  //   ;
-
-  //   console.log(imageUpdate);
-  // };
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
@@ -128,81 +108,80 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
         />
         <div className={style.containerTitleModifyProf}>
           <h2>Modificacion de datos</h2>
-          <img src={form.image} alt="" className={style.imageUpdateProf}/>
+          <img src={form.image} alt="" className={style.imageUpdateProf} />
         </div>
-        <form action="" onSubmit={handlerSubmit} className={style.containerFormUpdateProf}>
+        <form
+          action=""
+          onSubmit={handlerSubmit}
+          className={style.containerFormUpdateProf}
+        >
           <div className={style.cont3Inputs}>
-            <div className={style.contLabelInput}> 
-                <label>Nombre</label>  
-                <input
-                  type="text"
-                  placeholder="Nombre"
-                  value={form.name}
-                  disabled
-                  onChange={handlerChange}
-                  id="name"
-                  className={style.inputDisableUpdateProf}
-                />
+            <div className={style.contLabelInput}>
+              <label>Nombre</label>
+              <input
+                type="text"
+                placeholder="Nombre"
+                value={form.name}
+                disabled
+                onChange={handlerChange}
+                id="name"
+                className={style.inputDisableUpdateProf}
+              />
             </div>
-            <div className={style.contLabelInput}> 
-                <label>Apellido</label>  
-                <input
-                  type="text"
-                  placeholder="Apellido"
-                  value={form.lastName}
-                  disabled
-                  onChange={handlerChange}
-                  id="lastName"
-                  className={style.inputDisableUpdateProf}
-                />
+            <div className={style.contLabelInput}>
+              <label>Apellido</label>
+              <input
+                type="text"
+                placeholder="Apellido"
+                value={form.lastName}
+                disabled
+                onChange={handlerChange}
+                id="lastName"
+                className={style.inputDisableUpdateProf}
+              />
             </div>
 
-            <div className={style.contLabelInput}> 
-                <label>Nombre de Usuario</label>  
-                <input
-                  type="text"
-                  placeholder="Nombre de Usuario"
-                  value={form.userName}
-                  disabled
-                  onChange={handlerChange}
-                  id="userName"
-                  className={style.inputDisableUpdateProf}
-                />
-            </div>    
-          
-          
+            <div className={style.contLabelInput}>
+              <label>Nombre de Usuario</label>
+              <input
+                type="text"
+                placeholder="Nombre de Usuario"
+                value={form.userName}
+                disabled
+                onChange={handlerChange}
+                id="userName"
+                className={style.inputDisableUpdateProf}
+              />
+            </div>
           </div>
 
           <div>
             <div className={style.contEmailProf}>
-                <label>Correo</label>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={form.email}
-                  onChange={handlerChange}
-                  id="email"
-                  className={style.inputUpdateProfemail}
-                />
-                <span className={style.spanUpdateProfEmail}>{error.email}</span>
+              <label>Correo</label>
+              <input
+                type="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={handlerChange}
+                id="email"
+                className={style.inputUpdateProfemail}
+              />
+              <span className={style.spanUpdateProfEmail}>{error.email}</span>
             </div>
             <div className={style.contEmailProf}>
-                <label>Profesión</label>
-                <input
-                  type="text"
-                  placeholder="Profesion"
-                  value={form.profession}
-                  onChange={handlerChange}
-                  id="profession"
-                  className={style.inputUpdateProf}
-                />
-                <span className={style.spanUpdateProfProfession}>{error.profession}</span>
+              <label>Profesión</label>
+              <input
+                type="text"
+                placeholder="Profesion"
+                value={form.profession}
+                onChange={handlerChange}
+                id="profession"
+                className={style.inputUpdateProf}
+              />
+              <span className={style.spanUpdateProfProfession}>
+                {error.profession}
+              </span>
             </div>
-            
-
-
-
-
           </div>
           <div>
             <div className={style.contProvCity}>
@@ -236,12 +215,18 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
                 className={style.selectUpdateProf}
               >
                 {citiesInSelectedProvince.map((location, index) => (
-                  <option key={index} value={location.nombre} defaultValue={location.nombre}>
+                  <option
+                    key={index}
+                    value={location.nombre}
+                    defaultValue={location.nombre}
+                  >
                     {location.nombre}
                   </option>
                 ))}
               </select>
-              <span className={style.spanUpdateProfLocation}>{error.location}</span>
+              <span className={style.spanUpdateProfLocation}>
+                {error.location}
+              </span>
             </div>
           </div>
           <textarea
@@ -253,8 +238,12 @@ const ModifyProfessionalData = ({ setPopUpModify }) => {
             cols={50}
             className={style.textareaUpdateProf}
           />
-          <span className={style.spanTextareaUpdateProf}>{error.description}</span>
-          <button type="submit" className={style.btnUpdateProf}>Modificar</button>
+          <span className={style.spanTextareaUpdateProf}>
+            {error.description}
+          </span>
+          <button type="submit" className={style.btnUpdateProf}>
+            Modificar
+          </button>
         </form>
         {popUpDataProf && (
           <div className={style.containerPopUpDataProf}>

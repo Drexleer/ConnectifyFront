@@ -44,7 +44,7 @@ export const fetchGetAllFavorites = (clientId) => {
 
       dispatch(getAllFavorites(data));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 };
@@ -56,20 +56,20 @@ export const fetchAddFavorites = (form) => {
 
       dispatch(addFavorite(data));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 };
 
 export const fetchRemoveFavorites = (form) => {
   return async (dispatch) => {
-    console.log(form);
+    console.error(form);
     try {
       const { data } = await axios.post(VITE_API_BASE + `/fav/delete/`, form);
-      console.log(data);
+      console.error(data);
       dispatch(removeFavorite(data));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 };

@@ -53,7 +53,7 @@ const Home = () => {
   //traer usuario ya después de iniciar sesión
   const nickname = userId?.userName || user?.nickname || '';
   const imageUser = userId?.image || user?.picture || '';
-  //const email = userId?.email || user.email || ''; //Usar cuando se necesite el email
+  
 
   //* Paginado
   const [currentPage, setCurrentPage] = useState(1);
@@ -293,9 +293,7 @@ const Home = () => {
           </div>
 
           <div className={styles.contOrdenar}>
-            {/* <label>
-                Orden
-              </label> */}
+            
             <select
               className={`${styles.selectCss} ${styles.selectOrder}`}
               id="sortPrice"
@@ -307,8 +305,7 @@ const Home = () => {
               <option value="desc">Descendente</option>
             </select>
           </div>
-          {/* <FormControl sx={{ m: 1, minWidth: 170, maxWidth: 200 }}>
-              <InputLabel>Trabajo</InputLabel> */}
+          
           <div className={styles.contRemoto}>
             <select
               className={`${styles.selectCss} ${styles.selectRemoto}`}
@@ -320,7 +317,7 @@ const Home = () => {
               <option value="Remoto">Remoto</option>
               <option value="Presencial">Presencial</option>
             </select>
-            {/* </FormControl> */}
+           
           </div>
           <div className={styles.contButtons}>
             <div className={styles.contButton}>

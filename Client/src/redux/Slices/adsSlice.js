@@ -57,12 +57,10 @@ export const fetchAdsForAdmin = () => {
     const endpoint = `${VITE_API_BASE}/ads/anunciosAdmin`;
     try {
       const response = await axios.get(endpoint);
-      console.log(response.data);
       const ads = response.data;
       dispatch(getAllAds(ads));
       return ads;
     } catch (error) {
-      console.log(error);
       return "No hay avisos disponibles";
     }
   };
@@ -76,7 +74,6 @@ export const deleteAdByIdAdmin = (id) => {
 
       dispatch(deleteAd(deleted));
     } catch (error) {
-      console.log(error);
       return "No se pudo eliminar dicho anuncio";
     }
   };

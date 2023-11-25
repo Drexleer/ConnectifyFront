@@ -11,7 +11,6 @@ import { fetchGetProfById } from '../../redux/Slices/modifyProfSlice';
 import axios from 'axios';
 import PaymentsProf from '../../components/PaymentsProf/PaymentsProf';
 import Loading from '../../components/Utils/Loading/Loading';
-
 import ButtonBack from '../../components/Utils/ButtonBack/ButtonBack';
 import style from './DashboardProf.module.css';
 

@@ -14,14 +14,13 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import Logo from "../../assets/LogoCLogin.png";
 import LogoGoogle from "../../assets/Logo-Google.png";
-import RequestPassword from "../ResetPassword/RequestPassword/RequestPassword";
 import { setUserType } from "../../redux/Slices/userTypeSlice";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
-import { IconButton } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { IconButton } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-const Login = ({setContainerLogin}) => {
+const Login = ({ setContainerLogin }) => {
   const dispatch = useDispatch();
   const [showLogin, setShowLogin] = useState(false);
   const [showLoginClient, setShowLoginClient] = useState(false);
@@ -59,7 +58,6 @@ const Login = ({setContainerLogin}) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const result = await dispatch(fetchUserLogin(form));
-    console.log(result);
     if (result.access === true) {
       setShowLogin(true);
       setShowLoginProfessional(false);
@@ -149,13 +147,13 @@ const Login = ({setContainerLogin}) => {
             top: "38%",
             left: "36%",
             border: "2px solid black",
-            borderRadius: "20px", 
+            borderRadius: "20px",
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
             backgroundColor: "rgba(255,255,255,0.9)",
             zIndex: "1000",
-            marginLeft: "-6.9em"
+            marginLeft: "-6.9em",
           }}
         >
           <IconButton
@@ -169,7 +167,7 @@ const Login = ({setContainerLogin}) => {
             }}
             onClick={handlerCloseLoginPopUp}
           >
-            <CancelRoundedIcon/>
+            <CancelRoundedIcon />
           </IconButton>
           <div
             style={{
@@ -177,7 +175,6 @@ const Login = ({setContainerLogin}) => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-            
             }}
           >
             <h3>Email y/o Password incorrectos</h3>
@@ -240,28 +237,30 @@ const Login = ({setContainerLogin}) => {
                 value={form.email}
                 placeholder="Correo"
               />
-              
+
               <span className={style.spanFormEmail}>{error.email}</span>
-              
+
               <input
                 id="password"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 onChange={handleChange}
                 value={form.password}
                 placeholder="Contraseña"
               />
               <span
-            className={style.togglePassword}
-            onClick={togglePasswordVisibility}
-          >
-            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
-          </span>
-             
-              <label className={style.recuperarPass}>Recupere su contraseña 
-                <Link to={"/password"}><label className={style.Aqui}> AQUÍ</label></Link>
+                className={style.togglePassword}
+                onClick={togglePasswordVisibility}
+              >
+                <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+              </span>
+
+              <label className={style.recuperarPass}>
+                Recupere su contraseña
+                <Link to={"/password"}>
+                  <label className={style.Aqui}> AQUÍ</label>
+                </Link>
               </label>
-              
-             
+
               <span className={style.spanFormPass}>{error.password}</span>
               <button type="submit" className={style.btnGetIn}>
                 ENTRAR
@@ -311,25 +310,28 @@ const Login = ({setContainerLogin}) => {
               <span className={style.spanFormEmailProf}>{error.email}</span>
               <input
                 id="password"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 onChange={handleChange}
                 value={form.password}
                 placeholder="Contraseña"
               />
               <span
-            className={style.togglePasswordProf}
-            onClick={togglePasswordVisibility}
-          >
-            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
-          </span>
+                className={style.togglePasswordProf}
+                onClick={togglePasswordVisibility}
+              >
+                <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+              </span>
               <span className={style.spanFormPassProf}>{error.password}</span>
               <button type="submit" className={style.btnGetIn}>
                 ENTRAR
               </button>
             </form>
-            <label className={style.recuperarPass}>Recupere su contraseña 
-                <Link to={"/password"}><label className={style.Aqui}> AQUÍ</label></Link>
-              </label>
+            <label className={style.recuperarPass}>
+              Recupere su contraseña
+              <Link to={"/password"}>
+                <label className={style.Aqui}> AQUÍ</label>
+              </Link>
+            </label>
             {/* <p>
               <Link to={"/password"}>Recuperar contraseña</Link>
             </p> */}
@@ -357,4 +359,3 @@ const Login = ({setContainerLogin}) => {
 };
 
 export default Login;
-

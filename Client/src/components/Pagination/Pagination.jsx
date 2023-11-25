@@ -11,7 +11,6 @@ function Pagination({
   adsPerPage,
   totalAds,
   onPageChange,
-  //currentAds, propiedad para saber cuantos anuncios hay en cada pagina
 }) {
   const [inputPage, setInputPage] = useState(currentPage);
   const totalPages = Math.ceil(totalAds / adsPerPage);

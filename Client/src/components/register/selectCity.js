@@ -22,12 +22,8 @@ function getProvinces(data) {
 // Luego puedes usar estas funciones de la siguiente manera:
 
 const citiesByProvince = getCitiesByProvince(miApi);
-console.log('Lista de ciudades por provincia:', citiesByProvince);
-
 const selectedProvince = 'Nombre de la provincia que deseas seleccionar';
 const citiesInSelectedProvince = citiesByProvince[selectedProvince];
-console.log('Ciudades en la provincia seleccionada:', citiesInSelectedProvince);
-
 const provincesList = getProvinces(miApi);
-console.log('Lista de provincias:', provincesList);
+
 

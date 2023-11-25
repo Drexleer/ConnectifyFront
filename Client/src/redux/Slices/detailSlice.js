@@ -1,11 +1,10 @@
 /* eslint-disable no-useless-catch */
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-const VITE_API_BASE = import.meta.env.VITE_API_BASE || 'localhost';
-console.log(VITE_API_BASE);
+import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+const VITE_API_BASE = import.meta.env.VITE_API_BASE || "localhost";
 
 export const detailAd = createSlice({
-  name: 'detailId',
+  name: "detailId",
   initialState: {
     detail: [],
   },
