@@ -1,0 +1,10 @@
+.titleDashAdmin{
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 470px) {
+  .titleDashAdmin {
+    font-size: 1.1rem;
+  }
+}
+

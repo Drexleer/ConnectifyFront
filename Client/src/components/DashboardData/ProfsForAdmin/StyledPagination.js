@@ -4,5 +4,5 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10em;
+  margin-bottom: 8em;
 `;
