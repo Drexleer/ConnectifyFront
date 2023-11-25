@@ -189,3 +189,14 @@
   border-radius: 50%;
   font-size: 12px;
 }
+
+@media (max-width: 768px){
+
+  .clientProf{
+   visibility: hidden;
+  }
+
+  .logoNav{
+    margin-left: -1.7em;
+  }
+}

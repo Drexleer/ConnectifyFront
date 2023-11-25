@@ -26,26 +26,7 @@ Cover {
 }
 
 /* Establece un ancho máximo para la cuadrícula para evitar que los elementos se estiren demasiado en pantallas grandes */
-@media (min-width: 1200px) {
-  .btnHamburguer {
-    visibility: hidden;
-  }
-  .card {
-    display: grid;
-    grid-template-columns: repeat(3, 7fr);
-    gap: 5em;
-    padding: 4em;
-    grid-row-gap: 7em;
-    /* Cambia a 4 columnas en pantallas más grandes */
-  }
 
-  .contentselect {
-    /* background-color: blue; */
-    margin-left: 0rem;
-    display: flex;
-    flex-direction: row;
-  }
-}
 
 /* En pantallas aún más pequeñas, cambia a 2 columnas */
 
@@ -427,5 +408,26 @@ Cover {
 
   .btnAbrir{
     font-size: 2em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .btnHamburguer {
+    visibility: hidden;
+  }
+  .card {
+    display: grid;
+    grid-template-columns: repeat(3, 7fr);
+    gap: 5em;
+    padding: 4em;
+    grid-row-gap: 7em;
+    /* Cambia a 4 columnas en pantallas más grandes */
+  }
+
+  .contentselect {
+    /* background-color: blue; */
+    margin-left: 0rem;
+    display: flex;
+    flex-direction: row;
   }
 }

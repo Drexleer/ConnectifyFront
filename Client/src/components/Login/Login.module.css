@@ -317,3 +317,25 @@
     margin-top: -0.5em;
     margin-left: 10em 
      }
+
+     @media (max-width: 768px){
+
+        .containerPopUpGoogle{
+            position: absolute;
+            width: 20rem;
+            height: 10rem;
+            top: 38%;
+            left: 36%;
+            border: 3px solid #e2af2f;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            background-color: #ffffff;
+            z-index: 1000;
+            margin-left: -6.9em;
+        }
+     
+
+     }
