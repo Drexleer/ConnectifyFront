@@ -68,7 +68,7 @@ const DashboardAdmin = () => {
               >
                 <GoCommentDiscussion className={style.iconPanelComment} />
                 <span className={style.textPanelComment}>
-                  Panel de Usuarios
+                  Comentarios
                 </span>
               </button>
             </div>
