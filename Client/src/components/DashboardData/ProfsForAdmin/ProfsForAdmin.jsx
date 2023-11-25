@@ -187,198 +187,180 @@ const ProfsForAdmin = () => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-      }}
-    >
-      <div>
-        <div>
-          <select
-            name="user"
-            id="user type"
-            onChange={(e) => handleUserType(e.target.value)}
-          >
-            <option value="professionals">Profesionales</option>
-            <option value="clients">Clientes</option>
-            <option value="ads">Anuncios</option>
-          </select>
-          {selectedData !== clients && selectedData !== ads && (
+    <div className={style.containerAllPanelUser}>
+      <div className={style.containerPanelUserAdmin}>
+        <div className={style.containerAllPanelSelectAdmin}>
+          <div className={style.containerPanelSelectAdmin}>
             <select
-              name="profession"
-              id="profession"
-              onChange={(e) => handleSelentProfession(e)}
+              name="user"
+              id="user type"
+              onChange={(e) => handleUserType(e.target.value)}
+              className={style.selectPanelAdmin}
             >
-              <option key="0" value="Todas las Profesiones">
-                Todas las Profesiones
+              <option value="professionals" className={style.optionPanelAdmin}>
+                Profesionales
               </option>
-              {profession.map((prof, index) => (
-                <option key={index} value={prof}>
-                  {prof}
-                </option>
-              ))}
+              <option value="clients" className={style.optionPanelAdmin}>
+                Clientes
+              </option>
+              <option value="ads" className={style.optionPanelAdmin}>
+                Anuncios
+              </option>
             </select>
-          )}
-          {showButton && (
-            <div>
-              <button
-                style={{ backgroundColor: "#3b7ba4" }}
-                onClick={(e) => handleBanProf(e)}
+            {selectedData !== clients && selectedData !== ads && (
+              <select
+                name="profession"
+                id="profession"
+                onChange={(e) => handleSelentProfession(e)}
+                className={style.selectPanelAdmin}
               >
-                Suspender Profesión
-              </button>
-              <button
-                style={{ backgroundColor: "#3b7ba4" }}
-                onClick={(e) => handleUnbanProf(e)}
+                <option
+                  key="0"
+                  value="Todas las Profesiones"
+                  className={style.optionPanelAdmin}
+                >
+                  Todas las Profesiones
+                </option>
+                {profession.map((prof, index) => (
+                  <option
+                    key={index}
+                    value={prof}
+                    className={style.optionPanelAdmin}
+                  >
+                    {prof}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+
+          <div>
+            {showButton && (
+              <div className={style.containerBtnsPanelAdminProf}>
+                <button
+                  onClick={(e) => handleBanProf(e)}
+                  className={style.btnPanelAdminProfLayOff}
+                >
+                  Suspender Profesión
+                </button>
+                <button
+                  onClick={(e) => handleUnbanProf(e)}
+                  className={style.btnPanelAdminProfEnable}
+                >
+                  Habilitar Profesión
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className={style.containerPanelUser}>
+          {selectedData.length > 0 ? (
+            currentData?.map((prof, index) => (
+              <tr
+                key={prof.id}
+                className={
+                  prof.isDeleted
+                    ? style.containerUserPanelAdminLayOff
+                    : style.containerUserPanelAdmin
+                }
               >
-                Habilitar Profesión
-              </button>
-            </div>
+                <div className={style.containerUser}>
+                  <div className={style.containerimageNameUserLocation}>
+                    <td>
+                      {prof.creator ? (
+                        <img
+                          src={prof.creator[0].image}
+                          alt=""
+                          className={style.imagePanelUserAdmin}
+                        />
+                      ) : (
+                        <img
+                          src={
+                            prof.image ||
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMq4cGfAmaJAYVpXFPLY57EzVip1FTMK-ETQH1aU24VD-bYx5wJ4srHFP99zAgqXBvfQ&usqp=CAU"
+                          }
+                          alt="Default Image"
+                          className={style.imagePanelUserAdmin}
+                        />
+                      )}
+                    </td>
+                    <td className={style.nameUserPanelAdmin}>
+                      <span className={style.nameUserPanelAdminSpan}>
+                        Nombre de Usuario:
+                      </span>
+                      <span>{prof.userName || prof.creator[0].userName}</span>
+                    </td>
+                    <td className={style.nameUserPanelAdmin}>
+                      <span className={style.nameUserPanelAdminSpan}>
+                        Localidad:
+                      </span>
+                      <span>
+                        {prof.locationJob ||
+                          prof.province ||
+                          prof.postingDate?.substring(0, 10)}
+                      </span>
+                    </td>
+                  </div>
+
+                  <div className={style.containerEmailProfUserPanel}>
+                    <td className={style.nameUserPanelAdmin}>
+                      <span className={style.nameUserPanelAdminSpan}>
+                        Email:
+                      </span>
+                      <span>{prof.email || prof.creator[0].email}</span>
+                    </td>
+
+                    <td className={style.nameUserPanelAdmin}>
+                      {prof.profession && (
+                        <span className={style.nameUserPanelAdminSpan}>
+                          Profesion:
+                        </span>
+                      )}
+                      <span>
+                        {prof.profession ? prof.profession : "Cliente"}
+                      </span>
+                    </td>
+                  </div>
+                </div>
+                <div>
+                  <td className={style.containerBtnActionsPanelUser}>
+                    <button
+                      onClick={(e) => handleDelete(e, prof)}
+                      className={
+                        prof.isDeleted
+                          ? style.btnActionEnableUser
+                          : style.btnActionLayOffUser
+                      }
+                    >
+                      {prof.isDeleted ? "Habilitar" : "Suspender"}
+                    </button>
+                    <button
+                      onClick={() => handlePopUp(prof)}
+                      className={style.btnSupportPanelUser}
+                    >
+                      Soporte
+                    </button>
+                    {isModalVisible && selectedProfessional === prof && (
+                      <div className={style.vemos}>
+                        <SupportPopUp
+                          isVisible={isModalVisible}
+                          professional={selectedProfessional}
+                          onClose={handleClosePopUp}
+                        />
+                      </div>
+                    )}
+                  </td>
+                </div>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="9">No se encontraron profecionales</td>
+            </tr>
           )}
         </div>
-        {selectedData.length > 0 ? (
-          currentData?.map((prof, index) => (
-            <tr key={prof.id}>
-              <th
-                style={{
-                  backgroundColor: prof.isDeleted ? "#edd55e" : "#9bdb92",
-                }}
-                scope="row"
-              >
-                {index + 1}
-              </th>
-              <td
-                style={{
-                  backgroundColor: prof.isDeleted ? "#edd55e" : "#9bdb92",
-                }}
-              >
-                {prof.creator ? (
-                  <img
-                    src={prof.creator[0].image}
-                    alt=""
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "100%",
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={
-                      prof.image ||
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMq4cGfAmaJAYVpXFPLY57EzVip1FTMK-ETQH1aU24VD-bYx5wJ4srHFP99zAgqXBvfQ&usqp=CAU"
-                    }
-                    alt="Default Image"
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "100%",
-                    }}
-                  />
-                )}
-              </td>
-              <td
-                style={{
-                  backgroundColor: prof.isDeleted ? "#edd55e" : "#9bdb92",
-                  width: "100px",
-                }}
-              >
-                {prof.userName || prof.creator[0].userName}
-              </td>
-              <td
-                style={{
-                  backgroundColor: prof.isDeleted ? "#edd55e" : "#9bdb92",
-                  width: "120px",
-                }}
-              >
-                {prof.locationJob ||
-                  prof.province ||
-                  prof.postingDate?.substring(0, 10)}
-              </td>
-              <td
-                style={{
-                  backgroundColor: prof.isDeleted ? "#edd55e" : "#9bdb92",
-                  width: "250px",
-                }}
-              >
-                {prof.email || prof.creator[0].email}
-              </td>
-
-              <td
-                style={{
-                  backgroundColor: prof.isDeleted ? "#edd55e" : "#9bdb92",
-                  width: "100px",
-                }}
-              >
-                {prof.profession ? prof.profession : "Cliente"}
-              </td>
-              <td
-                style={{
-                  backgroundColor: prof.isDeleted ? "#edd55e" : "#9bdb92",
-                  width: "70px",
-                }}
-              >
-                <button
-                  style={{
-                    backgroundColor: prof.isDeleted ? "#9bdb92" : "#edd55e",
-                  }}
-                  onClick={(e) => handleDelete(e, prof)}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-x-square-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d={
-                        prof.isDeleted
-                          ? "M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"
-                          : "M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"
-                      }
-                    ></path>
-                  </svg>
-                </button>
-                <button
-                  style={{
-                    backgroundColor: "#3B7BA4",
-                    height: "25px",
-                    width: "75px",
-                    fontSize: "13px",
-                    paddingTop: "3px",
-                  }}
-                  onClick={() => handlePopUp(prof)}
-                >
-                  Soporte
-                </button>
-                {isModalVisible && selectedProfessional === prof && (
-                  <div className={style.vemos}>
-                    <SupportPopUp
-                      isVisible={isModalVisible}
-                      professional={selectedProfessional}
-                      onClose={handleClosePopUp}
-                    />
-                  </div>
-                )}
-              </td>
-            </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="9">No se encontraron profecionales</td>
-          </tr>
-        )}
       </div>
-      <div
-        style={{
-          marginTop: "auto",
-          padding: "20px",
-        }}
-      >
+      <div>
         {selectedData.length !== 0 ? (
           <Pagination
             currentPage={currentPage}
@@ -409,4 +391,3 @@ const ProfsForAdmin = () => {
 };
 
 export default ProfsForAdmin;
-

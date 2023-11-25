@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Container } from "./StyledPagination";
 import Fab from "@mui/material/Fab";
-import { useState } from "react";
 import { TextField, Button } from "@mui/material";
 
 function Pagination({
@@ -9,11 +8,8 @@ function Pagination({
   adsPerPage,
   totalAds,
   onPageChange,
-  //currentAds,
 }) {
-  const [inputPage, setInputPage] = useState(currentPage);
   const totalPages = Math.ceil(totalAds / adsPerPage);
-  const [showGoToPageButton, setShowGoToPageButton] = useState(false);
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
@@ -22,7 +18,6 @@ function Pagination({
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       onPageChange(currentPage + 1);
-      //   setInputPage(currentPage);
     }
   };
 
@@ -31,15 +26,6 @@ function Pagination({
       onPageChange(currentPage - 1);
     }
   };
-  //   const handleInputChange = (event) => {
-  //     setInputPage(event.target.value);
-
-  //     if (event.target.value.trim() === "") {
-  //       setShowGoToPageButton(false);
-  //     } else {
-  //       setShowGoToPageButton(true);
-  //     }
-  //   };
 
   return (
     <Container>

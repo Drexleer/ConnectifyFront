@@ -1,16 +1,202 @@
-.containerDashAdmin{
-  width: 95%;
+.containerDashPanelAdmin {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 8rem;
+}
+
+.containerDashPanelAdminInComment {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.containerDashPanelAdminInPanelUser {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.containerDashAdmin {
+  width: 100%;
   margin-left: 1.5%;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
 }
 
-.containerDashCommets{
-  width: 50%;
+.containerDashCommets {
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
+.containerBtnPanel {
+  width: 50rem;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  gap: 2rem;
+}
+
+.containerBtnUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  height: 5rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  gap: 1rem;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  position: relative;
+  background-color: #d88e1a;
+  overflow: hidden;
+}
+
+.containerBtnUser::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #6f83f4; /* Color inicial */
+  transition: left 1s ease; /* Transición de 1 segundo */
+}
+
+.containerBtnUser:hover::before {
+  left: 0;
+}
+
+.iconPanelUser {
+  font-size: 2.5rem;
+  z-index: 10;
+}
+
+.textPanelUser{
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+.containerBtnComment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  height: 5rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  gap: 1rem;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  position: relative;
+  background-color: #d88e1a;
+  overflow: hidden;
+}
+
+.containerBtnComment::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #6f83f4; /* Color inicial */
+  transition: left 1s ease; /* Transición de 1 segundo */
+}
+
+.containerBtnComment:hover::before {
+  left: 0;
+}
+
+.iconPanelComment {
+  font-size: 2rem;
+  z-index: 10;
+}
+
+.textPanelComment{
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+.containerBtnBackToPanel{
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
+}
+
+.backToPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 2rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  background-color: rgb(225, 225, 225);
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  gap: 1rem;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.backToPanel:hover{
+  color: #e1e1e1;
+  background-color: #000000;
+}
+
+
+@media screen and (max-width: 850px) {
+  .containerBtnPanel {
+    width: 40rem;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .containerBtnBackToPanel {
+    width: 100%;
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .containerBtnPanel {
+    width: 30rem;
+  }
+
+  .containerBtnPanel{
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .containerBtnPanel {
+    width: 20rem;
+  }
 }

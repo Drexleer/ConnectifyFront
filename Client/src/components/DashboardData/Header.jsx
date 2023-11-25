@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import style from './CSSDash/Header.module.css'
 
 const Header = () => {
   const users = useSelector((state) => state.usersLogin.user);
@@ -14,8 +15,7 @@ const Header = () => {
           alignItems: "center",
         }}
       >
-        <h1>Panel de Control</h1>
-        <h2>Bienvenido, {users.userName}</h2>
+        <h2 className={style.titleDashAdmin}>Panel de control del Administrador</h2>
       </div>
     </div>
   );
