@@ -144,17 +144,18 @@ const Login = ({setContainerLogin}) => {
         <div
           style={{
             position: "absolute",
-            width: "25rem",
+            width: "20rem",
             height: "10rem",
             top: "38%",
             left: "36%",
             border: "2px solid black",
-            borderRadius: "20px",
+            borderRadius: "20px", 
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
             backgroundColor: "rgba(255,255,255,0.9)",
             zIndex: "1000",
+            marginLeft: "-6.9em"
           }}
         >
           <IconButton
@@ -176,6 +177,7 @@ const Login = ({setContainerLogin}) => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+            
             }}
           >
             <h3>Email y/o Password incorrectos</h3>

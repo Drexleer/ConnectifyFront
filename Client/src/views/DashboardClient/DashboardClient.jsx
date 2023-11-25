@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid } from "@mui/material";
@@ -11,6 +12,7 @@ import RenderReservs from "./RenderReservs";
 import { Button, Card } from "@mui/material";
 import { setUserType } from "../../redux/Slices/userTypeSlice";
 import { fetchClientsForAdmin } from "../../redux/Slices/clientSlice";
+import Cover from '../../components/Cover/Cover'
 
 const DashboardClient = () => {
   const dispatch = useDispatch();
@@ -116,9 +118,8 @@ const DashboardClient = () => {
   };
 
   return (
-    <div
-      style={{ backgroundColor: "#D9D9D9", minHeight: "100vh", width: "100%" }}
-    >
+    <div>
+      <Cover />
       <Navbar />{" "}
       <div style={{ margin: "0em 2em" }}>
         {" "}
@@ -154,15 +155,15 @@ const DashboardClient = () => {
               }}
             >
               {" "}
-              <div style={{ margin: "1.5em  " }}>
-                <h3> Administración de cuenta ⚠️</h3>{" "}
+              <div style={{ margin: "1.5em " }}>
+                <h3> Administración de cuenta </h3>{" "}
                 <div style={{ margin: " 1em 0em" }}>
                   {" "}
                   {!googleUser._id && (
                       <Button
                         variant="contained"
                         color="secondary"
-                        style={{ marginRight: "2em" }}
+                        style={{ marginRight: "2em", marginBottom: '1em'}}
                         onClick={() => confirmAction("cambio de contraseña")}
                       >
                         Pedido de cambio de contraseña{" "}
