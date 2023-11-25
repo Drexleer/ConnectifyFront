@@ -6,7 +6,7 @@ const Team = () => {
   const teamData = [
     {
       name: 'Edder J. Alvarez',
-      role: 'Chris is a front-end developer and designer. He writes a bunch of HTML, CSS, and JavaScript and shakes the pom-poms for CodePen.',
+      role: 'Inquieto Fullstack Developer, amante de los videojuegos, y eterno entusiasta del aprendizaje. Siempre listo para explorar nuevas tecnologías y utilizar la creatividad para resolver desafíos en el mundo digital.',
       image:
         'https://avatars.githubusercontent.com/u/120761132?v=4?fit=crop&format=auto&height=120&width=120',
       gitHubHandle: 'Drexleer',
@@ -20,19 +20,19 @@ const Team = () => {
     },
     {
       name: 'Andres Ojeda',
-      role: 'Alex is a full stack developer. Alex does JavaScript development for CodePen, both front end and back, and just about everything else.',
+      role: 'Soy un entusiasta Fullstack Developer y apasionado docente de robótica de corazón. Con una dedicación incansable, aprendo constantemente para alcanzar resultados significativos en el mundo de la tecnología.',
       image: 'https://i.imgur.com/zvmdSwA.jpg?height=120&width=120',
       gitHubHandle: 'Andy-Ojeda',
     },
     {
-      name: 'Giselle Cuello',
-      role: 'Alex is a full stack developer. Alex does JavaScript development for CodePen, both front end and back, and just about everything else.',
+      name: 'Gisele Cuello',
+      role: '¡Hola! Soy fullstack developer y docente universitaria. Fusiono la experiencia técnica con la pasión por la enseñanza para crear soluciones innovadoras.',
       image: 'https://i.imgur.com/A5LoSaV.jpg?height=120&width=120',
       gitHubHandle: 'GiseleCuello',
     },
     {
       name: 'Martin Lamacchia',
-      role: 'Alex is a full stack developer. Alex does JavaScript development for CodePen, both front end and back, and just about everything else.',
+      role: 'Soy Fullstack Developer. Siempre en modo aprendizaje y listo para abordar desafíos con soluciones innovadoras. Mi pasión por el desarrollo y la resolución de problemas me impulsa hacia nuevos horizontes tecnológicos.',
       image: 'https://i.imgur.com/h1cOblU.jpg?height=120&width=120',
       gitHubHandle: 'MartinLamacchia',
     },

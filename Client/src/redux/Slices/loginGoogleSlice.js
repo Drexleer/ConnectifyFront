@@ -31,7 +31,7 @@ export const fetchUserLoginWithGoogle = (form) => {
       const { data } = await axios.post(endpoint, form);
       dispatch(loginWithGoogle(data));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 };

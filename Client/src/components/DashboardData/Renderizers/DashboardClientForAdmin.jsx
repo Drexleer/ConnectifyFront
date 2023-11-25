@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
@@ -22,12 +24,12 @@ const DashboardClientForAdmin = ({ userId }) => {
     dispatch(fetchClientsForAdmin());
   }, []);
 
-  const usersLog = useSelector((state) => state.usersLogin.user); ////Los datos el usuario logueado
+  const usersLog = useSelector((state) => state.usersLogin.user); 
   // const users = useSelector(
   //   (state) =>
   //     state.clients.clients.filter((client) => client._id === usersLog._id)[0]
   // );
-  console.log("users:", users);
+  
   const userName = users.name;
   const userLastName = users.lastName;
   const userLocation = users.location;
@@ -62,7 +64,7 @@ const DashboardClientForAdmin = ({ userId }) => {
       location: user.location,
       province: user.province,
     };
-    // console.log("updatedUser:", updatedUser);
+    
     try {
       // Envía la solicitud PATCH al servidor para actualizar el cliente
       const response = await dispatch(updateClientOnServer(updatedUser));
@@ -81,7 +83,7 @@ const DashboardClientForAdmin = ({ userId }) => {
   };
 
   useEffect(() => {
-    // console.log('Users after update:', users);
+   
     // Llamada a la función getComments para obtener los comentarios
     const fetchComments = async () => {
       try {

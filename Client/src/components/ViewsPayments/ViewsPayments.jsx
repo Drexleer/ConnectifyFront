@@ -8,9 +8,7 @@ import PaymentsCard from "../PaymentsCard/PaymentsCard";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../Navbar/Navbar";
-import CommentBox from "../CommentsClient/CommentBox";
 import ReviewButton from "../CommentsClient/ReviewButton";
-import ButtonBack from "../Utils/ButtonBack/ButtonBack";
 import Cover from "../Cover/Cover";
 import { fetchUserLoginWithGoogle } from "../../redux/Slices/loginGoogleSlice";
 
@@ -119,7 +117,7 @@ function ViewsPayments() {
             searchData();
           }
         } catch (error) {
-          console.log("Error ViewPayments,", error);
+          console.error("Error ViewPayments,", error);
         }
       };
 
@@ -140,7 +138,6 @@ function ViewsPayments() {
             quantity: 1,
           }
         );
-        console.log(response.data);
       } catch (error) {
         console.error("Error al crear la preferencia de pago:", error);
       }
@@ -161,7 +158,7 @@ function ViewsPayments() {
 
       setPaymentData(sortedPayments);
     } catch (error) {
-      console.log("Error AxiosGet in ViewPayments,", error);
+      console.error("Error AxiosGet in ViewPayments,", error);
     }
   };
 
@@ -169,9 +166,9 @@ function ViewsPayments() {
     <div className={style.contentAll}>
       <Navbar />
       <div className={style.contButtonBack}>
-          <button className={style.buttonContratar}>
-              <Link to="/home">Volver al inicio</Link>
-          </button>
+        <button className={style.buttonContratar}>
+          <Link to="/home">Volver al inicio</Link>
+        </button>
       </div>
       <h2 className={style.h2Titulo}>Historial de pagos</h2>
 

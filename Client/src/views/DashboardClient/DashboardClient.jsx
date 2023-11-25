@@ -22,13 +22,13 @@ const DashboardClient = () => {
     dispatch(fetchClientsForAdmin());
   }, [dispatch]);
 
-  const userLocal = useSelector((state) => state.usersLogin.user); // Usuario Local
-  const googleUser = useSelector((state) => state.googleLogin.user); // Usuario Google
+  const userLocal = useSelector((state) => state.usersLogin.user); 
+  const googleUser = useSelector((state) => state.googleLogin.user); 
 
   const usersLog =
     googleUser && Object.keys(googleUser).length !== 0 ? googleUser : userLocal;
 
-  ////Los datos el usuario logueado
+ 
   const users = useSelector(
     (state) =>
       state.clients.clients.filter((client) => client._id === usersLog._id)[0]
@@ -70,7 +70,7 @@ const DashboardClient = () => {
       userName: user.userName,
       location: user.location,
       province: user.province,
-    }; // console.log("updatedUser:", updatedUser);
+    }; 
     try {
       // Envía la solicitud PATCH al servidor para actualizar el cliente
       const response = await dispatch(updateClientOnServer(updatedUser));
@@ -79,17 +79,17 @@ const DashboardClient = () => {
         alert("Su cambio se ha guardado con éxito");
         dispatch(fetchClientsForAdmin());
       } else {
-        // Manejar el caso en que la actualización no sea exitosa
+      
         console.error("Error al actualizar el cliente:", response);
       }
     } catch (error) {
-      // Maneja el error, por ejemplo, mostrando un mensaje al usuario
+      
       console.error("Error al actualizar el cliente:", error);
     }
   };
 
   useEffect(() => {
-    // console.log('Users after update:', users);
+    
     // Llamada a la función getComments para obtener los comentarios
     const fetchComments = async () => {
       try {
@@ -100,8 +100,8 @@ const DashboardClient = () => {
       }
     };
 
-    fetchComments(); // Llama a la función de solicitud al montar el componente
-  }, [userLocal._id, googleUser._id]); // Se ejecutará cada vez que cambie el ID del usuario
+    fetchComments(); 
+  }, [userLocal._id, googleUser._id]); 
 
   const confirmAction = (actionType) => {
     const confirmationMessage = `¿Está seguro de que desea hacer un pedido para ${actionType}?`;
@@ -112,7 +112,7 @@ const DashboardClient = () => {
         dispatch(setUserType(userType));
         window.location.href = "/password";
       } else {
-        alert(`Va a ser redirigido para realizar su pedido de ${actionType}.`); // Redirige al usuario al formulario correspondiente usando react-router-dom u otro enfoque de enrutamiento
+        alert(`Va a ser redirigido para realizar su pedido de ${actionType}.`); 
       }
     }
   };
@@ -192,7 +192,7 @@ const DashboardClient = () => {
               userComments.map(
                 (
                   comment,
-                  index // <Link to={`/detail/${comment.client_id}`} key={index}>
+                  index 
                 ) => (
                   <ReviewItem
                     key={index}

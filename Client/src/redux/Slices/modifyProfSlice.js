@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 const VITE_API_BASE = import.meta.env.VITE_API_BASE;
 
 // Setea el estado de usuario cuando hacen login o logout
 export const modifyProfSlice = createSlice({
-  name: 'modifyProf',
+  name: "modifyProf",
   initialState: {
-    modify: '',
+    modify: "",
     detailProf: {},
   },
   reducers: {
@@ -30,7 +30,6 @@ export const fetchModifyDataProf = (form, id) => {
 
     try {
       const { data } = await axios.patch(endpoint, form);
-      console.log(data);
       dispatch(modifyData(data));
     } catch (error) {
       return { access: false };
@@ -43,10 +42,9 @@ export const fetchGetProfById = (id) => {
     const endpoint = VITE_API_BASE + `/professional/${id}`;
     try {
       const { data } = await axios.get(endpoint);
-      console.log(data);
       dispatch(getProfByID(data));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 };
