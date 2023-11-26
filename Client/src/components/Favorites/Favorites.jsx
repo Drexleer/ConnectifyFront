@@ -71,7 +71,7 @@ const Favorites = () => {
       <Navbar />
       <Cover />
       <ButtonBack />
-      <h4 className={style.perfil}>
+      <h4 className={style.titulo}>
           Perfiles Guardados
         </h4>
       <div >
@@ -84,41 +84,59 @@ const Favorites = () => {
                 
                     <div >
                       
-                        <div className={style.backgroundContainer}>
-                        <button className={style.deleteButton}
-                              onClick={handleRemoveFavorite}
-                              id={fav.professional._id}
-                              value={fav.client}
-                              
-                            >
-                               <AiFillDelete className={style.deleteSvgIcon} />
-                            </button>
+                        <div className={style.contALL}>
+
+                            <div className={style.contImg}>
+                                <img className={style.profilePic}
+                                    src={fav.professional.image}
+                                    alt={`Imagen de ${fav.professional.name}`}
+                                />
+                            </div>
+                            
+                            <div className={style.contDetails}>
+                                <h4 className={style.h4}>
+                                    {fav.professional.name} {fav.professional.lastName}
+                                </h4>
+            
+                                <p className={style.description}>
+                                    {fav.professional.description}...
+                                </p>
+                            </div>
+                            
+                            <div className={style.contButtons}>
+
+                              <div className={style.contButtonDEL}>
+                                  <button className={style.deleteButton}
+                                    onClick={handleRemoveFavorite}
+                                    id={fav.professional._id}
+                                    value={fav.client}
+                                  >
+                                      <AiFillDelete className={style.deleteSvgIcon} />
+                                  </button>
+                              </div>
+                          
+                                <button
+                                    className={style.buttonContratar}
+                                    onClick={() =>
+                                      handleAdsDetails(fav.professional._id)
+                                    }
+                                >
+                                    Ver Detalle
+                                </button>
+                            </div>
+                            
+                        </div>
+                            
+                            
+                            
+                            
                           
                           
-                          <img className={style.profilePic}
-                            src={fav.professional.image}
-                            alt={`Imagen de ${fav.professional.name}`}
-                          />
                        
                         
-                          <h4 className={style.h4}>
-                            {fav.professional.name} {fav.professional.lastName}
-                          </h4>
-                          <p className={style.description}>
-                            {fav.professional.description}
-                          </p>
                       
                         
-                          <button
-                            className={style.buttonContratar}
-                            onClick={() =>
-                              handleAdsDetails(fav.professional._id)
-                            }
-                          >
-                            Ver Detalle
-                          </button>
                         
-                          </div>
                     </div>
                  
               )}
