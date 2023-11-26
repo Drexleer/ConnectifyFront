@@ -1,48 +1,91 @@
-.backgroundContainer {
+.contALL {
     background: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     left: 0;
     right: 1em;
     top: 6em;
     margin: auto;
-    width: 70em;
+    width: 70%;
     height: 10em;
     border-radius: 0.51em;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
    margin-bottom: 2em;
-   
+}
+
+.titulo{
+  color: #03315c;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: 2em;
+  margin-top: 0em;
+}
+
+.contImg {
+    /* background-color: blue; */
+    width: 9.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contDetails {
+  /* background-color: green; */
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+  .contButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 15%;
+    /* background-color: red; */
+  }
+  .contButtonDEL {
+    /* background-color: red; */
+    width: 100%;
+    display: flex;
+    justify-content: end;
   }
 
   .profilePic {
-    width: 8.5em;
-    height: 8.5em;
-    margin-top: 0.7em;
-    margin-left: 1em;
-    background-size: cover;
+    width: 90%;
+    height: 90%;
+    /* background-size: cover; */
     border-radius: 50%;
+    /* object-fit: contain; */
     box-shadow: 0px 0px 6px 7pt #fff;
   }
   .h4 {
     color: #56013d;
     font-family: "Roboto", sans-serif;
     text-align: center;
-    font-size: 1.2em;
-    margin-top: -7em;
-    margin-left: 5em;
+    font-size: 1.5em;
+    margin-top: 0em;
+    margin-left: 0em;
   }
 
   .description{
     font-family: "Roboto", sans-serif;
     text-align: center;
     font-size: 1em;
-    margin-top: -1em;
-    margin-left: 15em;
-    margin-right: 5em;
+    margin-top: -1.7em;
+    margin-left: 0em;
+    margin-right: 0em;
   }
 
-    .buttonContratar {
-        position: absolute;
-        margin-left: 98em;
-        margin-top: -1.3em;
+     .buttonContratar {
+        /* position: absolute; */
+        height: 2.2rem;
+        width: 90%;
+        margin-left: 0em;
+        margin-top: 0em;
         padding: 5px 10px;
         border-radius: 7px;
         border: 1px solid rgb(61, 106, 255);
@@ -114,74 +157,113 @@
         -moz-transition: box-shadow 0.2s ease-in;
         transition: box-shadow 0.2s ease-in;
       }
+    
+    
+.deleteButton {
+  /* position: absolute; */
+  margin-right: 1em;
+  margin-top: -1em;
+  /* padding: 5px 10px; */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(193, 8, 8);
+  border: none;
+  font-weight: 600;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+}
       
-      
-      .perfil{
-        color: #03315c;
-        font-family: "Roboto", sans-serif;
-        text-align: center;
-        font-size: 2em;
-        margin-top: 0em;
-      }
-      .deleteButton {
-        position: absolute;
-        margin-left: 76em;
-        margin-top: 1em;
-        padding: 5px 10px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: rgb(20, 20, 20);
-        border: none;
-        font-weight: 600;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
-        cursor: pointer;
-        transition-duration: 0.3s;
-        overflow: hidden;
-            
-      }
-      
-      .deleteSvgIcon {
-        width: 15px;
-        transition-duration: 0.3s;
-      }
-      
-      .deleteSvgIcon path {
-        fill: white;
-      }
-      
-      .deleteButton:hover {
-        width: 90px;
-        border-radius: 50px;
-        transition-duration: 0.3s;
-        background-color: rgb(255, 69, 69);
-        align-items: center;
-      }
-      
-      .deleteButton:hover .deleteSvgIcon {
-        width: 20px;
-        transition-duration: 0.3s;
-        transform: translateY(60%);
-        -webkit-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
-      
-      .deleteButton::before {
-        content: "Eliminar";
-        color: white;
-        transition-duration: 0.3s;
-        font-size: 1.5em;
-        display: none;
-      }
-      
-      .deleteButton:hover::before {
-        display: block;
-        padding-right: 10px;
-        font-size: 13px;
-        opacity: 1;
-        transform: translateY(0px);
-        transition-duration: 0.3s;
-      }
+.deleteSvgIcon {
+  width: 15px;
+  transition-duration: 0.3s;
+}
+
+.deleteSvgIcon path {
+  fill: white;
+}
+
+.deleteButton:hover {
+  width: 90px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.deleteButton:hover .deleteSvgIcon {
+  width: 20px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.deleteButton::before {
+  content: "Eliminar";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 1.5em;
+  display: none;
+}
+
+.deleteButton:hover::before {
+  display: block;
+  padding-right: 10px;
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition-duration: 0.3s;
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+/* :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (max-width: 640px){
+
+.contALL {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contImg {
+  margin-top: 0.5rem;
+}
+.contDetails {
+  margin-top: 0.5rem;
+}
+.contButtons {
+  /* background-color: rebeccapurple; */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+.contButtonDEL {
+  margin-top: 0.8rem;
+}
+.deleteButton {
+  margin-right: 4rem;
+}
+.buttonContratar {
+  margin-right: 2rem;
+}
+
+
+
+
+
+}
+
+
+
+
