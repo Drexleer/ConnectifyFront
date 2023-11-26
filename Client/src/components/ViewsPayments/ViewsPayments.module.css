@@ -113,3 +113,14 @@
   -moz-transition: box-shadow 0.2s ease-in;
   transition: box-shadow 0.2s ease-in;
 }
+
+/* :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+/* :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (max-width: 640px){
+
+  .h2Titulo {
+    margin-top: 1rem;
+  }
+
+
+}
