@@ -80,10 +80,15 @@
     margin-right: 0em;
   }
 
+  .contButtonDetail {
+    /* background-color: red; */
+    /* margin-right: 2rem; */
+  }
+
      .buttonContratar {
-        /* position: absolute; */
+        position: relative;
         height: 2.2rem;
-        width: 90%;
+        width: 100%;
         margin-left: 0em;
         margin-top: 0em;
         padding: 5px 10px;
@@ -258,7 +263,10 @@
   margin-right: 2rem;
 }
 
-
+.contButtonDetail {
+  /* background-color: red; */
+  margin-right: 2rem;
+}
 
 
 
