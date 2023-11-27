@@ -7,6 +7,8 @@ import { fetchUserRegister } from "../../redux/Slices/registerSlice";
 import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 import Cover from "../Cover/Cover";
 import style from "./RegisterCss/register.module.css";
 
@@ -37,11 +39,24 @@ const profesiones = [
   "Enfermero",
   "Cuidador",
   "Abogado",
+  "Electricista"
 ];
 
 //
 const Registration = () => {
   const navigate = useNavigate();
+
+  const [passShow, setPassShow] = useState(false);
+
+  const handlerShowPass = () => {
+    setPassShow(false)
+    setPasswordType(!passwordType);
+  }
+
+  const handlerNotShowPass = () => {
+    setPassShow(true)
+    setPasswordType(!passwordType);
+  }
 
   ///localStorage.clear();
   const [errorMessages, setErrorMessages] = useState({});
@@ -134,7 +149,17 @@ const Registration = () => {
   );
 
   const renderPasswordToggle = () => (
-    <Button type="button" onClick={handleHidePassword}>
+    <Button
+      type="button"
+      onClick={handleHidePassword}
+      className={
+        clientRegister.email
+          ? style.spanShowEmailComplete
+          : clientRegister.email
+          ? style.spanShowPassComplete
+          : style.spanShowPass
+      }
+    >
       {" "}
       {passwordType ? (
         <Visibility style={{ fontSize: 18 }} />
@@ -420,78 +445,66 @@ const Registration = () => {
   return (
     <div>
       <Navbar /> <Cover />
-      <div
-        style={{
-          padding: "2rem 8rem ",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "800px",
-          backgroundColor: "transparent",
-        }}
-      >
+      <div className={style.containerRegister}>
         <h2>Registrate </h2>{" "}
         <Box component="form" onSubmit={(e) => handleSubmit(e)}>
           {" "}
-          <div style={{ padding: "5px" }}>
+          <div className={style.containerDataUser}>
             {" "}
-            <TextField
-              id="name"
-              label="Nombre"
-              type="text"
-              name="name"
-              value={clientRegister.name}
-              onChange={handleChange}
-              placeholder="Nombre"
-              fullWidth
-              required
-            />{" "}
-          </div>{" "}
-          <div style={{ padding: "5px" }}>
-            {" "}
-            <TextField
-              id="Apellido"
-              label="Apellido"
-              type="text"
-              name="lastName"
-              value={clientRegister.lastName}
-              onChange={handleChange}
-              placeholder="Apellido"
-              fullWidth
-              required
-            />{" "}
-          </div>{" "}
-          <div style={{ padding: "5px" }}>
-            {" "}
-            <TextField
-              id="email"
-              label="Email"
-              type="text"
-              name="email"
-              value={clientRegister.email}
-              onChange={handleChange}
-              placeholder="Email"
-              fullWidth
-              required
-              helperText={error.message}
-              error={error.error}
-              autoComplete="off"
-            />{" "}
-          </div>{" "}
-          <div style={{ padding: "5px" }}>
-            {" "}
-            <TextField
-              id="contraseña"
-              label="Contraseña"
-              type={passwordType ? "text" : "password"}
-              value={clientRegister.password}
-              name="password"
-              onChange={handleChange}
-              placeholder="Contraseña"
-              fullWidth
-              required
-              autoComplete="off"
-            />
-            {renderPasswordToggle()}{" "}
+            <div className={style.containerinputs}>
+              <TextField
+                id="name"
+                label="Nombre"
+                type="text"
+                name="name"
+                value={clientRegister.name}
+                onChange={handleChange}
+                placeholder="Nombre"
+                fullWidth
+                required
+              />{" "}
+              <TextField
+                id="Apellido"
+                label="Apellido"
+                type="text"
+                name="lastName"
+                value={clientRegister.lastName}
+                onChange={handleChange}
+                placeholder="Apellido"
+                fullWidth
+                required
+              />{" "}
+            </div>
+            <div className={style.containerinputs}>
+              {" "}
+              <TextField
+                id="email"
+                label="Email"
+                type="text"
+                name="email"
+                value={clientRegister.email}
+                onChange={handleChange}
+                placeholder="Email"
+                fullWidth
+                required
+                helperText={error.message}
+                error={error.error}
+                autoComplete="off"
+              />{" "}
+              <TextField
+                id="contraseña"
+                label="Contraseña"
+                type={passwordType ? "text" : "password"}
+                value={clientRegister.password}
+                name="password"
+                onChange={handleChange}
+                placeholder="Contraseña"
+                fullWidth
+                required
+                autoComplete="off"
+              />
+              <div className={style.containerShowPass}>{passShow ? <FaRegEye className={style.showPass} onClick={handlerShowPass}/> : <FaRegEyeSlash className={style.notShowPass} onClick={handlerNotShowPass}/>}</div>
+            </div>
           </div>{" "}
           <div style={{ padding: "5px" }}>
             <h3>Ubicación dentro de Argentina</h3> <h4>Provincia*</h4>{" "}
@@ -598,7 +611,7 @@ const Registration = () => {
           )}{" "}
           {(!areAllProfFieldsCompleted() && ifProfRoute) ||
           (!areAllClienFieldsCompleted() && ifClientRoute) ? (
-            <p style={{ color: "red" }}>
+            <p className={style.pCompleteAllData}>
               Completá todos los campos sin errores para poder enviar este
               formulario
             </p>
