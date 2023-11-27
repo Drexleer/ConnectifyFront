@@ -114,29 +114,21 @@ const Favorites = () => {
                                       <AiFillDelete className={style.deleteSvgIcon} />
                                   </button>
                               </div>
-                          
-                                <button
-                                    className={style.buttonContratar}
-                                    onClick={() =>
-                                      handleAdsDetails(fav.professional._id)
-                                    }
-                                >
-                                    Ver Detalle
-                                </button>
+
+                              <div className={style.contButtonDetail}>
+                                  <button
+                                      className={style.buttonContratar}
+                                      onClick={() =>
+                                        handleAdsDetails(fav.professional._id)
+                                      }
+                                  >
+                                      Ver Detalle
+                                  </button>
+                              </div>
                             </div>
                             
                         </div>
-                            
-                            
-                            
-                            
-                          
-                          
-                       
-                        
-                      
-                        
-                        
+                                               
                     </div>
                  
               )}
