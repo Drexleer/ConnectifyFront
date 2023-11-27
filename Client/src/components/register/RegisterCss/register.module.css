@@ -33,3 +33,52 @@ label {
   padding: 0.5rem;
   font-size: 1rem;
 }
+
+.containerRegister{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerDataUser{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.containerinputs{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+}
+
+.containerShowPass{
+  position: absolute;
+  left: 92%;
+}
+
+.showPass{
+  font-size: 1.4rem;
+}
+
+.notShowPass{
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 630px) {
+  .containerinputs{
+   flex-direction: column;
+  }
+
+  .containerShowPass{
+    top: 75%;
+  }
+}
