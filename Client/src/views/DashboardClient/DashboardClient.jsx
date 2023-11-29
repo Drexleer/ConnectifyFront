@@ -138,12 +138,12 @@ const DashboardClient = () => {
             <Card style={{ margin: "1em", borderRadius: "16px" }}>
               {" "}
               <div style={{ margin: "1.5em " }}>
-                <h3>Mis reservas realizadas</h3>
+                <h3>Mis reservas</h3>
                 <RenderReservs userName={user.userName} />
                 <div style={{ margin: " 1.5em" }}></div>{" "}
                 <Link to={`/payments/${user.userName}`}>
                   {" "}
-                  <Button variant="outlined">Ver pagos realizados</Button>{" "}
+                  <Button variant="outlined">Historial de pagos</Button>{" "}
                 </Link>{" "}
               </div>{" "}
             </Card>{" "}
@@ -185,8 +185,7 @@ const DashboardClient = () => {
           <Grid item xs={12} md={4}>
             {" "}
             <h3>
-              Reseñas realizadas a profesionales luego de los servicios
-              prestados:{" "}
+              Reseñas realizadas {" "}
             </h3>{" "}
             {userComments.length > 0 ? (
               userComments.map(
@@ -209,7 +208,7 @@ const DashboardClient = () => {
                 )
               )
             ) : (
-              <p>No tienes reseñas aún</p>
+              <p>No dejaste reseñas aún</p>
             )}{" "}
           </Grid>{" "}
         </Grid>{" "}
