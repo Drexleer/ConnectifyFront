@@ -15,6 +15,7 @@ import {
   FaInstagram,
 } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
+import Cover from '../Cover/Cover'
 
 const ContactForm = () => {
   const [showLoading, setShowLoading] = useState(false);
@@ -51,6 +52,7 @@ const ContactForm = () => {
   };
 
   return (
+    
     <div style={{ width: '100%', height: '100%' }}>
       {showLoading ? (
         <Loading />
@@ -66,6 +68,7 @@ const ContactForm = () => {
               alignContent: 'center',
             }}
           >
+            <Cover />
             <form className="form" onSubmit={sendMessage}>
               <input
                 name="name"
