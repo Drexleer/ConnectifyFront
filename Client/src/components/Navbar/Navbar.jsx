@@ -102,8 +102,8 @@ function ResponsiveAppBar({ setContainerLogin }) {
   }, [usersLocal, usersGoogle]);
 
   return (
-    <AppBar position="static" style={{ marginBottom: "1.5rem" }}>
-      <Container maxWidth="xl">
+    <AppBar position="static" style={{ marginBottom: "1.5rem"}}>
+      <Container maxWidth={false} >
         <Toolbar disableGutters>
           <div className={style.containerNav}>
             <Link to="/">
