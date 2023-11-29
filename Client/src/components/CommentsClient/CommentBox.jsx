@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { postComment } from "../../redux/Slices/commentSlice";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Grid } from "@mui/material";
 import Rating from "react-rating-stars-component";
 import style from "./Comments.module.css";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -74,7 +74,7 @@ const CommentBox = ({ onClose, professionalId }) => {
         </div>
 
         <h3 className={style.h3}>Agregar comentario</h3>
-        <Rating
+       <Rating
           name="rating"
           value={rating}
           count={5}
