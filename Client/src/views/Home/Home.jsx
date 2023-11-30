@@ -416,16 +416,15 @@ const Home = () => {
       <div className={styles.footer}>
         {' '}
         <Footer />
-        <button className={styles.btnChat}>
-          {chatOpen ? (
-            <FaWindowClose style={{ fontSize: '2em' }} onClick={onClose} />
-          ) : (
-            <IoIosChatbubbles
-              style={{ fontSize: '2em' }}
-              onClick={toggleChat}
-            />
-          )}
-        </button>
+        {chatOpen ? (
+          <button className={styles.btnChatClose} onClick={onClose}>
+            <FaWindowClose style={{ fontSize: '2em' }} />
+          </button>
+        ) : (
+          <button className={styles.btnChatOpen} onClick={toggleChat}>
+            <IoIosChatbubbles style={{ fontSize: '2em' }} />
+          </button>
+        )}
         {chatOpen && (
           <Chat nickname={nickname} imageUser={imageUser} onClose={onClose} />
         )}
