@@ -4,8 +4,8 @@
   position: fixed;
   bottom: 3em;
   right: 20px;
+  padding-bottom: 2.5em;
   z-index: 9999;
- 
 }
 .user-avatar {
   width: 30px;
@@ -13,8 +13,8 @@
   margin: 10px;
 }
 
-.card {
-  width: 400px;
+.cardChat {
+  width: 350px;
   background-color: #ffffff;
   border: 1px solid #dcdcdc;
   border-radius: 8px;
@@ -160,4 +160,3 @@
   padding: 10px;
   cursor: pointer;
 }
-
