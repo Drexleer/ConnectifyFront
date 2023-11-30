@@ -60,7 +60,15 @@ const DashboardProf = () => {
             <ButtonBack />
           </div>
 
-          <h1 style={{ marginLeft: '65px', fontSize: '30px', fontWeight: 300, textAlign: 'center', marginTop: '-17px' }}>
+          <h1
+            style={{
+              marginLeft: '65px',
+              fontSize: '30px',
+              fontWeight: 300,
+              textAlign: 'center',
+              marginTop: '-17px',
+            }}
+          >
             Mi Panel
           </h1>
           <Divider />

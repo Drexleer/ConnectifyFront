@@ -130,22 +130,23 @@ const DetailAd = () => {
                   </Link>
                 </div>
                 {users.types !== 'admin' && users.types !== 'professional' && (
-                  <Grid item xs={8} align="left">
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{ display: 'flex', justifyContent: 'center' }}
+                  >
                     <Box
                       display="flex"
                       justifyContent="space-between"
+                      alignItems="center"
                       width="100%"
+                      sx={{ margin: '1em 1em 0 2em' }}
                     >
                       <Button
                         sx={{
                           backgroundColor: !newFav ? '#D9D9D9' : '#3B7BA4',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-
                           width: '40px',
                           height: '40px',
-                          marginLeft: '58em',
-                          marginTop: '-2em',
                         }}
                         variant="contained"
                         onClick={handleSaveOrRemoveProfile}
@@ -156,7 +157,13 @@ const DetailAd = () => {
                   </Grid>
                 )}
 
-                <Grid item xs={12} md={10} sx={{ margin: '16px' }}>
+                <Grid
+                  className={style.containerDescription}
+                  item
+                  xs={12}
+                  md={10}
+                  sx={{ margin: '16px' }}
+                >
                   <h1 className={style.profession}>
                     {detail.detail.profession}
                   </h1>
@@ -222,10 +229,8 @@ const DetailAd = () => {
             <div>No hay creadores disponibles.</div>
           )}
 
-
-          <Comments id={detail.detail.creator?.[0]?._id || ""} />
+          <Comments id={detail.detail.creator?.[0]?._id || ''} />
           <div className={style.footerB}></div>
-
         </div>
       </div>
     </div>

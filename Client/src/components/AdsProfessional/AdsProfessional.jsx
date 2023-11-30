@@ -5,6 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
+import './AdsProfesional.css';
 import {
   Button,
   CircularProgress,
@@ -45,17 +46,7 @@ function AdsProfesional() {
   }, [dispatch]);
 
   return (
-    <List
-      sx={{
-        marginRight: '80px',
-        width: '800px',
-        bgcolor: 'lightGrey',
-        boxShadow: 20,
-        padding: '20px',
-        height: 'auto',
-        marginTop: '30px',
-      }}
-    >
+    <List className="responsive-list">
       <ListSubheader sx={{ fontSize: '25px', color: 'black', padding: '5px' }}>
         <span style={{ display: 'flex', alignItems: 'center' }}>
           <LocalLibraryOutlinedIcon sx={{ marginRight: 1 }} fontSize="medium" />
