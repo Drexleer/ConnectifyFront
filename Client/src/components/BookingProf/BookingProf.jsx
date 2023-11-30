@@ -1,6 +1,6 @@
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import { ListSubheader, Typography } from '@mui/material';
+import { ListSubheader, Typography, Avatar } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import { getComments } from '../../views/DashboardClient/CommentsOrganized';
 import { useSelector } from 'react-redux';
@@ -52,8 +52,13 @@ function BookingProf() {
       {userComments.length > 0 ? (
         userComments.map((comment, index) => (
           <ListItem key={index} sx={{ padding: '15px' }} disableGutters>
-            <Typography variant="body2" color="black" sx={{ fontSize: '15px' }}>
-              {`Nombre del cliente: ${comment.clientName} | Comentario: ${comment.comment} | Rating: ${comment.rating}⭐ `}
+            <Avatar src={comment.clientPhoto} alt="Avatar" />
+            <Typography
+              variant="body2"
+              color="black"
+              sx={{ fontSize: '15px', marginLeft: '10px' }}
+            >
+              {`: ${comment.clientName} | Comentario: ${comment.comment} | Rating: ${comment.rating}⭐ `}
             </Typography>
           </ListItem>
         ))

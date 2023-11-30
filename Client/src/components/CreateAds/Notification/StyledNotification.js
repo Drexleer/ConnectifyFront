@@ -25,6 +25,10 @@ export const NotificationCard = styled.div`
   gap: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.123);
   border-radius: 20px;
+  @media screen and (max-width: 768px) {
+    width: 80%; /* Ajusta el ancho para pantallas más pequeñas */
+    height: auto; /* Ajusta la altura para pantallas más pequeñas */
+  }
 `;
 
 export const NotificationHeading = styled.p`
@@ -98,4 +102,8 @@ export const NotNowBtn = styled.button`
 export const Imagen = styled.img`
   width: 400px;
   height: 150px;
+  @media screen and (max-width: 768px) {
+    width: 80%; /* Ajusta el ancho para pantallas más pequeñas */
+    height: auto; /* Ajusta la altura para pantallas más pequeñas */
+  }
 `;

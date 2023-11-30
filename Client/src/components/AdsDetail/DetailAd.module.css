@@ -1,14 +1,14 @@
 .principal {
   width: 100%;
-  height: 100vh;
-  padding: 5em;
+  padding: 2em;
   margin-top: 1rem;
+  min-height: 100vh;
 }
 
 .profile-container {
   display: flex;
   align-items: center;
-  margin: "10px";
+  margin: '10px';
 }
 
 .profile-circle {
@@ -29,17 +29,10 @@
   flex: 1; /* Para ocupar todo el espacio disponible */
 }
 
-.principal {
-  width: 100%;
-  height: 100vh;
-  padding: 2em;
-  margin-top: 1rem;
-}
-
 /* Estilos para pantallas pequeñas */
 @media screen and (max-width: 768px) {
   .principal {
-    padding: 2em; /* Cambiar el relleno en pantallas más pequeñas */
+    padding: 1em; /* Cambiar el relleno en pantallas más pequeñas */
   }
 
   .profile-container {
@@ -50,6 +43,31 @@
     width: 80px; /* Cambiar el tamaño del círculo en pantallas más pequeñas */
     height: 80px;
     margin-bottom: 10px; /* Agregar margen inferior en pantallas más pequeñas */
+  }
+
+  .profession {
+    text-align: center;
+    font-size: 2em; /* Ajustar el tamaño de la fuente en pantallas más pequeñas */
+    margin-top: 0.5em;
+  }
+
+  .ubicacion {
+    text-align: center;
+    font-size: 1.5em; /* Ajustar el tamaño de la fuente en pantallas más pequeñas */
+    margin-top: 0.5em;
+  }
+
+  .descripcion {
+    text-align: center;
+    font-size: 1.5em; /* Ajustar el tamaño de la fuente en pantallas más pequeñas */
+    margin-top: 0.5em;
+  }
+
+  .description {
+    text-align: center;
+    font-size: 1em; /* Ajustar el tamaño de la fuente en pantallas más pequeñas */
+    margin-top: -0.5em;
+    font-weight: bold;
   }
 }
 
@@ -63,10 +81,38 @@
     width: 60px; /* Cambiar el tamaño del círculo en pantallas muy pequeñas (móviles) */
     height: 60px;
   }
+  .containerDescription {
+    padding-top: 1em !important;
+    width: 80% !important; /* O el valor que prefieras */
+    margin: 0 auto !important;
+    text-align: left !important;
+  }
+  .profession,
+  .ubicacion,
+  .descripcion,
+  .description {
+    font-size: 1.5em !important;
+  }
+
+  .profession {
+    font-size: 1.8em; /* Ajustar el tamaño de la fuente en pantallas muy pequeñas (móviles) */
+    margin-top: 0.5em;
+  }
+
+  .ubicacion,
+  .descripcion {
+    font-size: 1.2em; /* Ajustar el tamaño de la fuente en pantallas muy pequeñas (móviles) */
+    margin-top: 0.5em;
+  }
+
+  .description {
+    font-size: 0.9em; /* Ajustar el tamaño de la fuente en pantallas muy pequeñas (móviles) */
+    margin-top: -0.5em;
+    font-weight: bold;
+  }
+
+  /* ... */
 }
-/* ::::::::::::::::::::::::::::::::: */
-/* ::::::::::::::::::::::::::::::::: */
-/* ::::::::::::::::::::::::::::::::: */
 
 .overlay {
   position: absolute;
@@ -129,7 +175,7 @@
 }
 
 .buttonContratar::before {
-  content: "";
+  content: '';
   display: block;
   width: 0px;
   height: 86%;
