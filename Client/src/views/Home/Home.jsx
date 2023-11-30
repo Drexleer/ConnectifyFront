@@ -22,7 +22,9 @@ import Loading from '../../components/Utils/Loading/Loading';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchUserLoginWithGoogle } from '../../redux/Slices/loginGoogleSlice';
 import Cover from '../../components/Cover/Cover';
-import { RiMenuSearchFill } from "react-icons/ri";
+import { RiMenuSearchFill } from 'react-icons/ri';
+import { IoIosChatbubbles } from 'react-icons/io';
+import { FaWindowClose } from 'react-icons/fa';
 
 const Home = () => {
   //* Declaraciones de variables
@@ -40,10 +42,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [menuVisible, setMenuVisible] = useState(false);
 
-
- 
-
-
   //* Estados globales
   const adsFiltered = useSelector((state) => state.ads.adsFiltered);
   const ads = useSelector((state) => state.ads.ads);
@@ -53,7 +51,6 @@ const Home = () => {
   //traer usuario ya después de iniciar sesión
   const nickname = userId?.userName || user?.nickname || '';
   const imageUser = userId?.image || user?.picture || '';
-  
 
   //* Paginado
   const [currentPage, setCurrentPage] = useState(1);
@@ -179,8 +176,8 @@ const Home = () => {
   };
 
   const onClose = () => {
-    setChatOpen(false)
-  }
+    setChatOpen(false);
+  };
 
   //* Función de comparación para ordenar por la primera letra
   function sortByFirstLetter(a, b) {
@@ -220,16 +217,20 @@ const Home = () => {
 
   return (
     <div>
-      <Cover className={styles.cover}/>
+      <Cover className={styles.cover} />
       <Navbar setContainerLogin={setContainerLogin} />
-     
+
       <div className={styles.container111}>
         {containerLogin ? (
           <Login setContainerLogin={setContainerLogin} />
         ) : null}
-         <button onClick={() => setMenuVisible(!menuVisible)} className={styles.btnHamburguer}><RiMenuSearchFill className={styles.btnAbrir}/></button>
-      <ul className={menuVisible ? styles.ulVisible : styles.filterStyle}>
-      
+        <button
+          onClick={() => setMenuVisible(!menuVisible)}
+          className={styles.btnHamburguer}
+        >
+          <RiMenuSearchFill className={styles.btnAbrir} />
+        </button>
+        <ul className={menuVisible ? styles.ulVisible : styles.filterStyle}>
           <div className={styles.contProfesionales}>
             <div className={styles.contenedorSelect}>
               <div className={styles.contentselect}>
@@ -293,7 +294,6 @@ const Home = () => {
           </div>
 
           <div className={styles.contOrdenar}>
-            
             <select
               className={`${styles.selectCss} ${styles.selectOrder}`}
               id="sortPrice"
@@ -305,7 +305,7 @@ const Home = () => {
               <option value="desc">Descendente</option>
             </select>
           </div>
-          
+
           <div className={styles.contRemoto}>
             <select
               className={`${styles.selectCss} ${styles.selectRemoto}`}
@@ -317,7 +317,6 @@ const Home = () => {
               <option value="Remoto">Remoto</option>
               <option value="Presencial">Presencial</option>
             </select>
-           
           </div>
           <div className={styles.contButtons}>
             <div className={styles.contButton}>
@@ -330,7 +329,6 @@ const Home = () => {
                   }}
                 />
               </button>
-
             </div>
             <div className={styles.contClear}>
               <button
@@ -418,10 +416,19 @@ const Home = () => {
       <div className={styles.footer}>
         {' '}
         <Footer />
-        <button className={styles.btnChat} onClick={toggleChat} >
-          Abrir Chat
+        <button className={styles.btnChat}>
+          {chatOpen ? (
+            <FaWindowClose style={{ fontSize: '2em' }} onClick={onClose} />
+          ) : (
+            <IoIosChatbubbles
+              style={{ fontSize: '2em' }}
+              onClick={toggleChat}
+            />
+          )}
         </button>
-        {chatOpen && <Chat nickname={nickname} imageUser={imageUser} onClose={onClose}/>}
+        {chatOpen && (
+          <Chat nickname={nickname} imageUser={imageUser} onClose={onClose} />
+        )}
       </div>
     </div>
   );
